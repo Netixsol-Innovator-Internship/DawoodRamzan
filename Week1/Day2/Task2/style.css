@@ -53,7 +53,7 @@ body {
   .Header li {
     font-size: 1rem;
     color: #34495e;
-    margin-left: 1.5rem;
+    margin-left: 1rem;
 
 }
 /*Header Div Ends here*/
@@ -65,6 +65,8 @@ body {
 }
 .Profile h2{
     margin-right: 10rem;
+    padding-top: 0%;
+    margin-top: 0%;
 }
 
 .Profile table td {
@@ -79,6 +81,8 @@ body {
   }
   .Summary h2{
     margin-right: 8rem;
+    padding-top: 0%;
+    margin-top: 0%;
   }
 
 /*Summary section styles ends here*/
@@ -90,6 +94,8 @@ body {
 }
 .experience h2{
     margin-right: 6.6rem;
+    padding-top: 0%;
+    margin-top: 0%;
 }
 
 .experiece_div2{
@@ -100,11 +106,11 @@ body {
 
 
 .jan{
-  padding-left: 15rem;
+  padding-left: 18rem;
 }
 
 .jun{
-  padding-left: 15.5rem;
+  padding-left: 17.5rem;
 }
 
 .san{
@@ -132,15 +138,17 @@ body {
 }
 .Education h2{
     margin-right: 7rem;
+    padding-top: 0%;
+    margin-top: 0%;
 }
 /* .Education table td {
     padding-right: 8rem; 
   } */
   .bach{
-padding-left: 15rem;
+padding-left: 17rem;
   }
   .aug{
-    padding-left: 15rem;
+    padding-left: 19rem;
   }
 
 /*project section starts*/
@@ -149,6 +157,8 @@ padding-left: 15rem;
 }
 .Projects h2{
     margin-right: 8.3rem;
+    padding-top: 0%;
+    margin-top: 0%;
 }
 
   /*project section ends*/
@@ -159,6 +169,8 @@ padding-left: 15rem;
 }
 .Skills h2{
     margin-right: 10.3rem;
+    padding-top: 0%;
+    margin-top: 0%;
 }
 
 /*Skills section styles ends here*/
@@ -170,6 +182,8 @@ padding-left: 15rem;
 }
 .Certifications h2{
     margin-right: 4.4rem;
+    padding-top: 0%;
+    margin-top: 0%;
   }
   .Certifications table td {
     padding-right: 2.2rem; /* or any desired value */
@@ -184,6 +198,8 @@ padding-left: 15rem;
   }
   .Languages h2{
     margin-right: 6.2rem;
+    padding-top: 0%;
+    margin-top: 0%;
   }
   .Languages table td {
     padding-right: 12rem; /* or any desired value */
@@ -199,6 +215,8 @@ padding-left: 15rem;
   }
   .References h2{
     margin-right: 6.2rem;
+    padding-top: 0%;
+    margin-top: 0%;
   }
 
   /*References section styles ends here*/
