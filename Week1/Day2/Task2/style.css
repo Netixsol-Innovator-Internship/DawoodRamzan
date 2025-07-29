@@ -99,15 +99,30 @@ body {
 /*Experience section ends here*/
 
 
+.jan{
+  padding-left: 15rem;
+}
 
+.jun{
+  padding-left: 15.5rem;
+}
 
-.project1 table td {
+.san{
+  padding-left: 18.5rem;
+}
+.jose{
+  padding-left: 19.5rem;
+}
+
+  /*Project section styles*/
+
+/* .project1 table td {
     padding-right: 8rem;
-  }
+  } */
 
-  .project2 table td {
+  /* .project2 table td {
     padding-right: 9rem;
-  }
+  } */
 
 
   /*Education section styles*/
@@ -118,8 +133,14 @@ body {
 .Education h2{
     margin-right: 7rem;
 }
-.Education table td {
+/* .Education table td {
     padding-right: 8rem; 
+  } */
+  .bach{
+padding-left: 15rem;
+  }
+  .aug{
+    padding-left: 15rem;
   }
 
 /*project section starts*/
