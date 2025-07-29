@@ -250,9 +250,14 @@ padding-left: 15rem;
       width: 100%;
     }
   
-    .project1 table td,
-    .project2 table td,
-    .Education table td,
+    .aug,
+    .jan,
+    .jun,
+    .san,
+    .jose,
+    .bach {
+      padding-left: 0;
+    }
     .Languages table td,
     .Certifications table td,
     .Skills table td {
@@ -303,3 +308,151 @@ padding-left: 15rem;
     }
   }
   
+  /* Large tablets or small laptops (up to 1024px) */
+@media (max-width: 1024px) {
+  .Container {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .Header p {
+    font-size: 1.1rem;
+  }
+
+  .Header ul {
+    gap: 1rem;
+  }
+
+  img {
+    width: 1.2rem;
+  }
+
+  .Profile h2,
+  .Summary h2,
+  .experience h2,
+  .Education h2,
+  .Projects h2,
+  .Skills h2,
+  .Certifications h2,
+  .Languages h2,
+  .References h2 {
+    margin-right: 5rem;
+  }
+}
+
+/* Tablets (up to 768px) */
+@media (max-width: 768px) {
+  .Container {
+    padding: 1rem;
+  }
+
+  .Header ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .Profile,
+  .Summary,
+  .experience,
+  .Education,
+  .Projects,
+  .Skills,
+  .Certifications,
+  .Languages,
+  .References {
+    flex-direction: column;
+  }
+
+  .Profile h2,
+  .Summary h2,
+  .experience h2,
+  .Education h2,
+  .Projects h2,
+  .Skills h2,
+  .Certifications h2,
+  .Languages h2,
+  .References h2 {
+    margin-right: 0;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .aug,
+  .jan,
+  .jun,
+  .san,
+  .jose,
+  .bach {
+    padding-left: 0;
+  }
+
+  .Languages table td,
+  .Certifications table td,
+  .Skills table td {
+    padding-right: 1.5rem;
+  }
+
+  img {
+    width: 1.1rem;
+  }
+}
+
+/* Small mobile devices (up to 425px) */
+@media (max-width: 425px) {
+  body {
+    padding: 1rem;
+  }
+
+  .Container {
+    padding: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .Header p {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .Header ul li {
+    font-size: 0.85rem;
+    gap: 0.4rem;
+  }
+
+  td {
+    display: block;
+    width: 100%;
+    padding: 0.2rem 0;
+  }
+
+  table {
+    display: block;
+  }
+
+  img {
+    width: 0.95rem;
+  }
+
+  .Profile h2,
+  .Summary h2,
+  .experience h2,
+  .Education h2,
+  .Projects h2,
+  .Skills h2,
+  .Certifications h2,
+  .Languages h2,
+  .References h2 {
+    font-size: 1.2rem;
+  }
+}
