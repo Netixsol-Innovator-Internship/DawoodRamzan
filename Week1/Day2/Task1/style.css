@@ -1,0 +1,178 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  font-family: 'Barlow', sans-serif;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom right, #e0f7fa, #ffffff); /* Soft gradient */
+
+}
+
+/* Wrapper container */
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+
+
+
+/* Shared card styles */
+.container > .first_container > div,
+.container > .second_container > div {
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.first_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.second_container{
+  height: 100%;
+}
+
+.container > div > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Section-specific styling */
+.DanielSection {
+  background-color: rgb(138, 0, 202);
+  color: white;
+  flex: 1 1 60%;
+  min-width: 280px;
+  background: linear-gradient(to bottom right, #9e60e5, #5a009e), 
+  url("./images/bg-pattern-quotation.svg") no-repeat top right;
+background-blend-mode: multiply;
+
+}
+
+.JonathanSection {
+  background: linear-gradient(to right, #48516c, #3b3f58);
+  color: white;
+  flex: 1 1 35%;
+  min-width: 240px;
+}
+
+.JeanetteSection {
+  background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+  color: #444;
+  flex: 1 1 35%;
+  min-width: 240px;
+}
+
+.PatrickSection {
+  background: linear-gradient(to right, #191c2d, #2e324d);
+  color: white;
+  flex: 1 1 60%;
+  min-width: 280px;
+}
+
+.KiraSection {
+  background: linear-gradient(to bottom, #ffffff, #eaeaea);
+  color: #333;
+  flex: 1 1 100%;
+  width: 20rem;
+  height: 55rem;
+}
+
+
+h1 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0.2rem;
+}
+
+h2 {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0;
+}
+
+p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0.6rem 0;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 0.8rem;
+}
+
+/* Attribution styling */
+.attribution {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 8rem;
+}
+
+/* Responsive behavior */
+
+/*for screens upto 768px*/
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .DanielSection,
+  .JonathanSection,
+  .JeanetteSection,
+  .PatrickSection,
+  .KiraSection {
+    width: 90%;
+  }
+  .KiraSection {
+    width: 100%;      
+    height: 30rem;   
+    align-self: flex-end;
+  }
+}
+
+/*for screens upto 1024px*/
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .KiraSection {
+    height: 65rem;
+  }
+}
+
+/*for screens upto 425px*/
+@media (max-width: 425px) {
+  .KiraSection {
+    height: 55em;
+  }
+}
+
+/*for screens upto 375px*/
+@media (max-width: 375px) {
+  .KiraSection {
+    height: 60rem;
+  }
+}
+
+
+@media (max-width: 320px) {
+  .KiraSection {
+    height: 70rem; 
+  }
+}
