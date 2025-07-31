@@ -25,7 +25,7 @@
 </head>
 
 <!-- Header Section -->
-<body class="bg-black text-white dark:bg-gray-200 dark:text-blue-300 font-poppins">
+<body class="bg-black text-white dark:bg-gray-400 dark:text-blue-300 font-poppins">
     <div class="relative mx-5 lg:mx-10 h-auto min-h-[40rem] md:min-h-[60rem] lg:min-h-[90rem] ">
         <div class="absolute inset-0 bg-[url('./images/about.jpg')] bg-cover bg-center z-0"></div>
       
@@ -154,19 +154,34 @@
         </div>
     </div>
 
-    <!-- WhatsApp Section -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
-        <div class="bg-[#047F01] rounded-full h-24 md:h-32 lg:h-48 flex flex-col md:flex-row justify-between items-center p-6 md:p-10 lg:p-20 transition-transform duration-300 hover:scale-95">
-            <div class="font-bold text-xl md:text-2xl lg:text-4xl mb-4 md:mb-0 text-center md:text-left">
-                <h1>Chat on Whatsapp</h1>
-            </div>
-            <div>
-                <button class="px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl text-[#047F01] bg-white text-sm md:text-base lg:text-lg">
-                    Start Chat
-                </button>
-            </div>
+<!-- Whatsapp chat section -->
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
+    <div class="bg-[#047F01] rounded-full h-24 sm:h-32 md:h-40 lg:h-48 flex flex-col md:flex-row justify-between items-center p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20 transition-all duration-500 hover:scale-95 hover:shadow-2xl hover:shadow-[#047F01]/50 relative overflow-hidden group">
+        <div class="absolute -left-10 -top-10 w-24 h-24 rounded-full bg-white/10 group-hover:scale-150 transition-all duration-1000"></div>
+        <div class="absolute -right-5 -bottom-5 w-16 h-16 rounded-full bg-white/10 group-hover:scale-150 transition-all duration-1000 delay-200"></div>
+        
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-20 transition-opacity duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="white">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+        </div>
+        
+        <div class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-0 text-center md:text-left text-white z-10 group-hover:translate-x-2 transition-transform duration-300">
+            <h1 class="inline-block">Chat on <span class="group-hover:text-white/90 transition-colors duration-300">WhatsApp</span></h1>
+        </div>
+        <div class="z-10">
+            <a href="https://wa.me" target="_blank" class="inline-block px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl text-[#047F01] hover:text-[#035a01] bg-white hover:bg-gray-100 text-sm sm:text-base md:text-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+                <div class="flex items-center gap-2">
+                    <span>Start Chat</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#047F01" class="group-hover:translate-x-1 transition-transform duration-300">
+                        <path d="M10.025 4h-6.025v16h16v-6.025h2v8.025h-20v-20h20v8.025h-2v-6.025h-6.025v2zm7.95 1v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-7.95 7v2h9v-2h-9z"/>
+                    </svg>
+                </div>
+            </a>
         </div>
     </div>
+</div>
+
 
     <!-- Rules Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
