@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+                fontFamily: {
+                    poppins: ['Poppins', 'sans-serif'],
+                }
+            }
+        }
+        }
+      </script>
+    <script>
+        function toggleTheme() {
+          document.documentElement.classList.toggle('dark');
+        }
+      </script>
+</head>
+
+<!-- Header Section -->
+<body class="bg-black text-white dark:bg-gray-200 dark:text-blue-300 font-poppins">
+    <div class="relative mx-5 lg:mx-10 h-auto min-h-[40rem] md:min-h-[60rem] lg:min-h-[90rem] ">
+        <div class="absolute inset-0 bg-[url('./images/about.jpg')] bg-cover bg-center z-0"></div>
+      
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70 z-10"></div>
+      
+         <div class="relative z-20  ">
+          <nav class="p-4 md:p-0">
+            <ul class="flex flex-col md:flex-row justify-between items-center">
+              <li class="mb-4 md:mb-0">
+                <a href="./index.html">
+                  <img src="./images/saudi text.png" alt="Logo"
+                    class="w-24 md:w-32 lg:w-40 h-auto ml-0 md:ml-20 mt-4 md:mt-10 transition-transform duration-300 hover:scale-105">
+                </a>
+              </li>
+      
+              <li>
+                <ul class="flex flex-row items-center flex-wrap gap-4 md:gap-10">
+                    <li class="transition-transform duration-300 hover:scale-120">
+                        <svg xmlns="http://www.w3.org/2000/svg" onclick="toggleTheme()"  fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                        </svg>
+                       </li>
+                  <li class="nav-item">
+                    <a href="./destination.html" class=" hover:underline text-sm md:text-lg lg:text-xl">Destinations</a>
+                  </li>
+                  <li class="nav-item"><a href="#" class=" hover:underline text-sm md:text-lg lg:text-xl">Members</a></li>
+                  <li class="nav-item"><a href="#" class="hover:underline text-sm md:text-lg lg:text-xl">Gallery</a></li>
+                  <li class=" hamburger-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- js to hide menu bar -->
+          <script>
+            document.querySelector('.hamburger-icon').addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.toggle('hidden');
+                });
+            });
+        </script>
+      
+          <div class="text-center px-4 py-10 md:py-20">
+            <div class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mt-8 md:mt-16 lg:mt-32">
+              <h1>About Us</h1>
+            </div>
+            <div class="max-w-[20rem] sm:max-w-[30rem] md:max-w-[40rem] mx-auto text-lg md:text-xl lg:text-2xl mt-4">
+              <p>Discover the country's hidden gems and breathtaking landscapes</p>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20 text-center">
+        <div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold">Saudi, a kingdom that inspires</h1>
+            <p class="mt-2 text-sm md:text-base lg:text-lg">
+                A uniquely Saudi experience awaits in winter
+            </p>
+        </div>
+    </div>
+
+    <!-- Traditions Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-10">
+            Traditions of Saudi Arabia
+        </h1>
+
+        <!-- Language Section -->
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-10 mb-16 md:mb-20">
+            <div class="w-full lg:w-1/2">
+                <img src="./images/a3.jpg" alt="image" class="w-full h-auto md:h-[20rem] lg:h-[30rem] rounded-3xl object-cover transition-transform duration-300 hover:scale-95">
+            </div>
+
+            <div class="w-full lg:w-1/2 flex flex-col justify-between">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        Language
+                    </h1>
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-justify">
+                        Arabic is the official language of Saudi Arabia and the primary language
+                        used in all dealings and public transactions. 
+                        English serves as an informal second language in the Kingdom
+                        and is spoken by a large section of its society.
+                        All road signs are bilingual, 
+                        showing information in both Arabic and English.
+                    </p>
+                </div>
+                <div class="flex justify-end mt-6 md:mt-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Culture Section -->
+        <div class="flex flex-col lg:flex-row-reverse gap-6 md:gap-10 mb-16 md:mb-20">
+            <div class="w-full lg:w-1/2">
+                <img src="./images/a4.jpg" alt="image" class="w-full h-auto md:h-[20rem] lg:h-[30rem] rounded-3xl object-cover transition-transform duration-300 hover:scale-95">
+            </div>
+
+            <div class="w-full lg:w-1/2 flex flex-col justify-between">
+                <div>
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        Culture
+                    </h1>
+                    <p class="text-sm sm:text-base md:text-lg lg:text-xl text-justify">
+                        Saudi Arabia's rich heritage and traditions have been 
+                        shaped by its position as a historic trade hub and the birthplace
+                        of Islam. In recent years, the Kingdom has undergone a significant
+                        cultural transformation, evolving
+                        century-old customs to fit the contemporary world we live in today.
+                    </p>
+                </div>
+                <div class="flex justify-end mt-6 md:mt-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
+        <div class="bg-[#047F01] rounded-full h-24 md:h-32 lg:h-48 flex flex-col md:flex-row justify-between items-center p-6 md:p-10 lg:p-20 transition-transform duration-300 hover:scale-95">
+            <div class="font-bold text-xl md:text-2xl lg:text-4xl mb-4 md:mb-0 text-center md:text-left">
+                <h1>Chat on Whatsapp</h1>
+            </div>
+            <div>
+                <button class="px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 rounded-xl text-[#047F01] bg-white text-sm md:text-base lg:text-lg">
+                    Start Chat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules Section -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-20">
+        <div class="bg-[url('./images/a2.jpg')] h-64 sm:h-80 md:h-[30rem] lg:h-[40rem] bg-cover bg-center rounded-3xl transition-transform duration-300 hover:scale-95 relative">
+            <div class="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-20 bg-gradient-to-t from-black to-transparent rounded-b-3xl">
+                <div class="flex flex-col md:flex-row justify-between items-end">
+                    <div class="text-2xl sm:text-3xl md:text-4xl lg:text-7xl font-bold mb-4 md:mb-0">
+                        <h3>Rules of Behaviour</h3>
+                        <h3>KSA</h3>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-[rgb(34,34,34)] p-6 md:p-9">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <a href="./index.html">
+                    <img src="./images/saudi text.png" alt="Logo" class="w-24 md:w-32 lg:w-40 h-auto transition-transform duration-300 hover:scale-95">
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="font-bold text-sm md:text-base lg:text-lg mb-2">About</h3>
+                    <ul class="space-y-1">
+                        <li><a href="./about-us.html" class=" hover:underline text-xs md:text-sm lg:text-base">About us</a></li>
+                        <li><a href="#" class=" hover:underline text-xs md:text-sm lg:text-base">Features</a></li>
+                        <li><a href="#" class=" hover:underline text-xs md:text-sm lg:text-base">News & Blogs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm md:text-base lg:text-lg mb-2">Contact</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="  hover:underline text-xs md:text-sm lg:text-base">Instagram</a></li>
+                        <li><a href="#" class="  hover:underline text-xs md:text-sm lg:text-base">Twitter</a></li>
+                        <li><a href="#" class="  hover:underline text-xs md:text-sm lg:text-base">Facebook</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm md:text-base lg:text-lg mb-2">Support</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="  hover:underline text-xs md:text-sm lg:text-base">FAQs</a></li>
+                        <li><a href="#" class="  hover:underline text-xs md:text-sm lg:text-base">Support Center</a></li>
+                        <li><a href="#" class="  hover:underline text-xs md:text-sm lg:text-base">Feedback</a></li>
+                        <li>
+                            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center justify-center w-full group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6   group-hover:text-blue-400 transition-colors duration-200">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                <span class="ml-2 text-xs sm:text-sm md:text-base   group-hover:text-blue-400 transition-colors duration-200">Back to Top</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
