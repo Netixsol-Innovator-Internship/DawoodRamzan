@@ -32,47 +32,62 @@
     </style>
 </head>
 <!-- Header Section -->
-<body class="bg-black text-white dark:bg-gray-400 dark:text-blue-300 font-poppins">
+<body class="bg-black text-white dark:bg-gray-400 dark:text-white font-poppins">
     <div class="relative mx-4 sm:mx-6 lg:mx-8 h-auto min-h-[40rem] md:min-h-[60rem] lg:min-h-[90rem]">
         <div class="absolute inset-0 bg-[url('./images/image1.jpg')] bg-cover bg-center transition-transform duration-300 hover:scale-95 z-0"></div>
       
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80 z-10"></div>
       
         <div class="relative z-20">
-          <nav class="p-4 md:p-0">
-            <ul class="flex flex-col md:flex-row justify-between items-center">
-                <li class="mb-4 md:mb-0">
+            <nav class="p-4 md:p-0">
+                <ul class="flex flex-col md:flex-row justify-between items-center">
+                  <!-- Logo -->
+                  <li class="mb-4 md:mb-0">
                     <a href="./index.html">
-                        <img src="./images/saudi text.png" alt="Logo" class="w-24 md:w-32 lg:w-40 h-auto ml-0 md:ml-10 lg:ml-20 mt-4 md:mt-10 transition-transform duration-300 hover:scale-105">
+                      <img src="./images/saudi text.png" alt="Logo"
+                        class="w-24 md:w-32 lg:w-40 h-auto ml-0 md:ml-10 lg:ml-20 mt-4 md:mt-10 transition-transform duration-300 hover:scale-105">
                     </a>
-                </li>
-                <li>
-                    <ul class="flex flex-row items-center flex-wrap gap-4 md:gap-6 lg:gap-10" id="nav-menu">
-                        <li class="transition-transform duration-300 hover:scale-120">
-                            <svg xmlns="http://www.w3.org/2000/svg" onclick="toggleTheme()" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-                            </svg>
-                        </li>
-                        <li class="nav-item"><a href="./destination.html" class="hover:underline text-sm md:text-base lg:text-lg">Destinations</a></li>
-                        <li class="nav-item"><a href="#" class="hover:underline text-sm md:text-base lg:text-lg">Members</a></li>
-                        <li class="nav-item"><a href="#" class="hover:underline text-sm md:text-base lg:text-lg">Gallery</a></li>
-                        <li class=" hamburger-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                            </svg>
-                        </li>
+                  </li>
+              
+                  <!-- Navigation Links + Hamburger -->
+                  <li class="w-full md:w-auto">
+                    <!-- Hamburger icon (only visible on small screens) -->
+                    <div class="flex justify-end md:hidden">
+                      <button class="hamburger-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                          stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                      </button>
+                    </div>
+              
+                    <!-- Navigation Links -->
+                    <ul class="nav-menu hidden md:flex flex-col md:flex-row items-center flex-wrap gap-4 md:gap-6 lg:gap-10 mt-4 md:mt-0">
+                      <li class="transition-transform duration-300 hover:scale-120">
+                        <svg xmlns="http://www.w3.org/2000/svg" onclick="toggleTheme()" fill="none"
+                          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 
+                            6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 
+                            1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 
+                            12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                        </svg>
+                      </li>
+                      <li class="nav-item"><a href="#" class="hover:underline text-sm md:text-base lg:text-lg">Destinations</a></li>
+                      <li class="nav-item"><a href="#" class="hover:underline text-sm md:text-base lg:text-lg">Members</a></li>
+                      <li class="nav-item"><a href="#" class="hover:underline text-sm md:text-base lg:text-lg">Gallery</a></li>
                     </ul>
-                </li>
-            </ul>
-        </nav>
-        
-        <script>
-            document.querySelector('.hamburger-icon').addEventListener('click', function() {
-                document.querySelectorAll('.nav-item').forEach(item => {
-                    item.classList.toggle('hidden');
+                  </li>
+                </ul>
+              </nav>
+              
+              <script>
+                document.querySelector('.hamburger-icon').addEventListener('click', function () {
+                  document.querySelector('.nav-menu').classList.toggle('hidden');
                 });
-            });
-        </script>
+              </script>
+              
       
             <div class="text-center px-4 py-10 md:py-20">
                 <div class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mt-8 md:mt-16 lg:mt-32">
@@ -304,15 +319,31 @@
                   <li><a href="#" class="  hover:underline text-xs sm:text-sm md:text-base">FAQs</a></li>
                   <li><a href="#" class="  hover:underline text-xs sm:text-sm md:text-base">Support Center</a></li>
                   <li><a href="#" class="  hover:underline text-xs sm:text-sm md:text-base">Feedback</a></li>
-                  <li>
-                    <!-- Scroll to top functionality -->
-                      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center justify-center w-full group">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6   group-hover:text-blue-400 transition-colors duration-200">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                          </svg>
-                          <span class="ml-2 text-xs sm:text-sm md:text-base   group-hover:text-blue-400 transition-colors duration-200">Back to Top</span>
-                      </button>
-                  </li>
+                  <!-- Floating Back to Top Button -->
+<li id="backToTop" class="fixed bottom-6 right-6 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center justify-center px-4 py-2 bg-gray-800 text-white rounded-full shadow-lg group hover:bg-gray-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:text-blue-400 transition-colors duration-200">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <span class="ml-2 text-xs sm:text-sm md:text-base group-hover:text-blue-400 transition-colors duration-200">Back to Top</span>
+    </button>
+</li>
+
+<!-- Script to toggle visibility -->
+<script>
+  const backToTopBtn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+      backToTopBtn.classList.add('opacity-100');
+    } else {
+      backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+      backToTopBtn.classList.remove('opacity-100');
+    }
+  });
+</script>
+
               </ul>
           </div>
       </div>
