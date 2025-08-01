@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+                fontFamily: {
+                    poppins: ['Poppins', 'sans-serif'],
+                }
+            }
+        }
+        }
+      </script>
+</head>
+<body class="text-white bg-black font-poppins">
+      
+    <div class="flex justify-between items-center p-6 md:p-8  lg:p-10">
+        <h1 >
+            <a href="./index.html">Logo here</a>
+        </h1>
+<!-- Navigation Links -->
+<ul class="nav-menu hidden md:flex flex-col md:flex-row items-center flex-wrap gap-4 md:gap-6 lg:gap-10 mt-4 md:mt-0">
+  <li class="nav-item"><a href="#About" class="hover:underline text-sm md:text-base lg:text-lg">About</a></li>
+  <li class="nav-item"><a href="#Collection" class="hover:underline text-sm md:text-base lg:text-lg">collection</a></li>
+  <li class="nav-item"><a href="#Creators" class="hover:underline text-sm md:text-base lg:text-lg">Creater</a></li>
+  <li class="nav-item"><a href="#Road" class="hover:underline text-sm md:text-base lg:text-lg">Roadmap</a></li>
+  <li>
+    <div class="z-10">
+      <a href="https://wa.me" target="_blank" aria-label="Start WhatsApp chat"
+         class="group inline-block bg-[#DA8F4D] px-4 py-2 sm:px-5 sm:py-3 md:px-6 md:py-3 lg:px-8 lg:py-4 
+                rounded-xl text-white hover:text-[#035a01] hover:bg-[#e39a58] 
+                text-sm sm:text-base md:text-lg font-semibold shadow-md hover:shadow-lg 
+                transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+        <div class="flex items-center gap-2">
+          <span>Start Chat</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+               viewBox="0 0 24 24" fill="currentColor"
+               class="text-[#047F01] group-hover:translate-x-1 transition-transform duration-300">
+            <path d="M10.025 4h-6.025v16h16v-6.025h2v8.025h-20v-20h20v8.025h-2v-6.025h-6.025v2zm7.95 
+            1v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-7.95 7v2h9v-2h-9z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </li>
+  
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+
+<!-- --------------------------------------------------------------------- -->
+<!-- Hero Section -->
+ <div class="relative bg-cover bg-center text-white" style="background-image: url('./images/i1.png'); min-height: 42rem;">
+  <!-- White Overlay -->
+  <div class="absolute inset-0 bg-white bg-opacity-10"></div>
+
+  <div class="relative flex flex-col lg:flex-row items-center justify-between px-4 md:px-6 lg:px-8 py-12
+   max-w-screen-xl mx-auto gap-[15rem]">
+    
+    <!-- Left Content -->
+    <div class="flex-1 space-y-6">
+        <h1 class="text-[86.4px] sm:text-5xl font-black leading-tight">
+            We have high <br>
+            <span class="inline-flex items-center gap-2">
+              Quality <h1 class="text-[#DA8F4D]">NFT</h1>
+              <img src="./images/wide.png">
+            </span>
+            <br> collections
+          </h1>
+          
+      <p class="text-base sm:text-lg text-gray-200">
+        Lorem ipsum dolor sit amet consectetur. Rhoncus massa suspendisse turpis sed
+        viverra tempus tortor. Habitant accumsan sagittis in facilisi placerat ac. Laoreet scelerisque viverra
+        viverra ornare fermentum faucibus sit purus volutpat. Egestas lectus ornare convallis ornare nullam enim neque.
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap gap-4">
+        <!-- Wishlist Button -->
+        <a href="https://wa.me" target="_blank" aria-label="Get wishlist"
+          class="group inline-block bg-[#DA8F4D] px-6 py-3 rounded-xl text-white hover:text-[#035a01] 
+                hover:bg-[#e39a58] text-base font-semibold shadow-md hover:shadow-lg 
+                transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+          <div class="flex items-center gap-2">
+            <span>Get Wishlist</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+              viewBox="0 0 24 24" fill="currentColor"
+              class="text-[#047F01] group-hover:translate-x-1 transition-transform duration-300">
+              <path d="M10.025 4h-6.025v16h16v-6.025h2v8.025h-20v-20h20v8.025h-2v-6.025h-6.025v2zm7.95 
+              1v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-7.95 7v2h9v-2h-9z"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Contact Button -->
+        <a href="https://wa.me" target="_blank" aria-label="Contact us"
+          class="group inline-block border border-white px-6 py-3 rounded-xl text-white hover:text-[#035a01] 
+                hover:bg-[#e39a58] text-base font-semibold shadow-md hover:shadow-lg 
+                transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+          <div class="flex items-center gap-2">
+            <span>Contact us</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+              viewBox="0 0 24 24" fill="currentColor"
+              class="text-[#047F01] group-hover:translate-x-1 transition-transform duration-300">
+              <path d="M10.025 4h-6.025v16h16v-6.025h2v8.025h-20v-20h20v8.025h-2v-6.025h-6.025v2zm7.95 
+              1v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-7.95 7v2h9v-2h-9z"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+        <div>
+          <p class="text-2xl font-bold">240K+</p>
+          <p class="text-sm text-gray-300">Total Size</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold">100K+</p>
+          <p class="text-sm text-gray-300">Auctions</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold">240K+</p>
+          
+          <p class="text-sm text-gray-300">Artists </p>
+
+        </div>
+        <div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Image -->
+
+
+    <div class="flex-1 flex flex-col">
+        <img src="./images/2.png" alt="Feature Image"
+          class="w-[566.15234375] h-[694.7037963867188] object-contain rounded-xl shadow-lg  bg-opacity-40 p-2">
+        <img src="./images/thinsmooth.png" class="w-20 h-20 mt-4">
+     
+        
+      </div>
+
+
+  </div>
+  <div >
+
+</div>
+</div>
+
+  
+  <!-- -------------------------------------------------------------------------- -->
+   <!-- ------------------------------------------------------------------------- -->
+
+  <div>
+
+
+    <div id="About" class="flex items-center justify-center py-12">
+        <h1 class="text-5xl">
+            About Us
+        </h1>
+    </div>
+
+
+    <!-- -------------------------------------------------------------------------- -->
+<!-- Wrapper: Main Flex Row -->
+<div class="relative flex flex-col lg:flex-row flex-wrap gap-8 lg:gap-12 items-center lg:items-start justify-center p-6 sm:p-8 lg:p-12 bg-[#DA8F4D17] text-white">
+
+  <!-- Gradient Overlays -->
+  <div class="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-[#DA8F4D] to-transparent opacity-30 pointer-events-none rounded-full blur-2xl z-0"></div>
+  <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-white to-transparent opacity-20 pointer-events-none rounded-full blur-xl z-0"></div>
+
+  <!-- Image Section -->
+  <div class="relative flex flex-col sm:flex-row gap-4 sm:gap-6 z-10">
+    <!-- Column 1 -->
+    <div class="flex flex-col gap-4 sm:gap-6">
+      <div class="bg-white/10 p-3 rounded-md w-full sm:w-56 h-56 mx-auto backdrop-blur-sm">
+        <img src="./images/a1.png" alt="About us image 1" class="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-95" />
+      </div>
+      <div class="bg-white/10 p-3 rounded-md w-full sm:w-56 h-56 mx-auto backdrop-blur-sm">
+        <img src="./images/a2.png" alt="About us image 2" class="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-95" />
+      </div>
+    </div>
+    
+    <!-- Column 2 -->
+    <div class="flex flex-col gap-4 sm:gap-6">
+      <div class="bg-white/10 p-3 rounded-md w-full sm:w-56 h-56 mx-auto backdrop-blur-sm">
+        <img src="./images/a3.png" alt="About us image 3" class="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-95" />
+      </div>
+      <div class="bg-white/10 p-3 rounded-md w-full sm:w-56 h-56 mx-auto backdrop-blur-sm">
+        <img src="./images/a4.png" alt="About us image 4" class="w-full h-full object-cover rounded transition-transform duration-300 hover:scale-95" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Text and Button Section -->
+  <div class="relative max-w-2xl space-y-6 lg:space-y-8 text-base lg:text-lg leading-relaxed z-10">
+    <p class="text-white/90">
+      Lorem ipsum dolor sit amet consectetur. Pharetra faucibus donec ultrices eros elit metus morbi
+      aliquam quis. Suspendisse massa ullamcorper tortor morbi nisi leo. Ultrices leo vel tincidunt nunc 
+      eget elit. Gravida et duis ipsum pellentesque libero. Tellus rhoncus metus et eget mattis fringilla
+      nec id. Amet ultrices quam ridiculus tellus. 
+      Leo adipiscing tincidunt amet nisi semper adipiscing quam in est. Tempor sed dui nunc diam adipiscing at.
+    </p>
+    <p class="text-white/90">
+      Tellus rhoncus metus et eget mattis fringilla nec id. Amet ultrices quam ridiculus tellus.
+      Leo adipiscing tincidunt amet nisi semper adipiscing quam in est. 
+      Tempor sed dui nunc diam adipiscing at.
+    </p>
+
+    <!-- Call to Action Button -->
+    <div class="pt-4">
+      <a href="https://wa.me" target="_blank" aria-label="Contact us"
+        class="group inline-block border-2 border-white/50 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-white hover:text-[#035a01] 
+               hover:bg-[#DA8F4D] text-base sm:text-lg font-semibold shadow-md hover:shadow-lg 
+               transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+        <div class="flex items-center gap-2">
+          <span>Connect Wallet</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+              viewBox="0 0 24 24" fill="currentColor"
+              class="text-[#047F01] group-hover:translate-x-1 transition-transform duration-300">
+            <path d="M10.025 4h-6.025v16h16v-6.025h2v8.025h-20v-20h20v8.025h-2v-6.025h-6.025v2zm7.95
+             1v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-7.95 7v2h9v-2h-9z"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+  <!-- ---------------------------------------------------------------------- -->
+   <!-- --------------------------------------------------------------------- -->
+  
+   <div id="Collection" class="flex items-center justify-center text-white">
+    <div class="text-center space-y-4">
+      <h1 class="text-4xl font-bold">Top Collections</h1>
+      <p class="text-lg max-w-xl mx-auto">
+        The largest and unique Super rare NFT marketplace<br />
+        For crypto-collectibles
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ------------------------------------------------------------------------------------------------- -->
+
+  <div class="bg-[url('./images/i1.png')] bg-cover bg-center mb-4 py-8">
+    <div class="bg-black/30 px-4 sm:px-10 md:px-16 flex items-center justify-center lg:px-20 rounded-lg">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10" >
+        <!-- Card 1 -->
+        <img src="./images/Frame.png" class="object-contain max-h-[24rem] transition-transform duration-300 hover:scale-95" />
+  
+        <!-- Card 2 -->
+        <img src="./images/f2.png" class="object-contain max-h-[24rem] transition-transform duration-300 hover:scale-95" />
+  
+        <!-- Card 3 -->
+        <img src="./images/Frame.png" class="object-contain max-h-[24rem] transition-transform duration-300 hover:scale-95" />
+  
+        <!-- Card 4 -->
+        <img src="./images/Frame.png" class="object-contain max-h-[24rem] transition-transform duration-300 hover:scale-95" />
+  
+        <!-- Card 5 -->
+        <img src="./images/Frame.png" class="object-contain max-h-[24rem] transition-transform duration-300 hover:scale-95" />
+  
+        <!-- Card 6 -->
+        <img src="./images/Frame.png" class="object-contain max-h-[24rem] transition-transform duration-300 hover:scale-95" />
+  
+    </div>
+</div>
+    <!-- Explore more button -->
+    <div class="flex justify-center pb-8 pt-5">
+      <a href="https://wa.me" target="_blank" aria-label="Contact us"
+        class="group inline-block bg-white/50 border border-white px-6 py-3 rounded-xl text-white hover:text-[#035a01] 
+          hover:bg-[#e39a58] text-base font-semibold shadow-md hover:shadow-lg 
+          transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+        <div class="flex items-center gap-2">
+          <span>Explore More</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+            viewBox="0 0 24 24" fill="currentColor"
+            class="text-[#047F01] group-hover:translate-x-1 transition-transform duration-300">
+            <path d="M10.025 4h-6.025v16h16v-6.025h2v8.025h-20v-20h20v8.025h-2v-6.025h-6.025v2zm7.95 
+            1v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2zm-7.95 7v2h9v-2h-9z" />
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+  
+  
+
+
+  </div>
+  <!----------------------------------------------------------------------------------------------  -->
+  <!-- -------------------------------------------------------------------------------------------- -->
+  
+  <div id="Creators" class="relative flex items-center justify-center text-white my-12 py-12 overflow-hidden">
+    <!-- Orange Gradient Overlay (Top Right) -->
+    <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#DA8F4D] to-transparent opacity-30 pointer-events-none rounded-full blur-2xl z-0"></div>
+    
+    <!-- White Gradient Overlay (Top Right) -->
+    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white to-transparent opacity-20 pointer-events-none rounded-full blur-xl z-0"></div>
+  
+    <div class="text-center space-y-4 relative z-10">
+      <h1 class="text-3xl sm:text-4xl font-bold">Top Creators</h1>
+      <p class="text-base sm:text-lg max-w-xl mx-auto px-4">
+        Checkout top rated creators on NFT marketplace
+      </p>
+    </div>
+  </div>
+<!-- ------------------------------------------------------------------- -->
+   <div>
+
+ <div class="bg-black/30 px-20 py-12 rounded-lg ">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Card 1 -->
+         <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+         <h1 class="text-white text-lg mb-4">1 </h1>
+
+        <div class="flex flex-col items-center text-center ">
+          <img src="./images/creator/c1.png" alt="t1" class="rounded-full w-32 h-32 object-cover mb-4" />
+          <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+          <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>         </div>
+        </div>
+  
+        <!-- Card 2 -->
+         <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+              <h1 class="text-white text-lg mb-4">2</h1>
+
+        <div class="flex flex-col items-center text-center ">
+          <img src="./images/creator/c2.png" alt="t2" class="rounded-full w-32 h-32 object-cover mb-4" />
+          <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+          <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>        </div>
+        </div>
+  
+        <!-- Card 3 -->
+        <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+            <h1 class="text-white text-lg mb-4">3</h1>
+
+      <div class="flex flex-col items-center text-center ">
+          <img src="./images/creator/c3.png" alt="t3" class="rounded-full w-32 h-32 object-cover mb-4" />
+          <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+          <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>        </div>
+        
+        </div>
+  
+        <!-- Card 4 -->
+        <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+            <h1 class="text-white text-lg mb-4">4</h1>
+
+      <div class="flex flex-col items-center text-center ">
+          <img src="./images/creator/c4.png" alt="t4" class="rounded-full w-32 h-32 object-cover mb-4" />
+          <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+          <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>        </div>
+        </div>
+  
+        <!-- Card 5 -->
+        <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+            <h1 class="text-white text-lg mb-4">5</h1>
+
+      <div class="flex flex-col items-center text-center ">
+          <img src="./images/creator/c5.png" alt="t5" class="rounded-full w-32 h-32 object-cover mb-4" />
+          <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+          <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>  </h2>        </div>
+        </div>
+  
+        <!-- Card 6 -->
+        <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+            <h1 class="text-white text-lg mb-4">6</h1>
+
+      <div class="flex flex-col items-center text-center ">
+          <img src="./images/creator/c6.png" alt="t6" class="rounded-full w-32 h-32 object-cover mb-4" />
+          <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+          <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>  </div>
+        </div>
+            <!-- Card 7 -->
+            <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+                <h1 class="text-white text-lg mb-4">7</h1>
+  
+          <div class="flex flex-col items-center text-center ">
+                <img src="./images/creator/c7.png" alt="t6" class="rounded-full w-32 h-32 object-cover mb-4" />
+                <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+                <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>  
+            </div>
+              </div>
+                  <!-- Card 8 -->
+                  <div class="bg-[#2E2D25] p-6 rounded-lg h-[24rem] transition-transform duration-300 hover:scale-95">
+                    <h1 class="text-white text-lg mb-4">8</h1>
+      
+              <div class="flex flex-col items-center text-center ">
+            <img src="./images/creator/c8.png" alt="t6" class="rounded-full w-32 h-32 object-cover mb-4" />
+            <h2 class="text-white font-bold text-[29.7px]">Name NFT</h2>
+            <h2> <br><span class=" text-[21.6px]">Total Sales:</span><span class="text-[21.6px] font-bold"> 34.53 ETH</span></h2>       </div>
+          </div>
+      </div>
+   </div>
+<!-- --------------------------------------------7------------- -->
+ <!-- ---------------------------------------------------------------------- -->
+
+
+ <div id="Road" class="relative overflow-hidden py-16">
+  <!-- Orange Gradient Overlay (Top Right) -->
+  <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#DA8F4D] to-transparent opacity-30 pointer-events-none rounded-full blur-2xl z-0"></div>
+  
+  <!-- White Gradient Overlay (Top Right) -->
+  <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white to-transparent opacity-20 pointer-events-none rounded-full blur-xl z-0"></div>
+
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl sm:text-5xl md:text-[50.79px] font-bold font-poppins text-center mb-4">
+      Road Map
+    </h1>
+    <!-- Optional subtitle can be added here -->
+  </div>
+</div>
+
+<div class="bg-[url('./images/i1.png')] bg-no-repeat bg-cover bg-center min-h-screen flex items-center justify-center p-10 text-white font-poppins">
+
+  <div class="relative grid grid-cols-1 md:grid-cols-2 gap-16 w-full max-w-6xl">
+    <!-- Vertical Line -->
+    <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-white via-orange-400 to-orange-600 transform -translate-x-1/2 z-0"></div>
+
+    <!-- Row 1 -->
+    <div class="relative z-10 flex flex-col items-end pr-10">
+      <div class="border border-gray-500 bg-black/50 p-6 rounded-xl max-w-sm backdrop-blur-sm">
+        <h2 class="text-lg text-orange-400 font-semibold">Brief</h2>
+        <p class="text-sm text-gray-300 mt-2">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+        <p class="text-xs text-gray-400 mt-2">January</p>
+      </div>
+    </div>
+    <div class="relative z-10 flex flex-col items-start pl-10 pt-10" >
+      <div class="border border-gray-500 bg-black/50 p-6 rounded-xl max-w-sm backdrop-blur-sm">
+        <h2 class="text-lg text-orange-400 font-semibold">Research</h2>
+        <p class="text-sm text-gray-300 mt-2">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+        <p class="text-xs text-gray-400 mt-2">February</p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="relative z-10 flex flex-col items-end pr-10">
+      <div class="border border-gray-500 bg-black/50 p-6 rounded-xl max-w-sm backdrop-blur-sm">
+        <h2 class="text-lg text-orange-400 font-semibold">Discover</h2>
+        <p class="text-sm text-gray-300 mt-2">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+        <p class="text-xs text-gray-400 mt-2">March</p>
+      </div>
+    </div>
+    <div class="relative z-10 flex flex-col items-start pl-10 pt-10">
+      <div class="border border-gray-500 bg-black/50 p-6 rounded-xl max-w-sm backdrop-blur-sm">
+        <h2 class="text-lg text-orange-400 font-semibold">Design</h2>
+        <p class="text-sm text-gray-300 mt-2">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+        <p class="text-xs text-gray-400 mt-2">April</p>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="relative z-10 flex flex-col items-end pr-10">
+      <div class="border border-gray-500 bg-black/50 p-6 rounded-xl max-w-sm backdrop-blur-sm">
+        <h2 class="text-lg text-orange-400 font-semibold">Testing</h2>
+        <p class="text-sm text-gray-300 mt-2">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+        <p class="text-xs text-gray-400 mt-2">May</p>
+      </div>
+    </div>
+    <div class="relative z-10 flex flex-col items-start pl-10 pt-10">
+      <div class="border border-gray-500 bg-black/50 p-6 rounded-xl max-w-sm backdrop-blur-sm">
+        <h2 class="text-lg text-orange-400 font-semibold">Launch & Feedback</h2>
+        <p class="text-sm text-gray-300 mt-2">Lorem ipsum dolor sit amet consectetur. Elit massa erat vitae non semper quis. Morbi sed aliquet donec facilisis. Senectus eget.</p>
+        <p class="text-xs text-gray-400 mt-2">June</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <!--**************************************************************************************************8  -->
+
+ <div class="flex items-center justify-center text-white py-12 relative overflow-hidden">
+  
+      <!-- Orange Gradient Overlay (Top Right) -->
+      <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#DA8F4D] to-transparent opacity-30 pointer-events-none rounded-full blur-2xl z-0"></div>
+    
+      <!-- White Gradient Overlay (Top Right) -->
+      <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white to-transparent opacity-20 pointer-events-none rounded-full blur-xl z-0"></div>
+    
+    <div class="text-center space-y-4">
+      <h1 class="text-4xl font-bold">How  it Works</h1>
+    
+    </div>
+  </div>
+<!-- --------------------- -------------------------------------------------------->
+ <!-- ----------------------------------------------------------------------------- -->
+  <div>
+    <div class="flex flex-col lg:flex-row gap-6 md:gap-10 mb-16 md:mb-20 p-10">
+        <div class="w-full lg:w-1/2">
+            <img src="./images/h1.png" alt="image" class="w-full h-auto md:h-[20rem] lg:h-[30rem] 
+            rounded-3xl object-cover transition-transform duration-300 hover:scale-95">
+        </div>
+
+        <div class="w-full lg:w-1/2 flex flex-col justify-between mt-10">
+            <div>
+                <img src="./images/wide.png"  class="mb-16">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    Setup and Connect your Wallet.
+                                </h1>
+                <p class="text-sm sm:text-base md:text-lg mt-10 lg:text-xl text-justify">
+                    Lorem ipsum dolor sit amet consectetur. Donec vitae pellentesque nunc ut sit a volutpat 
+                    elementum. Nunc elit nisi pellentesque porta elementum. Id mattis neque diam 
+                    nulla. Amet et a felis pellentesque sed odio.
+                </p>
+            </div>
+       
+        </div>
+    </div>
+  </div>
+<!-- -------------------------------------------------------------------------------------- -->
+ <!-- ------------------------------------------------------------------------------------------- -->
+
+ <div class="flex flex-col lg:flex-row-reverse gap-6 md:gap-10 mb-16 md:mb-20 p-10 relative min-h-[400px] overflow-hidden">
+  <!-- Orange Gradient Overlay (Top Right) -->
+  <div class="absolute top-0 right-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-gradient-to-bl from-[#DA8F4D] to-transparent opacity-30 pointer-events-none rounded-full blur-2xl z-0"></div>
+  
+  <!-- White Gradient Overlay (Top Right) -->
+  <div class="absolute top-0 right-0 w-[150px] h-[150px] md:w-[250px] md:h-[250px] bg-gradient-to-bl from-white to-transparent opacity-20 pointer-events-none rounded-full blur-xl z-0"></div>
+
+  <div class="w-full lg:w-1/2 z-10">
+    <img src="./images/h2.png" alt="image" class="w-full h-auto md:h-[20rem] lg:h-[30rem] rounded-3xl object-cover transition-transform duration-300 hover:scale-95">
+  </div>
+
+  <div class="w-full lg:w-1/2 flex flex-col justify-between z-10 mt-6 lg:mt-24">
+    <div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        Create your Own Digital NFT
+      </h1>
+      <p class="text-sm sm:text-base md:text-lg lg:text-xl text-justify">
+        Lorem ipsum dolor sit amet consectetur. Donec vitae pellentesque nunc ut sit a volutpat 
+        elementum. Nunc elit nisi pellentesque porta elementum. Id mattis neque diam 
+        nulla. Amet et a felis pellentesque sed odio.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+ <!--**********************************************************************  -->
+ <!-- ----------------------------------------------------------------- -->
+
+ <div class="ml-96 p-10">
+    <img src="./images/wide.png">
+ </div>
+
+ <div class="flex flex-col lg:flex-row gap-6 md:gap-10 mb-16 md:mb-20 p-10 overflow-hidden relative min-h-[400px]">
+
+    <!-- Orange Gradient Overlay (Top Right) -->
+    <div class="absolute top-0 right-0 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-gradient-to-bl from-[#DA8F4D] to-transparent opacity-30 pointer-events-none rounded-full blur-2xl z-0"></div>
+  
+    <!-- White Gradient Overlay (Top Right) -->
+    <div class="absolute top-0 right-0 w-[150px] h-[150px] md:w-[250px] md:h-[250px] bg-gradient-to-bl from-white to-transparent opacity-20 pointer-events-none rounded-full blur-xl z-0"></div>
+
+
+    <div class="w-full lg:w-1/2">
+        <img src="./images/h3.png" alt="image" class="w-full h-auto md:h-[20rem] lg:h-[30rem] 
+        rounded-3xl object-cover transition-transform duration-300 hover:scale-95">
+    </div>
+
+    <div class="w-full lg:w-1/2 flex flex-col justify-between">
+        <div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Setup and Connect your Wallet.
+            </h1>
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl text-justify">
+                Lorem ipsum dolor sit amet consectetur. Donec vitae pellentesque nunc ut sit a volutpat 
+                elementum. Nunc elit nisi pellentesque porta elementum. Id mattis neque diam 
+                nulla. Amet et a felis pellentesque sed odio.
+            </p>
+        </div>
+        
+    </div>
+</div>
+
+<!-- ------------------------------------------------------------------------------------------ -->
+ <!-- ----------------------------------------------------------------------------------------- -->
+ <div class="bg-[url('./images/i1.png')] bg-cover bg-no-repeat bg-center bg-fixed">
+  <div class="text-center p-12 md:p-24 rounded-lg max-w-2xl mx-auto mt-10 ">
+    <h1 class="text-4xl md:text-[59.76px] font-bold mb-4">Join Our Community</h1>
+    <p class="text-white mb-6">
+      Lorem ipsum dolor sit amet consectetur. Donec vitae pellentesque nunc ut sit a volutpat elementum. 
+      Nunc elit nisi pellentesque porta elementum. Id mattis neque diam nulla. Amet et a felis pellentesque sed odio.
+    </p>
+    <form class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <input 
+        type="email" 
+        placeholder="Enter your email" 
+        class="w-full sm:w-96 p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+        required
+      />
+      <a href="https://wa.me" target="_blank" aria-label="Contact us"
+      class="group inline-block bg-[#EFE7D78F] border border-white px-6 py-3 rounded-xl text-white hover:text-[#035a01] 
+             hover:bg-[#e39a58] text-base font-semibold shadow-md hover:shadow-lg 
+             transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95">
+     <div class="flex items-center gap-2">
+       <span class="whitespace-nowrap">Join now</span>
+     </div>
+   </a>
+   
+    </form>
+    <p class="mt-8 text-sm">Ⓒ NFT Market. Use this template freely.</p>
+  </div>
+</div>
+
+
+
+</body>
+</html>
