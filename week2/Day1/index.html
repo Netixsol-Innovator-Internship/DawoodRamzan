@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+            screens: {
+              xl: "1280px",
+              "2xl": "1536px",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="./script.js" defer></script>
+    <title>Frontend Mentor | Age calculator app</title>
+  </head>
+  <body class="font-poppins bg-gray-100 min-h-screen p-4">
+    <div
+      class="bg-white p-8 md:p-12 lg:p-16 xl:p-20 w-full max-w-2xl 2xl:max-w-3xl rounded-br-[5rem] md:rounded-br-[10rem] lg:rounded-br-[12rem] rounded-xl mx-auto"
+    >
+      <div
+        class="flex flex-wrap gap-4 md:gap-6 lg:gap-8 justify-center md:justify-start"
+      >
+        <div class="w-full sm:w-auto">
+          <label
+            class="text-xs md:text-sm font-bold tracking-widest text-gray-500"
+            >DAY</label
+          >
+          <br />
+          <input
+            type="number"
+            id="day"
+            placeholder="DD"
+            required
+            min="1"
+            max="31"
+            class="input-box border border-gray-300 rounded w-full sm:w-28 md:w-32 lg:w-36 h-12 md:h-14 px-4 text-xl md:text-2xl font-bold focus:outline-none focus:border-[#a100fe] invalid:border-red-500"
+          />
+          <p id="dayError" class="text-xs italic text-red-500 mt-1 hidden">
+            Must be a valid day
+          </p>
+        </div>
+
+        <div class="w-full sm:w-auto">
+          <label
+            class="text-xs md:text-sm font-bold tracking-widest text-gray-500"
+            >MONTH</label
+          >
+          <br />
+          <input
+            type="number"
+            id="month"
+            placeholder="MM"
+            required
+            min="1"
+            max="12"
+            class="input-box border border-gray-300 rounded w-full sm:w-28 md:w-32 lg:w-36 h-12 md:h-14 px-4 text-xl md:text-2xl font-bold focus:outline-none focus:border-[#a100fe] invalid:border-red-500"
+          />
+          <p id="monthError" class="text-xs italic text-red-500 mt-1 hidden">
+            Must be a valid month
+          </p>
+        </div>
+
+        <div class="w-full sm:w-auto">
+          <label
+            class="text-xs md:text-sm font-bold tracking-widest text-gray-500"
+            >YEAR</label
+          >
+          <br />
+          <input
+            type="number"
+            id="year"
+            placeholder="YYYY"
+            required
+            min="1"
+            max="2025"
+            class="input-box border border-gray-300 rounded w-full sm:w-28 md:w-32 lg:w-36 h-12 md:h-14 px-4 text-xl md:text-2xl font-bold focus:outline-none focus:border-[#a100fe] invalid:border-red-500"
+          />
+          <p id="yearError" class="text-xs italic text-red-500 mt-1 hidden">
+            Must be in the past
+          </p>
+        </div>
+      </div>
+      <div class="relative flex items-center my-8 md:my-12 lg:my-16">
+        <hr class="flex-grow border-gray-300" />
+
+        <!-- Calculate Button (always visible) -->
+        <button
+          onclick="calculateDate()"
+          class="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-0 md:translate-x-0 bg-[#a100fe] hover:bg-neutral-900 focus:bg-[#a100fe] active:bg-[#a100fe] rounded-full p-3 md:p-4 lg:p-5 transition-all duration-100 focus:outline-none z-10"
+        >
+          <img
+            src="./assets/images/icon-arrow.svg"
+            class="w-6 md:w-8 lg:w-10"
+            alt="Calculate"
+          />
+        </button>
+
+        <!-- Additional Buttons Container -->
+        <div class="hidden md:flex items-center gap-2 ml-4">
+          <!-- Explanation Button -->
+          <button
+            onclick="showExplanation()"
+            id="explain"
+            class="text-white bg-[#a100fe] hover:bg-neutral-900 focus:bg-[#a100fe] active:bg-[#a100fe] rounded-full px-4 py-3 md:px-5 md:py-3 lg:px-6 lg:py-4 transition-all duration-100 focus:outline-none whitespace-nowrap text-sm md:text-base"
+          >
+            Explanation
+          </button>
+
+          <!-- Age Button -->
+          <button
+            onclick="cross()"
+            id="cross"
+            class="text-white bg-[#a100fe] hover:bg-neutral-900 focus:bg-[#a100fe] active:bg-[#a100fe] rounded-full px-4 py-3 md:px-5 md:py-3 lg:px-6 lg:py-4 transition-all duration-100 focus:outline-none whitespace-nowrap text-sm md:text-base"
+          >
+            Age
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="result"
+        class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-black italic"
+      >
+        <h1><span id="newYear" class="text-[#a100fe]">--</span> Years</h1>
+        <h1><span id="newMonth" class="text-[#a100fe]">--</span> Months</h1>
+        <h1><span id="newDay" class="text-[#a100fe]">--</span> Days</h1>
+      </div>
+      <div id="explanationContainer"></div>
+    </div>
+    <div class="flex justify-center mt-4"></div>
+  </body>
+</html>
