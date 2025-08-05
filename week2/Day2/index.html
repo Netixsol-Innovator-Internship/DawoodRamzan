@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./script.js"></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Notifications page</title>
+  </head>
+  <body class="bg-gray-100">
+    <div class="bg-white max-w-2xl mx-auto p-6 rounded-lg shadow-md">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-xl md:text-2xl font-bold text-gray-900">
+          Notifications
+          <span
+            id="n-count"
+            class="ml-2 inline-flex items-center justify-center text-sm font-medium text-white bg-blue-600 rounded-full w-6 h-6"
+          >
+            7
+          </span>
+        </h1>
+
+        <button
+          id="mark"
+          onclick="markAsRead()"
+          class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-200"
+        >
+          Mark all as read
+        </button>
+      </div>
+
+      <div
+        id="webber"
+        onclick="readNotification('webber', 'dot-webber')"
+        class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+      >
+        <div class="flex gap-4">
+          <img
+            src="./assets/images/avatar-mark-webber.webp"
+            alt="Mark Webber's avatar"
+            class="animate-bounce"
+          />
+
+          <div>
+            <p>
+              <span class="font-semibold">Mark Webber</span> reacted to your
+              recent post My first tournament today!
+              <span
+                id="dot-webber"
+                class="w-2 h-2 bg-red-600 rounded-full inline-block"
+              ></span>
+            </p>
+            <span class="text-sm text-gray-500">1m ago</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          id="gray"
+          onclick="readNotification('gray', 'dot-gray')"
+          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-angela-gray.webp"
+              alt="Angela Gray's avatar"
+              class="animate-bounce"
+            />
+
+            <div>
+              <p>
+                <span class="font-semibold">Angela Gray</span> followed you
+                <span
+                  id="dot-gray"
+                  class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                ></span>
+              </p>
+
+              <span class="text-sm text-gray-500">5m ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          id="Thompson"
+          onclick="readNotification('Thompson', 'dot-thompson')"
+          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-jacob-thompson.webp"
+              alt="Jacob Thompson's avatar"
+              class="animate-bounce"
+            />
+
+            <div>
+              <p>
+                <span class="font-semibold">Jacob Thompson</span> has joined
+                your group
+                <span class="font-semibold text-blue-700">Chess Club</span>
+                <span
+                  id="dot-thompson"
+                  class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                ></span>
+              </p>
+              <span class="text-sm text-gray-500">1 day ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          id="Hasanuddin"
+          onclick="readNotification('Hasanuddin', 'dot-hasanuddin')"
+          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-rizky-hasanuddin.webp"
+              alt="Rizky Hasanuddin's avatar"
+              class="animate-bounce"
+            />
+
+            <div>
+              <p>
+                <span class="font-semibold">Rizky Hasanuddin</span> sent you a
+                private message
+                <span
+                  id="dot-hasanuddin"
+                  class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                ></span>
+              </p>
+
+              <span class="text-sm text-gray-500">5 days ago</span>
+            </div>
+          </div>
+          <div
+            class="mt-4 border border-gray-300 ml-[6.5rem] bg-white rounded-lg p-4 text-gray-700"
+          >
+            Hello, thanks for setting up the Chess Club. I've been a member for
+            a few weeks now and I'm already having lots of fun and improving my
+            game.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          id="smith"
+          onclick="readNotification('smith', 'dot-smith')"
+          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-kimberly-smith.webp"
+              alt="Kimberly Smith's avatar"
+              class="animate-bounce"
+            />
+
+            <div class="flex flex-col flex-1">
+              <div class="flex items-center gap-2">
+                <p class="m-0">
+                  <span class="font-semibold">Kimberly Smith</span> commented on
+                  your picture
+                  <span
+                    id="dot-smith"
+                    class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                  ></span>
+                </p>
+              </div>
+
+              <span class="text-sm text-gray-500">1 week ago</span>
+            </div>
+
+            <img
+              src="./assets/images/image-chess.webp"
+              alt="Chess image"
+              class="rounded-lg w-12 md:w-16 h-auto cursor-pointer hover:opacity-90"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          id="Peterson"
+          onclick="readNotification('Peterson', 'dot-peterson')"
+          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-nathan-peterson.webp"
+              alt="Nathan Peterson's avatar"
+              class="animate-bounce"
+            />
+
+            <div>
+              <p>
+                <span class="font-semibold">Nathan Peterson</span> reacted to
+                your recent post
+                <span class="font-semibold text-blue-700"
+                  >5 end-game strategies to increase your win rate</span
+                >
+                <span
+                  id="dot-peterson"
+                  class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                ></span>
+              </p>
+              <span class="text-sm text-gray-500">2 weeks ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div
+          id="kim"
+          onclick="readNotification('kim', 'dot-kim')"
+          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-anna-kim.webp"
+              alt="Anna Kim's avatar"
+              class="animate-bounce"
+            />
+
+            <div>
+              <p>
+                <span class="font-semibold">Anna Kim</span> left the group
+                <span class="font-semibold text-blue-700">Chess Club</span>
+                <span
+                  id="dot-kim"
+                  class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                ></span>
+              </p>
+              <span class="text-sm text-gray-500">2 weeks ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Muhammad Dawood Ramzan</a>.
+    </div>
+  </body>
+</html>
