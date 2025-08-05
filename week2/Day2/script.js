@@ -32,6 +32,7 @@ function markAsRead() {
   });
 
   document.getElementById("n-count").textContent = "0";
+  document.getElementById("n-count").classList.add("hidden");
 }
 
 function readNotification(id, dotId) {
@@ -51,6 +52,10 @@ function readNotification(id, dotId) {
 
     const dot = document.getElementById(dotId);
     if (dot) dot.classList.add("hidden");
+  }
+
+  if (Number(document.getElementById("n-count").textContent) === 0) {
+    document.getElementById("n-count").classList.add("hidden");
   }
 }
 function readPara(id) {
