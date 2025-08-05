@@ -12,16 +12,22 @@ function markAsRead() {
   ids.forEach(({ id, dot }) => {
     const element = document.getElementById(id);
     if (element) {
-      element.classList.remove("bg-notification-gradient");
-      element.classList.add("bg-white");
-      element.classList.add("read");
-
-      const avatar = element.querySelector("img");
+      element.classList.remove(
+        "bg-notification-gradient",
+        "animate-gradient-pulse",
+        "bg-[length:200%_100%]"
+      );
+      element.classList.add(
+        "bg-white",
+        "read",
+        "transition-all",
+        "duration-300"
+      );
     }
 
     const dotElement = document.getElementById(dot);
     if (dotElement) {
-      dotElement.style.display = "none";
+      dotElement.classList.add("hidden");
     }
   });
 
@@ -32,22 +38,18 @@ function readNotification(id, dotId) {
   const element = document.getElementById(id);
 
   if (element && !element.classList.contains("read")) {
-    element.classList.remove("bg-notification-gradient");
-    element.classList.add("bg-white");
-    element.classList.add("read");
+    element.classList.remove(
+      "bg-notification-gradient",
+      "animate-gradient-pulse",
+      "bg-[length:200%_100%]"
+    );
+    element.classList.add("bg-white", "read", "transition-all", "duration-300");
 
     const countElement = document.getElementById("n-count");
     const current = +countElement.textContent;
-
-    if (current > 0) {
-      countElement.textContent = current - 1;
-    }
+    if (current > 0) countElement.textContent = current - 1;
 
     const dot = document.getElementById(dotId);
-    if (dot) {
-      dot.style.display = "none";
-    }
-
-    const avatar = element.querySelector("img");
+    if (dot) dot.classList.add("hidden");
   }
 }

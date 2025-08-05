@@ -11,7 +11,7 @@
           extend: {
             backgroundImage: {
               "notification-gradient":
-                "linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)",
+                "linear-gradient(90deg, #ebf8ff 0%, #bee3f8 50%, #ebf8ff 100%)",
             },
             animation: {
               "gradient-pulse": "gradientPulse 3s ease infinite",
@@ -31,13 +31,21 @@
       @keyframes gradientPulse {
         0% {
           background-position: 0% 50%;
+          opacity: 1;
         }
         50% {
           background-position: 100% 50%;
+          opacity: 0.5;
         }
         100% {
           background-position: 0% 50%;
+          opacity: 1;
         }
+      }
+
+      .animate-gradient-pulse {
+        animation: gradientPulse 4s ease infinite;
+        background-size: 200% 100%;
       }
     </style>
     <link
@@ -71,41 +79,43 @@
         </button>
       </div>
 
-      <div
-        id="webber"
-        onclick="readNotification('webber', 'dot-webber')"
-        class="border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 mb-4 animate-gradient-pulse"
-      >
-        <div class="flex gap-4">
-          <img
-            src="./assets/images/avatar-mark-webber.webp"
-            alt="Mark Webber's avatar"
-          />
+      <div class="space-y-4">
+        <div
+          id="webber"
+          onclick="readNotification('webber', 'dot-webber')"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
+        >
+          <div class="flex gap-4">
+            <img
+              src="./assets/images/avatar-mark-webber.webp"
+              alt="Mark Webber's avatar"
+              class="w-10 h-10"
+            />
 
-          <div>
-            <p>
-              <span class="font-semibold">Mark Webber</span> reacted to your
-              recent post My first tournament today!
-              <span
-                id="dot-webber"
-                class="w-2 h-2 bg-red-600 rounded-full inline-block"
-              ></span>
-            </p>
-            <span class="text-sm text-gray-500">1m ago</span>
+            <div>
+              <p>
+                <span class="font-semibold">Mark Webber</span> reacted to your
+                recent post My first tournament today!
+                <span
+                  id="dot-webber"
+                  class="w-2 h-2 bg-red-600 rounded-full inline-block"
+                ></span>
+              </p>
+              <span class="text-sm text-gray-500">1m ago</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div>
         <div
           id="gray"
           onclick="readNotification('gray', 'dot-gray')"
-          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-angela-gray.webp"
               alt="Angela Gray's avatar"
+              class="w-10 h-10"
             />
 
             <div>
@@ -121,18 +131,17 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div>
         <div
           id="Thompson"
           onclick="readNotification('Thompson', 'dot-thompson')"
-          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-jacob-thompson.webp"
               alt="Jacob Thompson's avatar"
+              class="w-10 h-10"
             />
 
             <div>
@@ -149,21 +158,20 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div>
         <div
           id="Hasanuddin"
           onclick="readNotification('Hasanuddin', 'dot-hasanuddin')"
-          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-rizky-hasanuddin.webp"
               alt="Rizky Hasanuddin's avatar"
+              class="w-10 h-10"
             />
 
-            <div>
+            <div class="flex-1 min-w-0">
               <p>
                 <span class="font-semibold">Rizky Hasanuddin</span> sent you a
                 private message
@@ -172,30 +180,30 @@
                   class="w-2 h-2 bg-red-600 rounded-full inline-block"
                 ></span>
               </p>
-
               <span class="text-sm text-gray-500">5 days ago</span>
             </div>
           </div>
           <div
             class="mt-4 border border-gray-300 ml-[6.5rem] bg-white rounded-lg p-4 text-gray-700"
           >
-            Hello, thanks for setting up the Chess Club. I've been a member for
-            a few weeks now and I'm already having lots of fun and improving my
-            game.
+            <p class="line-clamp-1 sm:line-clamp-none">
+              Hello, thanks for setting up the Chess Club. I've been a member
+              for a few weeks now and I'm already having lots of fun and
+              improving my game.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div>
         <div
           id="smith"
           onclick="readNotification('smith', 'dot-smith')"
-          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-kimberly-smith.webp"
               alt="Kimberly Smith's avatar"
+              class="w-10 h-10"
             />
 
             <div class="flex flex-col flex-1">
@@ -216,22 +224,21 @@
             <img
               src="./assets/images/image-chess.webp"
               alt="Chess image"
-              class="rounded-lg w-12 md:w-16 h-auto cursor-pointer hover:opacity-90"
+              class="rounded-lg w-12 mr-2 md:w-16 h-auto cursor-pointer hover:opacity-90"
             />
           </div>
         </div>
-      </div>
 
-      <div>
         <div
           id="Peterson"
           onclick="readNotification('Peterson', 'dot-peterson')"
-          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-nathan-peterson.webp"
               alt="Nathan Peterson's avatar"
+              class="w-10 h-10"
             />
 
             <div>
@@ -250,18 +257,17 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div>
         <div
           id="kim"
           onclick="readNotification('kim', 'dot-kim')"
-          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
+          class="w-full min-h-[100px] border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 animate-gradient-pulse"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-anna-kim.webp"
               alt="Anna Kim's avatar"
+              class="w-10 h-10"
             />
 
             <div>
@@ -278,12 +284,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Muhammad Dawood Ramzan</a>.
     </div>
   </body>
 </html>
