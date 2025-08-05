@@ -12,14 +12,11 @@ function markAsRead() {
   ids.forEach(({ id, dot }) => {
     const element = document.getElementById(id);
     if (element) {
-      element.classList.remove("bg-blue-100");
+      element.classList.remove("bg-notification-gradient");
       element.classList.add("bg-white");
       element.classList.add("read");
 
       const avatar = element.querySelector("img");
-      if (avatar) {
-        avatar.classList.remove("animate-bounce");
-      }
     }
 
     const dotElement = document.getElementById(dot);
@@ -35,7 +32,7 @@ function readNotification(id, dotId) {
   const element = document.getElementById(id);
 
   if (element && !element.classList.contains("read")) {
-    element.classList.remove("bg-blue-100");
+    element.classList.remove("bg-notification-gradient");
     element.classList.add("bg-white");
     element.classList.add("read");
 
@@ -52,8 +49,5 @@ function readNotification(id, dotId) {
     }
 
     const avatar = element.querySelector("img");
-    if (avatar) {
-      avatar.classList.remove("animate-bounce");
-    }
   }
 }

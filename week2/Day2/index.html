@@ -5,7 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- displays site properly based on user's device -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundImage: {
+              "notification-gradient":
+                "linear-gradient(90deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)",
+            },
+            animation: {
+              "gradient-pulse": "gradientPulse 3s ease infinite",
+            },
+            keyframes: {
+              gradientPulse: {
+                "0%, 100%": { "background-position": "0% 50%" },
+                "50%": { "background-position": "100% 50%" },
+              },
+            },
+          },
+        },
+      };
+    </script>
     <script src="./script.js"></script>
+    <style>
+      @keyframes gradientPulse {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
     <link
       rel="icon"
       type="image/png"
@@ -40,13 +74,12 @@
       <div
         id="webber"
         onclick="readNotification('webber', 'dot-webber')"
-        class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+        class="border-gray-100 border-2 bg-notification-gradient bg-[length:200%_100%] rounded-lg p-4 mb-4 animate-gradient-pulse"
       >
         <div class="flex gap-4">
           <img
             src="./assets/images/avatar-mark-webber.webp"
             alt="Mark Webber's avatar"
-            class="animate-bounce"
           />
 
           <div>
@@ -67,13 +100,12 @@
         <div
           id="gray"
           onclick="readNotification('gray', 'dot-gray')"
-          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-angela-gray.webp"
               alt="Angela Gray's avatar"
-              class="animate-bounce"
             />
 
             <div>
@@ -95,13 +127,12 @@
         <div
           id="Thompson"
           onclick="readNotification('Thompson', 'dot-thompson')"
-          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-jacob-thompson.webp"
               alt="Jacob Thompson's avatar"
-              class="animate-bounce"
             />
 
             <div>
@@ -124,13 +155,12 @@
         <div
           id="Hasanuddin"
           onclick="readNotification('Hasanuddin', 'dot-hasanuddin')"
-          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-rizky-hasanuddin.webp"
               alt="Rizky Hasanuddin's avatar"
-              class="animate-bounce"
             />
 
             <div>
@@ -160,13 +190,12 @@
         <div
           id="smith"
           onclick="readNotification('smith', 'dot-smith')"
-          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-kimberly-smith.webp"
               alt="Kimberly Smith's avatar"
-              class="animate-bounce"
             />
 
             <div class="flex flex-col flex-1">
@@ -197,13 +226,12 @@
         <div
           id="Peterson"
           onclick="readNotification('Peterson', 'dot-peterson')"
-          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-nathan-peterson.webp"
               alt="Nathan Peterson's avatar"
-              class="animate-bounce"
             />
 
             <div>
@@ -228,13 +256,12 @@
         <div
           id="kim"
           onclick="readNotification('kim', 'dot-kim')"
-          class="border-gray-100 border-2 bg-blue-100 rounded-lg p-4 mb-4"
+          class="border-gray-100 border-2 bg-notification-gradient rounded-lg p-4 mb-4"
         >
           <div class="flex gap-4">
             <img
               src="./assets/images/avatar-anna-kim.webp"
               alt="Anna Kim's avatar"
-              class="animate-bounce"
             />
 
             <div>
