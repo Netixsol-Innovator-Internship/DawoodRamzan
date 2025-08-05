@@ -53,3 +53,9 @@ function readNotification(id, dotId) {
     if (dot) dot.classList.add("hidden");
   }
 }
+function readPara(id) {
+  const para = document.getElementById(id);
+  if (para) {
+    para.classList.toggle("line-clamp-1");
+  }
+}
