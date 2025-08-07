@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tip Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#BAE5E8] font-mono">
+    <div class="min-h-screen flex flex-col justify-center items-center p-6">
+      <img src="./images/logo.svg" />
+      <br />
+      <div
+        class="bg-white rounded-2xl shadow-lg p-8 md:p-12 flex flex-col md:flex-row gap-6 w-full max-w-4xl"
+      >
+        <form class="flex-1">
+          <label class="block text-gray-600 text-sm mb-1">Bill</label>
+          <div class="relative">
+            <img
+              src="./images/icon-dollar.svg"
+              class="absolute left-3 top-1/3 transform -translate-y-1/2 w-5 h-5"
+            />
+            <input
+              id="billAmount"
+              type="number"
+              placeholder="0"
+              min="0"
+              class="w-full bg-gray-100 text-right text-2xl font-bold p-3 pl-10 rounded-md mb-6 outline-none focus:ring-2 focus:ring-[#26C2AE]"
+            />
+          </div>
+
+          <label class="block text-gray-600 text-sm mb-2">Select Tip %</label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+            <button
+              type="button"
+              data-tip="5"
+              class="tip-btn bg-[#00474B] text-white text-xl font-bold py-2 rounded-md hover:bg-[#26C2AE] transition-colors"
+            >
+              5%
+            </button>
+            <button
+              type="button"
+              data-tip="10"
+              class="tip-btn bg-[#00474B] text-white text-xl font-bold py-2 rounded-md hover:bg-[#26C2AE] transition-colors"
+            >
+              10%
+            </button>
+            <button
+              type="button"
+              data-tip="15"
+              id="tip15"
+              class="tip-btn bg-[#26C2AE] text-white text-xl font-bold py-2 rounded-md transition-colors"
+            >
+              15%
+            </button>
+            <button
+              type="button"
+              data-tip="25"
+              class="tip-btn bg-[#00474B] text-white text-xl font-bold py-2 rounded-md hover:bg-[#26C2AE] transition-colors"
+            >
+              25%
+            </button>
+            <button
+              type="button"
+              data-tip="50"
+              class="tip-btn bg-[#00474B] text-white text-xl font-bold py-2 rounded-md hover:bg-[#26C2AE] transition-colors"
+            >
+              50%
+            </button>
+            <input
+              id="customTip"
+              type="number"
+              placeholder="Custom"
+              min="0"
+              class="bg-gray-100 text-right text-xl font-bold p-2 rounded-md outline-none focus:ring-2 focus:ring-[#26C2AE]"
+            />
+          </div>
+
+          <div class="flex justify-between items-center">
+            <label class="block text-gray-600 text-sm mb-1"
+              >Number of People</label
+            >
+            <span id="peopleError" class="text-red-500 text-xs hidden"
+              >Can't be zero</span
+            >
+          </div>
+
+          <div class="relative">
+            <img
+              src="./images/icon-person.svg"
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"
+            />
+            <input
+              id="peopleCount"
+              type="number"
+              placeholder="0"
+              min="1"
+              class="w-full bg-gray-100 text-right text-2xl font-bold p-3 pl-10 rounded-md outline-none focus:ring-2 focus:ring-[#26C2AE] invalid:border-red-500"
+            />
+          </div>
+        </form>
+
+        <div
+          class="flex-1 bg-[#00474B] text-white rounded-xl p-8 flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <p class="text-sm">Tip Amount</p>
+                <p class="text-xs text-gray-400">/ person</p>
+              </div>
+              <p id="tipAmount" class="text-3xl text-[#26C2AE] font-bold">
+                $0.00
+              </p>
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <p class="text-sm">Total</p>
+                <p class="text-xs text-gray-400">/ person</p>
+              </div>
+              <p id="totalAmount" class="text-3xl text-[#26C2AE] font-bold">
+                $0.00
+              </p>
+            </div>
+          </div>
+
+          <button
+            id="resetBtn"
+            class="bg-[#26C2AE] w-full py-3 mt-4 text-[#00474B] font-bold uppercase rounded-md hover:bg-[#9FE8DF] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

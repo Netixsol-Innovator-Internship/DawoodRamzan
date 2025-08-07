@@ -1,0 +1,280 @@
+ <div>
+      <div class="flex justify-between items-center mx-4 sm:mx-6 p-4 md:p-6 lg:p-8">
+        <h1>
+          <a href="./index.html"
+            ><img src="./assets/logo.png" class="w-32 xs:w-40 sm:w-48 md:w-52 lg:w-64" />
+          </a>
+        </h1>
+        
+        <!-- Mobile Menu Button (hidden on larger screens) -->
+        <button id="mobile-menu-button" class="md:hidden text-gray-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+
+        <ul
+          class="nav-menu hidden md:flex flex-col md:flex-row items-center flex-wrap gap-4 md:gap-6 lg:gap-8 mt-4 md:mt-0"
+        >
+          <li class="nav-item">
+            <a class="hover:underline text-sm md:text-base lg:text-lg">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="hover:underline text-sm md:text-base lg:text-lg"
+              >Special Offers</a
+            >
+          </li>
+          <li class="nav-item bg-[#FC8A06] px-3 py-1 rounded-xl">
+            <a class="hover:underline text-sm md:text-base lg:text-lg"
+              >Restaurants</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="hover:underline text-sm md:text-base lg:text-lg"
+              >Track Order</a
+            >
+          </li>
+        </ul>
+
+        <div class="flex gap-2 sm:gap-4 items-center">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full overflow-hidden bg-black">
+              <img
+                src="./assets/Vector.png"
+                alt="Cart Icon"
+                class="w-full h-full p-1 object-contain"
+              />
+            </div>
+            <p class="text-sm sm:text-base mt-1">Cart<span id="cn">-</span></p>
+          </div>
+      </div>
+
+      <!-- Mobile Menu (hidden by default) -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg mx-4 p-4 rounded-lg">
+        <ul class="space-y-3">
+          <li><a href="#" class="block hover:underline">Home</a></li>
+          <li><a href="#" class="block hover:underline">Special Offers</a></li>
+          <li><a href="#" class="block bg-[#FC8A06] px-3 py-1 rounded-xl">Restaurants</a></li>
+          <li><a href="#" class="block hover:underline">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="bg-black text-white mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10 2xl:mx-12 relative">
+      <div class="flex flex-col xs:flex-row hero-section">
+
+        <div class="w-full xs:w-1/2 pt-8 sm:pt-12 md:pt-16 lg:pt-20 px-4 sm:px-6 md:px-8 lg:px-10 hero-content">
+          <div>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl">I'm lovin it!</p>
+            <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight">McDonald's East London</p>
+
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 mt-4 sm:mt-6">
+              <div class="flex border border-gray-400 rounded-full p-2 sm:p-3 items-center">
+                <img src="./assets/hero2.png" class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black" />
+                <p class="text-xs sm:text-sm md:text-base lg:text-lg mt-1 ml-2">Min Order: £12</p>
+              </div>
+              <div class="flex border border-gray-400 rounded-full p-2 sm:p-3 items-center">
+                <img src="./assets/hero1.png" class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-black" />
+                <p class="text-xs sm:text-sm md:text-base lg:text-lg mt-1 ml-2">Delivery: 20-25 min</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-full xs:w-1/2 relative hero-image-container">
+          <div>
+            <img src="./assets/hero4.png" class="hidden xs:block absolute bottom-4 sm:bottom-6 md:bottom-8 left-0 rounded-xl w-24 sm:w-32 md:w-40 lg:w-48 hero-image-secondary">
+            <img src="./assets/hero3.png" class="m-4 sm:m-6 md:m-8 w-[90%] h-auto rounded-xl hero-image-main">
+          </div>
+        </div>
+      </div>
+      
+      <div class="absolute bottom-0 left-4 sm:left-6 md:left-8">
+        <div class="flex bg-[#FC8A06] text-white w-32 sm:w-40 md:w-48 h-10 sm:h-12 md:h-14 p-2 sm:p-3 items-center rounded-t-lg">
+          <img src="./assets/hero5.png" class="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5">
+          <h1 class="text-xs sm:text-sm md:text-base lg:text-lg ml-2">Open until 3:00 AM</h1>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Search Section -->
+    <div class="my-8 sm:my-10 md:my-12 lg:my-16 mx-4 sm:mx-6 md:mx-8 lg:mx-10 p-2 sm:p-4">
+      <div class="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
+        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">All Offers from McDonald's East London</h1>
+        <div class="flex gap-2 sm:gap-4 items-center border border-gray-400 rounded-full p-1 sm:p-2 w-full sm:w-64 md:w-72 lg:w-80">
+          <img src="./assets/search.png" class="w-6 h-6 sm:w-8 sm:h-8 p-1"> 
+          <p class="text-xs sm:text-sm md:text-base lg:text-lg">Search from the menu...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="bg-[#FC8A06] px-2 sm:px-4 md:px-6 lg:px-8 text-white p-2 sm:p-4 overflow-x-auto">
+      <div class="flex flex-nowrap gap-2 sm:gap-4 md:gap-6 lg:gap-8 category-tabs">
+        <h1 class="bg-black text-xs sm:text-sm md:text-base lg:text-lg font-bold rounded-xl px-2 sm:px-3 py-1 whitespace-nowrap">Offers</h1>
+        <h1 class="whitespace-nowrap">Burgers</h1>
+        <h1 class="whitespace-nowrap">Fries</h1>
+        <h1 class="whitespace-nowrap">Snacks</h1>
+        <h1 class="whitespace-nowrap">Salads</h1>
+        <h1 class="whitespace-nowrap">Cold drinks</h1>
+        <h1 class="whitespace-nowrap">Happy Meal®</h1>
+        <h1 class="whitespace-nowrap">Desserts</h1>
+        <h1 class="whitespace-nowrap">Hot drinks</h1>
+        <h1 class="whitespace-nowrap">Sauces</h1>
+        <h1 class="whitespace-nowrap">Orbit®</h1>
+      </div>
+    </div>
+
+    <!-- Menu Sections -->
+    <div class="px-2 sm:px-4 md:px-6 lg:px-8">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold my-4 sm:my-6 md:my-8">Burgers</h1>
+      <div class="p-2 sm:p-4 md:p-6 lg:p-8">
+        <div id="Burgers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Burgers will be inserted here by JavaScript -->
+        </div>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold my-4 sm:my-6 md:my-8 text-[#FC8A06]">Fries</h1>
+      <div class="p-2 sm:p-4 md:p-6 lg:p-8">
+        <div id="Fries" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Fries will be inserted here by JavaScript -->
+        </div>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold my-4 sm:my-6 md:my-8 text-[#FC8A06]">Cold Drinks</h1>
+      <div class="p-2 sm:p-4 md:p-6 lg:p-8">
+        <div id="cold" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Cold drinks will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Reviews Section -->
+    <section class="py-8 sm:py-10 md:py-12 bg-[#d9d9d9] relative">
+      <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between mb-8 sm:mb-12 relative">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">Customer Reviews</h2>
+
+          <!-- Navigation Arrows -->
+          <div class="absolute right-0 top-1/2 transform -translate-y-1/2 flex gap-2">
+            <button id="prev-btn" class="bg-[#FC8A06] p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button id="next-btn" class="bg-[#FC8A06] p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slider Container -->
+        <div class="overflow-hidden">
+          <div id="review-slider" class="flex transition-transform duration-500 ease-in-out gap-4">
+            <!-- Slides will be injected here by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div id="slider-dots" class="flex justify-center mt-4 sm:mt-6 space-x-2">
+          <!-- Dots will be injected here by JavaScript -->
+        </div>
+      </div>
+      <div class="absolute flex justify-center items-center bottom-0 w-full">
+        <img src="./assets/hero4.png" class="rounded-xl w-24 sm:w-32 md:w-40 lg:w-48">
+      </div>
+    </section>
+
+    <!-- Similar Restaurants -->
+    <div class="mt-8 sm:mt-10 md:mt-12">
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mx-4 sm:mx-8 md:mx-12 lg:mx-16 xl:mx-20">Similar Restaurants</h1>
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mx-2 sm:mx-4 md:mx-6 lg:mx-8 p-4 sm:p-6 md:p-8">
+        <img src="./assets/similar/mc.png" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain">
+        <img src="./assets/similar/pj.png" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain">
+        <img src="./assets/similar/kfc.png" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain">
+        <img src="./assets/similar/texas.png" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain">
+        <img src="./assets/similar/bk.png" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain">
+        <img src="./assets/similar/s1.png" class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain">
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#d9d9d9] p-6 sm:p-8 md:p-10 lg:p-12 mt-4 sm:mt-6">
+      <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <!-- Logo & Store Buttons -->
+        <div class="space-y-2 sm:space-y-4">
+          <img src="./assets/footer/logo.png" alt="Logo" class="w-24 sm:w-28 md:w-32">
+          <img src="./assets/footer/store.png" alt="App Store & Play Store" class="w-32 sm:w-36 md:w-40">
+          <p class="text-xs sm:text-sm text-gray-600">
+            Company #490039-445,<br />
+            Registered with House of companies.
+          </p>
+        </div>
+
+        <!-- Email Subscription -->
+        <div class="space-y-2 sm:space-y-4">
+          <p class="font-semibold text-xs sm:text-sm">Get Exclusive Deals in your Inbox</p>
+          <div class="relative w-full max-w-md">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="w-full rounded-full py-2 sm:py-3 px-4 pr-24 sm:pr-28 bg-white text-black placeholder-gray-500 text-xs sm:text-sm"
+            />
+            <button
+              class="absolute bg-[#FC8A06] right-1 top-1/2 -translate-y-1/2 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full hover:bg-gray-800 text-xs sm:text-sm"
+            >
+              Subscribe
+            </button>
+          </div>
+          
+          <p class="text-xs text-gray-500">
+            We won't spam, read our <a href="#" class="underline">email policy</a>
+          </p>
+
+          <!-- Social Icons -->
+          <div class="flex gap-2 sm:gap-4 mt-1 sm:mt-2">
+            <img src="./assets/footer/fb.png" alt="Facebook" class="w-4 h-4 sm:w-5 sm:h-5" />
+            <img src="./assets/footer/insta.png" alt="Instagram" class="w-4 h-4 sm:w-5 sm:h-5" />
+            <img src="./assets/footer/tik.png" alt="TikTok" class="w-4 h-4 sm:w-5 sm:h-5" />
+            <img src="./assets/footer/snap.png" alt="Snapchat" class="w-4 h-4 sm:w-5 sm:h-5" />
+          </div>
+        </div>
+
+        <!-- Legal Pages -->
+        <div>
+          <h1 class="font-semibold text-sm sm:text-base mb-1 sm:mb-2">Legal Pages</h1>
+          <ul class="space-y-1 text-xs sm:text-sm text-gray-600">
+            <li><a href="#" class="hover:underline">Terms and conditions</a></li>
+            <li><a href="#" class="hover:underline">Privacy</a></li>
+            <li><a href="#" class="hover:underline">Cookies</a></li>
+            <li><a href="#" class="hover:underline">Modern Slavery Statement</a></li>
+          </ul>
+        </div>
+
+        <!-- Important Links -->
+        <div>
+          <h1 class="font-semibold text-sm sm:text-base mb-1 sm:mb-2">Important Links</h1>
+          <ul class="space-y-1 text-xs sm:text-sm text-gray-600">
+            <li><a href="#" class="hover:underline">Get help</a></li>
+            <li><a href="#" class="hover:underline">Add your restaurant</a></li>
+            <li><a href="#" class="hover:underline">Sign up as a deliverer</a></li>
+            <li><a href="#" class="hover:underline">Create a business account</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- Copyright -->
+    <div class="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4 bg-[#050220] text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-xs sm:text-sm">
+      <div>
+        Order.uk Copyright 2025, All Rights Reserved.
+      </div>
+      <div class="flex flex-wrap gap-2 sm:gap-4">
+        <h1>Privacy Policy</h1>
+        <h1>Terms</h1>
+        <h1>Pricing</h1>
+        <h1>Do not sell or share my personal information</h1>
+      </div>
+    </div>
