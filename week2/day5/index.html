@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hackathon - QuizMaster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              Manrope: ["Manrope", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-Manrope bg-white dark:bg-gray-500">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex items-center gap-3">
+            <img src="./assets/nav1.png" class="w-10 h-10" alt="Logo" />
+            <h1 class="text-lg font-bold">QuizMaster</h1>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:block">
+            <ul class="flex items-center gap-6">
+              <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+              <li onclick="AllQuizNav()"><h1>Quiz</h1></li>
+              <li>
+                <a onclick="leader()" class="hover:text-blue-600"
+                  >Leaderboard</a
+                >
+              </li>
+              <li>
+                <a onclick="showProfile()" class="hover:text-blue-600"
+                  >Profile</a
+                >
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                  />
+                </svg>
+              </li>
+              <li>
+                <img
+                  src="./assets/pic.png"
+                  class="w-10 h-10 rounded-full"
+                  alt="Profile"
+                />
+              </li>
+              <li>
+                <button
+                  id="theme-toggle"
+                  class="p-2 rounded-full focus:outline-none"
+                >
+                  <!-- Light mode icon (shown by default) -->
+                  <svg
+                    id="light-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+
+                  <!-- Dark mode icon (hidden by default) -->
+                  <svg
+                    id="dark-icon"
+                    class="hidden"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    ></path>
+                  </svg>
+                </button>
+
+                <script>
+                  const themeToggle = document.getElementById("theme-toggle");
+                  const lightIcon = document.getElementById("light-icon");
+                  const darkIcon = document.getElementById("dark-icon");
+
+                  themeToggle.addEventListener("click", () => {
+                    // Toggle icons
+                    lightIcon.classList.toggle("hidden");
+                    darkIcon.classList.toggle("hidden");
+
+                    // Toggle dark mode class on html element
+                    document.documentElement.classList.toggle("dark");
+
+                    // Save preference to localStorage
+                    const isDark =
+                      document.documentElement.classList.contains("dark");
+                    localStorage.setItem("darkMode", isDark);
+                  });
+
+                  // Check for saved preference
+                  if (localStorage.getItem("darkMode") === "true") {
+                    document.documentElement.classList.add("dark");
+                    lightIcon.classList.add("hidden");
+                    darkIcon.classList.remove("hidden");
+                  }
+                </script>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button onclick="toggleMenu()" class="focus:outline-none">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+        <ul class="flex flex-col gap-3">
+          <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+          <li onclick="AllQuizNav()">
+            <h1>Quiz</h1>
+          </li>
+          <li>
+            <a onclick="leader()" class="hover:text-blue-600">Leaderboard</a>
+          </li>
+          <li>
+            <a onclick="showProfile()" class="hover:text-blue-600">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- HOME PAGE====================================================================================================================================== -->
+    <!-- =============================================================================================================================================== -->
+
+    <div class="" id="home">
+      <!-- Hero Section -->
+      <section class="flex items-center justify-center min-h-[80vh] px-4">
+        <div
+          class="relative bg-[url('./assets/hero.png')] bg-cover bg-center w-full max-w-6xl rounded-2xl shadow-lg flex items-center justify-center h-[400px] sm:h-[500px]"
+        >
+          <!-- Overlay -->
+          <div
+            class="absolute inset-0 bg-black bg-opacity-40 rounded-2xl"
+          ></div>
+
+          <!-- Content -->
+          <div class="relative text-center text-white px-4 sm:px-6">
+            <h1 class="text-3xl sm:text-5xl font-extrabold mb-4">
+              Welcome to QuizMaster
+            </h1>
+            <p class="text-sm sm:text-lg max-w-2xl mx-auto mb-6">
+              Test your knowledge with our engaging quizzes. Compete with
+              friends and climb the leaderboard. Start your quiz journey today!
+            </p>
+            <button
+              onclick="moveToSignup()"
+              class="bg-[#0D78F2] hover:bg-blue-600 text-white font-medium px-6 sm:px-8 py-2 sm:py-3 rounded-full transition"
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="text-center mt-12 px-4">
+        <h1 class="text-2xl sm:text-3xl font-bold">Key Features</h1>
+        <p class="text-gray-600 mt-2 text-sm sm:text-base">
+          Explore the exciting features that make QuizMaster the ultimate quiz
+          app.
+        </p>
+      </section>
+
+      <!-- Feature Cards -->
+      <section class="flex flex-wrap justify-center gap-6 mt-8 px-4 pb-12">
+        <div
+          class="border border-gray-200 rounded-xl shadow-sm p-6 w-full sm:w-[300px] bg-white"
+        >
+          <div class="text-3xl mb-4">⏱</div>
+          <h2 class="text-lg font-semibold mb-2">Timed Quizzes</h2>
+          <p class="text-gray-600 text-sm">
+            Challenge yourself with timed quizzes to test your speed and
+            accuracy.
+          </p>
+        </div>
+
+        <div
+          class="border border-gray-200 rounded-xl shadow-sm p-6 w-full sm:w-[300px] bg-white"
+        >
+          <div class="text-3xl mb-4">🏆</div>
+          <h2 class="text-lg font-semibold mb-2">Leaderboard</h2>
+          <p class="text-gray-600 text-sm">
+            Compete with friends and other users to see who can achieve the
+            highest scores.
+          </p>
+        </div>
+
+        <div
+          class="border border-gray-200 rounded-xl shadow-sm p-6 w-full sm:w-[300px] bg-white"
+        >
+          <div class="text-3xl mb-4">📈</div>
+          <h2 class="text-lg font-semibold mb-2">Progress Tracking</h2>
+          <p class="text-gray-600 text-sm">
+            Track your progress and see how you improve over time with detailed
+            performance reports.
+          </p>
+        </div>
+      </section>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!-- Signup Form ======================================================================================================================================-->
+    <!-- Signup Form ======================================================================================================================================-->
+    <div class="hidden" id="signup-form">
+      <h1 class="text-2xl md:text-3xl font-bold mb-6 text-center mt-8">
+        Create your account
+      </h1>
+
+      <div class="flex justify-center px-4 sm:px-6 lg:px-8">
+        <div class="bg-white p-6 md:p-8 w-full max-w-md">
+          <form class="space-y-4">
+            <input
+              id="full_name"
+              type="text"
+              placeholder="Full name"
+              class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-400 focus:outline-none transition shadow-sm hover:shadow-md"
+            />
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-400 focus:outline-none transition shadow-sm hover:shadow-md"
+            />
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-400 focus:outline-none transition shadow-sm hover:shadow-md"
+            />
+            <input
+              id="confirm_password"
+              type="password"
+              placeholder="Confirm Password"
+              class="border border-gray-300 rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-400 focus:outline-none transition shadow-sm hover:shadow-md"
+            />
+
+            <button
+              onclick="signup(event)"
+              type="submit"
+              class="bg-blue-500 text-white rounded-lg p-3 w-full font-medium hover:bg-blue-600 active:bg-blue-700 transition shadow-md hover:shadow-lg"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 px-4">
+        <a onclick="showLogin()" class="text-blue-500 hover:underline">
+          Already have an account? Sign in
+        </a>
+      </div>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!-- Login Form ======================================================================================================================================-->
+    <!-- Login Form ======================================================================================================================================-->
+
+    <div class="hidden" id="login-form">
+      <h1 class="text-2xl md:text-3xl font-bold mb-6 text-center mt-8">
+        Welcome Back
+      </h1>
+
+      <div class="flex justify-center px-4 sm:px-6 lg:px-8">
+        <div class="bg-white p-6 md:p-8 w-full max-w-md">
+          <form class="space-y-4">
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              class="border border-gray-300 bg-[#F0F2F5] rounded-lg p-3 w-full focus:ring-2 focus:ring-blue-400 focus:outline-none transition shadow-sm hover:shadow-md"
+            />
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              class="border border-gray-300 rounded-lg bg-[#F0F2F5] p-3 w-full focus:ring-2 focus:ring-blue-400 focus:outline-none transition shadow-sm hover:shadow-md"
+            />
+            <h1 class="text-gray-400 underline cursor-pointer">
+              Forgot password?
+            </h1>
+
+            <button
+              onclick="login(event)"
+              type="submit"
+              class="bg-blue-500 text-white rounded-lg p-3 w-full font-medium hover:bg-blue-600 active:bg-blue-700 transition shadow-md hover:shadow-lg"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 px-4">
+        <a
+          onclick="showsignupfromLogin()"
+          class="text-blue-500 hover:underline cursor-pointer"
+        >
+          Don't have an account? Sign up
+        </a>
+      </div>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!--All Quiz page======================================================================================================================================-->
+    <!--All Quiz page======================================================================================================================================-->
+
+    <div class="hidden" id="AllQuiz">
+      <div class="p-4 sm:p-6 max-w-7xl mx-auto">
+        <!-- Category Selection -->
+        <div class="mb-8">
+          <h1 class="text-xl sm:text-2xl font-bold mb-4">Select a Quiz</h1>
+
+          <div class="flex flex-wrap gap-4 sm:gap-6">
+            <h1 class="text-sm sm:text-base cursor-pointer hover:underline">
+              All
+            </h1>
+            <h1 class="text-sm sm:text-base cursor-pointer hover:underline">
+              Science
+            </h1>
+            <h1 class="text-sm sm:text-base cursor-pointer hover:underline">
+              History
+            </h1>
+            <h1 class="text-sm sm:text-base cursor-pointer hover:underline">
+              Literature
+            </h1>
+            <h1 class="text-sm sm:text-base cursor-pointer hover:underline">
+              Mathematics
+            </h1>
+          </div>
+        </div>
+
+        <!-- Featured Quizzes -->
+        <div class="mb-8">
+          <h1 class="text-xl sm:text-2xl font-bold mb-4">Featured Quizzes</h1>
+          <div class="flex flex-wrap lg:flex-nowrap gap-4 sm:gap-6">
+            <img
+              onclick="singleQuiz('General Knowledge')"
+              src="./assets/quiz/q1.png"
+              class="w-full sm:w-1/2 lg:w-1/3 rounded-lg object-cover"
+              alt="Quiz 1"
+            />
+            <img
+              onclick="singleQuiz('General Knowledge')"
+              src="./assets/quiz/q2.png"
+              class="w-full sm:w-1/2 lg:w-1/3 rounded-lg object-cover"
+              alt="Quiz 2"
+            />
+            <img
+              onclick="singleQuiz('General Knowledge')"
+              src="./assets/quiz/q3.png"
+              class="w-full sm:w-1/2 lg:w-1/3 rounded-lg object-cover"
+              alt="Quiz 3"
+            />
+          </div>
+        </div>
+
+        <!-- All Quizzes -->
+        <div>
+          <h1 class="text-xl sm:text-2xl font-bold mb-4">All Quizzes</h1>
+          <div class="space-y-6">
+            <!-- Quiz Item -->
+            <a
+              onclick="singleQuiz('General Knowledge')"
+              class="text-sm sm:text-base cursor-pointer hover:underline"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-center bg-white rounded-lg shadow p-4"
+              >
+                <div class="text-center sm:text-left">
+                  <h1 class="text-lg font-semibold">General Knowledge</h1>
+                  <p class="text-sm">
+                    Test your overall knowledge with a mix of questions
+                  </p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                  <img
+                    src="./assets/quiz/g.png"
+                    class="w-20 sm:w-24"
+                    alt="General Knowledge"
+                  />
+                </div>
+              </div>
+            </a>
+
+            <a
+              onclick="singleQuiz('Science')"
+              class="text-sm sm:text-base cursor-pointer hover:underline"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-center bg-white rounded-lg shadow p-4"
+              >
+                <div class="text-center sm:text-left">
+                  <h1 class="text-lg font-semibold">Science</h1>
+                  <p class="text-sm">
+                    Explore the wonders of science from biology to physics.
+                  </p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                  <img
+                    src="./assets/quiz/s.png"
+                    class="w-20 sm:w-24"
+                    alt="Science"
+                  />
+                </div>
+              </div>
+            </a>
+
+            <a
+              onclick="singleQuiz('History')"
+              class="text-sm sm:text-base cursor-pointer hover:underline"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-center bg-white rounded-lg shadow p-4"
+              >
+                <div class="text-center sm:text-left">
+                  <h1 class="text-lg font-semibold">History</h1>
+                  <p class="text-sm">
+                    Journey through time and learn about historical events.
+                  </p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                  <img
+                    src="./assets/quiz/h.png"
+                    class="w-20 sm:w-24"
+                    alt="History"
+                  />
+                </div>
+              </div>
+            </a>
+
+            <a
+              onclick="singleQuiz('Literature')"
+              class="text-sm sm:text-base cursor-pointer hover:underline"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-center bg-white rounded-lg shadow p-4"
+              >
+                <div class="text-center sm:text-left">
+                  <h1 class="text-lg font-semibold">Literature</h1>
+                  <p class="text-sm">
+                    Discover the world of books and authors.
+                  </p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                  <img
+                    src="./assets/quiz/l.png"
+                    class="w-20 sm:w-24"
+                    alt="Literature"
+                  />
+                </div>
+              </div>
+            </a>
+
+            <a
+              onclick="singleQuiz('Mathematics')"
+              class="text-sm sm:text-base cursor-pointer hover:underline"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-center bg-white rounded-lg shadow p-4"
+              >
+                <div class="text-center sm:text-left">
+                  <h1 class="text-lg font-semibold">Mathematics</h1>
+                  <p class="text-sm">
+                    Challenge your math skills with various problems.
+                  </p>
+                </div>
+                <div class="mt-4 sm:mt-0">
+                  <img
+                    src="./assets/quiz/m.png"
+                    class="w-20 sm:w-24"
+                    alt="Mathematics"
+                  />
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!-- Single quiz ======================================================================================================================================-->
+    <!-- Single Quiz ======================================================================================================================================-->
+    <div class="hidden" id="single-quiz">
+      <!-- Add this inside the single-quiz section -->
+
+      <div class="text-center mt-4">
+        <h2 class="text-xl font-bold mb-2">Time Left:</h2>
+        <div class="flex justify-center space-x-4">
+          <div class="bg-gray-100 p-2 rounded-lg">
+            <div class="text-sm text-gray-600">Hours</div>
+            <div id="hours" class="text-2xl font-bold text-green-600">00</div>
+          </div>
+          <div class="bg-gray-100 p-2 rounded-lg">
+            <div class="text-sm text-gray-600">Minutes</div>
+            <div id="minutes" class="text-2xl font-bold text-green-600">10</div>
+          </div>
+          <div class="bg-gray-100 p-2 rounded-lg">
+            <div class="text-sm text-gray-600">Seconds</div>
+            <div id="seconds" class="text-2xl font-bold text-green-600">00</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow p-6">
+          <h1 id="quiz-title" class="text-2xl font-bold mb-6"></h1>
+          <div id="quiz-container" class="space-y-6"></div>
+        </div>
+      </div>
+      <!-- Submit Button -->
+      <div class="mt-6 text-center">
+        <button
+          onclick="submitQuiz()"
+          id="submit-quiz"
+          class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Submit Quiz
+        </button>
+      </div>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!-- Result quiz ======================================================================================================================================-->
+    <!-- Result Quiz ======================================================================================================================================-->
+
+    <div class="hidden" id="quiz-result">
+      <main class="max-w-3xl mx-auto mt-8 px-4">
+        <h2 class="text-2xl font-bold mb-4 text-center">Quiz Result</h2>
+        <div
+          id="result-summary"
+          class="text-center text-lg font-medium mb-6"
+        ></div>
+
+        <div class="text-center">
+          <a
+            onclick="reviewAnswers()"
+            class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+          >
+            Review Answers
+          </a>
+        </div>
+      </main>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!-- Review quiz ======================================================================================================================================-->
+    <!-- Review Quiz ======================================================================================================================================-->
+    <div class="hidden" id="quiz-review">
+      <main class="max-w-3xl mx-auto mt-8 px-4">
+        <h2 class="text-2xl font-bold mb-4 text-center">
+          Review Incorrect Answers
+        </h2>
+        <div id="wrong-answers" class="space-y-4"></div>
+      </main>
+    </div>
+    <!-- ================================================================================================================================================= -->
+    <!-- ================================================================================================================================================= -->
+
+    <!-- Profile========================================================================================================================================== -->
+    <!-- Profile========================================================================================================================================== -->
+    <div id="Profile" class="hidden flex justify-center items-center mt-4">
+      <div
+        id="profile-container"
+        class="w-full max-w-3xl bg-white rounded-xl shadow-md p-8"
+      ></div>
+    </div>
+
+    <!-- leaderboard -->
+    <!-- Add this inside your main container where other sections are -->
+    <section id="leaderboard" class="hidden p-6 max-w-4xl mx-auto">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Leaderboard</h1>
+        <button
+          onclick="AllQuizNav()"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          Back to Quizzes
+        </button>
+      </div>
+
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div
+          class="grid grid-cols-12 bg-gray-100 p-4 font-semibold text-gray-700"
+        >
+          <div class="col-span-1">Rank</div>
+          <div class="col-span-5">Player</div>
+          <div class="col-span-3">Category</div>
+          <div class="col-span-3">Score</div>
+        </div>
+
+        <div id="leaderboard-entries" class="divide-y divide-gray-200">
+          <!-- Entries will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <script src="./login.js" defer></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
