@@ -5,7 +5,7 @@ const app = express();
 const data = require("./data.json");
 app.use(express.json());
 
-const PORT = 3010;
+const PORT = 8000;
 
 // Swagger options
 const options = {
@@ -63,7 +63,7 @@ app.get("/api/tasks/:id", (req, res) => {
   const id = Number(req.params.id);
   const task = data.find((task) => task.id === id);
   if (task) {
-    res.json(task).status(201);
+    res.json(task);
   } else {
     res.status(404).send("Task not found");
   }
@@ -96,18 +96,10 @@ app.get("/api/tasks/:id", (req, res) => {
  *               completed: true
  */
 app.post("/api/tasks", (req, res) => {
-  const { title, completed } = req.body;
-
-  // Validation
-  if (typeof title !== "string" || typeof completed !== "boolean") {
-    return res.status(400).json({
-      error: "Both 'title' (string) and 'completed' (boolean) are required.",
-    });
-  }
   const newTask = {
     id: data.length + 1,
     title: req.body.title,
-    completed: req.body.completed,
+    completed: true,
   };
   console.log(`Creating task: ${newTask.title}`);
   data.push(newTask);
@@ -188,20 +180,10 @@ app.delete("/api/tasks/:id", (req, res) => {
  *         description: Task not found
  */
 app.put("/api/tasks/:id", (req, res) => {
-  const { title, completed } = req.body;
-
-  // Validation
-
   const id = Number(req.params.id);
   const task = data.find((task) => task.id === id);
-
-  if (typeof title !== "string" || typeof completed !== "boolean") {
-    return res.status(400).json({
-      error: "Both 'title' (string) and 'completed' (boolean) are required.",
-    });
-  }
   if (task) {
-    (task.title = title), (task.completed = completed);
+    (task.title = req.body.title), (task.completed = req.body.completed);
     res.status(200).json(task);
   } else {
     res.status(404).send("task not found");
@@ -309,7 +291,7 @@ app.get("/api/tasks", (req, res) => {
     return res.json(filteredTasks);
   }
 
-  res.json(data).status(201);
+  res.json(data);
 });
 
 app.listen(PORT, () => {
