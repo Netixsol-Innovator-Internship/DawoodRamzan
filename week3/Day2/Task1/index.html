@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Munoz - Product Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Impact', 'Arial Black', 'sans-serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        'brand-pink': '#ff6b9d',
+                        'brand-orange': '#ffa726'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa726 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-image {
+            background: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/poster-JT7dmO36SmQ8CcPoCC6UXIzuV9axUG.png') center/cover no-repeat;
+        }
+        
+        .theme-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-body bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8  rounded-full flex items-center justify-center">
+                        <span class="dark:text-white text-gray-900 font-bold text-sm"><img src="./p2.svg" class="invert dark:invert-0"></span>
+                    </div>
+                    <span class="font-semibold text-lg">tian</span>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="hover:text-brand-pink transition-colors">Home</a>
+                    <a href="#portfolio" class="hover:text-brand-pink transition-colors">Portfolio</a>
+                    <a href="#skills" class="hover:text-brand-pink transition-colors">Skills</a>
+                    <a href="#about" class="hover:text-brand-pink transition-colors">About Me</a>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-full bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    <button class="md:hidden p-2" id="mobile-menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <button class="bg-[#925FF0] hidden md:block rounded-sm p-3">Contact Me</button>
+
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex flex-col space-y-4 pt-4">
+                    <a href="#home" class="hover:text-brand-pink transition-colors">Home</a>
+                    <a href="#portfolio" class="hover:text-brand-pink transition-colors">Portfolio</a>
+                    <a href="#skills" class="hover:text-brand-pink transition-colors">Skills</a>
+                    <a href="#about" class="hover:text-brand-pink transition-colors">About Me</a>
+                    <button class="bg-[#925FF0] rounded-sm p-3">Contact Me</button>
+
+                </div>
+                
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-4 lg:pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center">
+            <div class="container mx-auto px-6">
+              <div class="grid grid-cols-1 sm:ml-[5rem] lg:grid-cols-2 lg:gap-16 xl:gap-[10rem] w-full justify-center items-center">
+                <!-- Left Content -->
+                    <div class="space-y-8">
+                        <!-- Main Title -->
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <h1 class="font-display text-6xl md:text-8xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight">
+                                    PRODUCT
+                                </h1>
+                                <div class="text-4xl md:text-6xl">✦</div>
+                            </div>
+                            <h1 class="font-display text-6xl md:text-8xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight">
+                                DESIGNER
+                            </h1>
+                            <h2 class="font-display text-4xl md:text-6xl lg:text-6xl xl:text-7xl font-black gradient-text">
+                                CRISTIAN MUNOZ
+                            </h2>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="flex items-center space-x-10 lg:space-x-[6rem]">
+                            <a href="#" class="social-icon text-2xl hover:text-brand-pink">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon text-2xl hover:text-brand-pink">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon text-2xl hover:text-brand-pink">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon text-2xl hover:text-brand-pink">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon text-2xl hover:text-brand-pink">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="#" class="social-icon text-2xl hover:text-brand-pink">
+                                <i class="fab fa-medium"></i>
+                            </a>
+                        </div>
+                        
+                        <!-- Download CV Button -->
+                        <div>
+                            <button class="bg-[#292929] dark:bg-black text-white  px-8 py-4 rounded-none font-semibold transition-colors flex items-center space-x-10 lg:space-x-[21rem]">
+                                <span>Download Curriculum Vitae</span>
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Content - Hero Image -->
+                    <div class="relative hidden lg:block">
+                        <div class="hidden lg:block  w-full h-96 md:h-[500px] md:w-[600px] lg:h-[600px] lg:h-[600px] rounded-lg shadow-2xl">
+                          <img src="./hero.jpg" alt="Hero Image" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    <script src="./script.js" defer>
+        
+    </script> 
+</body>
+</html>
