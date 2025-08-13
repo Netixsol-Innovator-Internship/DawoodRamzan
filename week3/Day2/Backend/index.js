@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./docs/swagger");
+const cors = require("cors");
 
 dotenv.config();
 connectDB();
@@ -12,7 +13,7 @@ app.use(express.json());
 
 // Swagger route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+app.use(cors({ origin: "*", methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }));
 // Test route
 app.get("/", (req, res) => res.send("Hello World! MongoDB is connected 🚀"));
 
