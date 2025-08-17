@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3010/api", // ✅ update for production
+  baseURL: "https://dawood-week3day5backend.vercel.app/api", // ✅ update for production
 });
 
 // Attach token if exists
