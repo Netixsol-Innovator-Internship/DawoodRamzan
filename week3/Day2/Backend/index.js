@@ -13,8 +13,13 @@ app.use(express.json());
 
 // Swagger route
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.use(cors({ origin: "*", methods: "GET,HEAD,PUT,PATCH,POST,DELETE" }));
-// Test route
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, // if you use cookies/auth headers
+  })
+); // Test route
 app.get("/", (req, res) => res.send("Hello World! MongoDB is connected 🚀"));
 
 // Routes

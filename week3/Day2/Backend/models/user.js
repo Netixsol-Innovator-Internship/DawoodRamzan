@@ -3,7 +3,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
+
     trim: true,
     minlength: 3,
     maxlength: 20,
@@ -30,5 +30,5 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("TaskUser", userSchema, "taskUser");
 module.exports = User;
