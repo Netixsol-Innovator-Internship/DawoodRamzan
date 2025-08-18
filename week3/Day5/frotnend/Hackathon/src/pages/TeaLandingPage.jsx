@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import data from "../data";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import image from "../assets/1.jpg";
 
 const TeaLandingPage = ({ onExploreClick }) => {
   const [teasData, setTeasData] = useState([]);
@@ -56,21 +57,6 @@ const TeaLandingPage = ({ onExploreClick }) => {
     }
   }, []);
 
-  // ✅ Add tea to cart
-  // const handleAddToCart = async (teaId) => {
-  //   try {
-  //     setCartLoading(teaId);
-  //     await addToCart(teaId, 1);
-  //     alert("Added to cart ✅");
-  //     fetchCartCount();
-  //   } catch (err) {
-  //     console.error("Failed to add to cart:", err);
-  //     alert("Please log in to add items to cart.");
-  //   } finally {
-  //     setCartLoading(null);
-  //   }
-  // };
-
   if (loading) return <p className="text-center py-10">Loading teas...</p>;
 
   return (
@@ -84,7 +70,7 @@ const TeaLandingPage = ({ onExploreClick }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <img
-                src="https://images.unsplash.com/photo-1507919909716-c8262e491cde"
+                src={image}
                 alt="Various tea leaves"
                 className="w-full h-auto rounded-lg"
               />
