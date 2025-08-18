@@ -16,7 +16,16 @@ const orderRoutes = require("./routes/orderRoutes");
 const filterRoutes = require("./routes/filterRoutes");
 
 const app = express();
-app.use(cors());
+
+// ✅ CORS setup for deployed frontend
+app.use(
+  cors({
+    origin: "https://dawoodweek3day5.vercel.app", // your deployed frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // if you are using cookies/auth
+  })
+);
+
 app.use(express.json());
 
 // Swagger setup
@@ -30,7 +39,10 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `http://localhost:${process.env.PORT || 3010}`,
+        // point to deployed backend URL
+        url:
+          process.env.BACKEND_URL ||
+          `http://localhost:${process.env.PORT || 3010}`,
       },
     ],
   },
@@ -47,7 +59,5 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/filters", filterRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
-);
+const PORT = process.env.PORT || 3010;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
