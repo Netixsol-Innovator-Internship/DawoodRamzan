@@ -15,7 +15,7 @@ app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(
   cors({
-    origin: "http://localhost:5173" || "https://dawood-week3-day3.vercel.app",
+    origin: "https://dawood-week3-day3.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // if you use cookies/auth headers
   })
