@@ -4,7 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getCart, updateCartQuantity, removeFromCart } from "../services/api";
 import image from "../assets/logo.png"; // Adjust the path as necessary
+const getFallbackImage = (teaId) => {
+  const fallbackImages = [
+    "/assets/t2.jpg",
+    "/assets/t3.jpg",
+    "/assets/t4.jpg",
+    "/assets/t5.jpg",
+    "/assets/t6.jpg",
+    "/assets/t7.jpg",
+    "/assets/t8.jpg",
+  ];
 
+  // simple hash: sum char codes of teaId, then mod by number of fallback images
+  const hash = teaId
+    .split("")
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+  return fallbackImages[hash % fallbackImages.length];
+};
 const Header = () => {
   const [cartItemCount, setCartItemCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
@@ -184,7 +201,7 @@ const Header = () => {
                         className="flex items-center space-x-4"
                       >
                         <img
-                          src={item.tea.image || "/placeholder.svg"}
+                          src={getFallbackImage(item.tea._id)}
                           alt={item.tea.name}
                           className="w-16 h-16 object-cover rounded"
                         />
