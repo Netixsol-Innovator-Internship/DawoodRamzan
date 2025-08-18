@@ -7,6 +7,24 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Clock, Thermometer, Users, Palette } from "lucide-react";
 
+const getFallbackImage = (teaId) => {
+  const fallbackImages = [
+    "/assets/t2.jpg",
+    "/assets/t3.jpg",
+    "/assets/t4.jpg",
+    "/assets/t5.jpg",
+    "/assets/t6.jpg",
+    "/assets/t7.jpg",
+    "/assets/t8.jpg",
+  ];
+
+  // simple hash: sum char codes of teaId, then mod by number of fallback images
+  const hash = teaId
+    .split("")
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+  return fallbackImages[hash % fallbackImages.length];
+};
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -115,7 +133,7 @@ const ProductDetailPage = () => {
           {/* Image */}
           <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
             <img
-              src={product.image || "/placeholder.svg"}
+              src={getFallbackImage(product._id)}
               alt={product.name}
               className="w-full h-full object-cover"
             />
@@ -333,7 +351,7 @@ const ProductDetailPage = () => {
               >
                 <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4 group-hover:opacity-75 transition-opacity">
                   <img
-                    src={tea.image || "/placeholder.svg"}
+                    src={getFallbackImage(tea._id)}
                     alt={tea.name}
                     className="w-full h-full object-cover"
                   />

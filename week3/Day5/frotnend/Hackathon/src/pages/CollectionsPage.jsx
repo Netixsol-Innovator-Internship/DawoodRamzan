@@ -5,6 +5,32 @@ import { getTeas } from "../services/api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import image from "../assets/h2.jpg";
+
+// import t2 from "../assets/t2.jpg";
+// import t3 from "../assets/t3.jpg";
+// import t4 from "../assets/t4.jpg";
+// import t5 from "../assets/t5.jpg";
+// import t6 from "../assets/t6.jpg";
+// import t7 from "../assets/t7.jpg";
+// import t8 from "../assets/t8.jpg";
+const getFallbackImage = (teaId) => {
+  const fallbackImages = [
+    "/assets/t2.jpg",
+    "/assets/t3.jpg",
+    "/assets/t4.jpg",
+    "/assets/t5.jpg",
+    "/assets/t6.jpg",
+    "/assets/t7.jpg",
+    "/assets/t8.jpg",
+  ];
+
+  // simple hash: sum char codes of teaId, then mod by number of fallback images
+  const hash = teaId
+    .split("")
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+  return fallbackImages[hash % fallbackImages.length];
+};
 const CollectionPage = () => {
   const { collectionName } = useParams();
   const navigate = useNavigate();
@@ -294,10 +320,11 @@ const CollectionPage = () => {
                       className="bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 flex flex-col cursor-pointer"
                     >
                       <img
-                        src={tea.image || "https://via.placeholder.com/300"}
+                        src={getFallbackImage(tea._id)}
                         alt={tea.name}
                         className="h-48 w-full object-cover rounded-md mb-4"
                       />
+
                       <h3 className="font-semibold text-lg mb-2">{tea.name}</h3>
                       <p className="text-gray-600 text-sm line-clamp-2 mb-3">
                         {tea.description}

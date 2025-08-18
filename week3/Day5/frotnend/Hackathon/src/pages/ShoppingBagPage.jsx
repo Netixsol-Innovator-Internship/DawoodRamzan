@@ -11,6 +11,24 @@ import {
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+const getFallbackImage = (teaId) => {
+  const fallbackImages = [
+    "/assets/t2.jpg",
+    "/assets/t3.jpg",
+    "/assets/t4.jpg",
+    "/assets/t5.jpg",
+    "/assets/t6.jpg",
+    "/assets/t7.jpg",
+    "/assets/t8.jpg",
+  ];
+
+  const hash = teaId
+    .split("")
+    .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+
+  return fallbackImages[hash % fallbackImages.length];
+};
+
 const ShoppingBagPage = ({ onContinueShopping }) => {
   const [cartItems, setCartItems] = useState([]);
   const [popularTeas, setPopularTeas] = useState([]);
@@ -43,54 +61,77 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
     try {
       if (newQuantity <= 0) {
         await removeFromCart({ teaId });
+        // Remove item locally
+        setCartItems((prev) => prev.filter((item) => item.tea._id !== teaId));
       } else {
         await updateCartAPI({ teaId, quantity: newQuantity });
+        // Update quantity locally
+        setCartItems((prev) =>
+          prev.map((item) =>
+            item.tea._id === teaId ? { ...item, quantity: newQuantity } : item
+          )
+        );
       }
-      await fetchCart(); // Refresh cart after change
     } catch (error) {
       console.error("Error updating cart:", error);
     }
   };
 
   // =====================
-  // Fetch Popular Teas
+  // Fetch Popular Teas by Cart Collection
   // =====================
   useEffect(() => {
     const fetchPopularTeas = async () => {
       try {
         setLoadingPopular(true);
         const response = await getTeas();
-        setPopularTeas(response.data);
+        const teas = response.data;
+
+        const cartCollections = Array.from(
+          new Set(cartItems.map((item) => item.tea.collection))
+        );
+
+        const filteredTeas = teas.filter((tea) =>
+          cartCollections.includes(tea.collection)
+        );
+
+        if (filteredTeas.length === 0) {
+          setPopularTeas([
+            {
+              _id: "fallback-1",
+              name: "Hibiscus Berry Blend",
+              price: 3.75,
+              image: "/hibiscus-berry-tea.png",
+            },
+            {
+              _id: "fallback-2",
+              name: "Dragon Well Green Tea",
+              price: 5.2,
+              image: "/dragon-well-tea.png",
+            },
+            {
+              _id: "fallback-3",
+              name: "Earl Grey Supreme",
+              price: 4.5,
+              image: "/earl-grey-loose-leaf.png",
+            },
+          ]);
+        } else {
+          setPopularTeas(filteredTeas);
+        }
       } catch (error) {
         console.error("Error fetching teas:", error);
-        setPopularTeas([
-          {
-            _id: "fallback-1",
-            name: "Hibiscus Berry Blend",
-            price: 3.75,
-            image: "/hibiscus-berry-tea.png",
-          },
-          {
-            _id: "fallback-2",
-            name: "Dragon Well Green Tea",
-            price: 5.2,
-            image: "/dragon-well-tea.png",
-          },
-          {
-            _id: "fallback-3",
-            name: "Earl Grey Supreme",
-            price: 4.5,
-            image: "/earl-grey-loose-leaf.png",
-          },
-        ]);
+        setPopularTeas([]);
       } finally {
         setLoadingPopular(false);
       }
     };
 
-    fetchPopularTeas();
-    fetchCart();
-  }, []);
+    // Fetch popular teas only once, after initial cart fetch
+    if (!loadingCart) {
+      fetchPopularTeas();
+    }
+  }, [loadingCart]); // <- depend only on loadingCart
 
   // =====================
   // Totals
@@ -102,12 +143,14 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
   const shipping = 0;
   const total = subtotal + shipping;
 
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
       <Header />
 
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-light text-gray-900 mb-8">My Bag</h1>
 
@@ -131,7 +174,7 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
             ) : (
               <div className="space-y-6">
                 {cartItems.map((item) => {
-                  const tea = item.tea; // populated tea object
+                  const tea = item.tea;
                   const teaId = tea._id;
                   const quantity = item.quantity;
 
@@ -141,7 +184,7 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
                       className="flex items-center space-x-4 pb-6 border-b border-gray-200"
                     >
                       <img
-                        src={tea.image || "/placeholder.svg"}
+                        src={getFallbackImage(tea._id)}
                         alt={tea.name}
                         className="w-20 h-20 object-cover rounded"
                       />
@@ -243,7 +286,7 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
                 <div key={tea._id} className="group cursor-pointer">
                   <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4 group-hover:opacity-75 transition-opacity">
                     <img
-                      src={tea.image || "/placeholder.svg"}
+                      src={getFallbackImage(tea._id)}
                       alt={tea.name}
                       className="w-full h-full object-cover"
                     />
