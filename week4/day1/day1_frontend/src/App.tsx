@@ -26,7 +26,9 @@ const App: React.FC = () => {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/tasks");
+      const res = await fetch(
+        "https://dawoodweek4-day1-backend.vercel.app/api/tasks"
+      );
       if (!res.ok) throw new Error("Failed to fetch tasks");
       const data = await res.json();
       setTasks(data);
@@ -53,11 +55,14 @@ const App: React.FC = () => {
     setTitle("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/tasks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title }),
-      });
+      const res = await fetch(
+        "https://dawoodweek4-day1-backend.vercel.app/api/tasks",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title }),
+        }
+      );
       const savedTask = await res.json();
 
       setTasks((prev) =>
@@ -74,9 +79,12 @@ const App: React.FC = () => {
     );
 
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
-        method: "PUT",
-      });
+      const res = await fetch(
+        `https://dawoodweek4-day1-backend.vercel.app/api/tasks/${id}`,
+        {
+          method: "PUT",
+        }
+      );
       const updatedTask = await res.json();
       setTasks((prev) => prev.map((t) => (t.id === id ? updatedTask : t)));
     } catch {
@@ -88,9 +96,12 @@ const App: React.FC = () => {
     setTasks(tasks.filter((t) => t.id !== id));
 
     try {
-      await fetch(`http://localhost:5000/api/tasks/${id}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://dawoodweek4-day1-backend.vercel.app/api/tasks/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
     } catch {
       console.warn("⚠️ Delete saved only in localStorage (offline mode).");
     }
