@@ -8,32 +8,40 @@ export function HeroSection() {
   const { selectedGame, setSelectedGame } = useGameStore();
   const sidebarGames = [
     {
-      id: 1,
+      id: "1",
       title: "God Of War 4",
       image: "/her.jpg",
       description:
         "Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive.",
+      category: "Action",
+      price: 0,
     },
     {
-      id: 2,
+      id: "2",
       title: "Farcry 6 Golden Edition",
       image: "/far.jpg",
       description:
         "Experience the revolution in Yara with stunning visuals and explosive gameplay.",
+      category: "Action",
+      price: 0,
     },
     {
-      id: 3,
+      id: "3",
       title: "GTA V",
       image: "/gta.jpg",
       description:
         "Step into Los Santos for a story of crime, betrayal, and chaos.",
+      category: "Action",
+      price: 0,
     },
     {
-      id: 4,
+      id: "4",
       title: "Outlast 2",
       image: "/out.png",
       description:
         "A survival horror game that will test your courage and instincts.",
+      category: "Action",
+      price: 0,
     },
   ];
   return (
