@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "/server.ts",
+      "src": "server.ts",
       "use": "@vercel/node",
       "config": {
         "includeFiles": ["dist/**", "./node_modules/swagger-ui-dist/**"]

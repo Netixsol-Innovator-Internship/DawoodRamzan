@@ -42,7 +42,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 /* ---------------- Routes ---------------- */
 
 /**
- * @openapi
+ * @swagger
  * /api/tasks:
  *   get:
  *     summary: Get all tasks
@@ -55,7 +55,7 @@ app.get("/api/tasks", (req: Request, res: Response) => {
 });
 
 /**
- * @openapi
+ * @swagger
  * /api/tasks:
  *   post:
  *     summary: Create a new task
@@ -85,7 +85,7 @@ app.post("/api/tasks", (req: Request, res: Response) => {
 });
 
 /**
- * @openapi
+ * @swagger
  * /api/tasks/{id}:
  *   put:
  *     summary: Toggle a task complete/incomplete
@@ -111,7 +111,7 @@ app.put("/api/tasks/:id", (req: Request, res: Response) => {
 });
 
 /**
- * @openapi
+ * @swagger
  * /api/tasks/{id}:
  *   delete:
  *     summary: Delete a task
