@@ -4,16 +4,16 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dawood-week3day5backend.vercel.app/api", // ✅ backend base URL
+    baseUrl: "https://dawood-week3day5backend.vercel.app/api",
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token"); // auth
+      const token = localStorage.getItem("token");
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
       return headers;
     },
   }),
-  tagTypes: ["User", "Tea"], // ✅ added Tea
+  tagTypes: ["User", "Tea", "Cart"], // added Cart
   endpoints: (builder) => ({
     // -------- AUTH --------
     signup: builder.mutation({
@@ -63,6 +63,11 @@ export const apiSlice = createApi({
       query: () => "/teas",
       providesTags: ["Tea"],
     }),
+
+    getTeaById: builder.query({
+      query: (id) => `/teas/${id}`,
+      providesTags: (result, error, id) => [{ type: "Tea", id }],
+    }),
     createTea: builder.mutation({
       query: (data) => ({
         url: "/teas",
@@ -86,6 +91,36 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Tea"],
     }),
+
+    // -------- CART --------
+    getCart: builder.query({
+      query: () => "/cart",
+      providesTags: ["Cart"],
+    }),
+    addToCart: builder.mutation({
+      query: (data) => ({
+        url: "/cart/add",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    removeFromCart: builder.mutation({
+      query: (data) => ({
+        url: "/cart/remove",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
+    updateCartQuantity: builder.mutation({
+      query: (data) => ({
+        url: "/cart/update",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Cart"],
+    }),
   }),
 });
 
@@ -100,7 +135,13 @@ export const {
   useDeleteUserMutation,
   // teas
   useGetTeasQuery,
+  useGetTeaByIdQuery,
   useCreateTeaMutation,
   useUpdateTeaMutation,
   useDeleteTeaMutation,
+  // cart
+  useGetCartQuery,
+  useAddToCartMutation,
+  useRemoveFromCartMutation,
+  useUpdateCartQuantityMutation,
 } = apiSlice;

@@ -1,18 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getTeas } from "../services/api";
+import { useGetTeasQuery } from "../features/api/apiSlice"; // ✅ RTK Query
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import image from "../assets/h2.jpg";
 
-// import t2 from "../assets/t2.jpg";
-// import t3 from "../assets/t3.jpg";
-// import t4 from "../assets/t4.jpg";
-// import t5 from "../assets/t5.jpg";
-// import t6 from "../assets/t6.jpg";
-// import t7 from "../assets/t7.jpg";
-// import t8 from "../assets/t8.jpg";
+// fallback images
 const getFallbackImage = (teaId) => {
   const fallbackImages = [
     "/assets/t2.jpg",
@@ -24,19 +18,21 @@ const getFallbackImage = (teaId) => {
     "/assets/t8.jpg",
   ];
 
-  // simple hash: sum char codes of teaId, then mod by number of fallback images
   const hash = teaId
     .split("")
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
   return fallbackImages[hash % fallbackImages.length];
 };
+
 const CollectionPage = () => {
   const { collectionName } = useParams();
   const navigate = useNavigate();
-  const [teasData, setTeasData] = useState([]);
+
+  // ✅ Use RTK Query instead of manual fetch
+  const { data: teasData = [], isLoading, isError } = useGetTeasQuery();
+
   const [filteredTeas, setFilteredTeas] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const [expandedSections, setExpandedSections] = useState({
     collections: true,
@@ -96,26 +92,13 @@ const CollectionPage = () => {
     organic: ["Yes", "No"],
   };
 
+  // ✅ Filter when teas or filters change
   useEffect(() => {
-    const fetchTeas = async () => {
-      try {
-        const { data } = await getTeas();
-        const filtered = data.filter(
-          (tea) => tea.collection && tea.collection.includes(collectionName)
-        );
-        setTeasData(filtered);
-        setFilteredTeas(filtered);
-      } catch (err) {
-        console.error("Failed to fetch teas:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchTeas();
-  }, [collectionName]);
+    if (!teasData.length) return;
 
-  useEffect(() => {
-    let filtered = [...teasData];
+    let filtered = teasData.filter(
+      (tea) => tea.collection && tea.collection.includes(collectionName)
+    );
 
     if (filters.collections.length > 0) {
       filtered = filtered.filter((tea) =>
@@ -166,7 +149,7 @@ const CollectionPage = () => {
     }
 
     setFilteredTeas(filtered);
-  }, [filters, teasData]);
+  }, [filters, teasData, collectionName]);
 
   const toggleFilter = (category, value) => {
     setFilters((prev) => ({
@@ -290,8 +273,12 @@ const CollectionPage = () => {
           </div>
 
           <div className="lg:w-3/4">
-            {loading ? (
+            {isLoading ? (
               <p className="text-center text-gray-600 py-12">Loading teas...</p>
+            ) : isError ? (
+              <p className="text-center text-red-600 py-12">
+                Failed to load teas.
+              </p>
             ) : filteredTeas.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-600 mb-4">

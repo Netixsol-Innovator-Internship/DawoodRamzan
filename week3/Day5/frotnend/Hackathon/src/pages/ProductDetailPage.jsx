@@ -1,12 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getTeaById, addToCart, getTeas } from "../services/api";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Clock, Thermometer, Users, Palette } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Clock, Thermometer, Users, Palette } from "lucide-react";
+import {
+  useGetTeaByIdQuery,
+  useGetTeasQuery,
+  useAddToCartMutation,
+} from "../features/api/apiSlice";
 
+// fallback images
 const getFallbackImage = (teaId) => {
   const fallbackImages = [
     "/assets/t2.jpg",
@@ -18,101 +22,86 @@ const getFallbackImage = (teaId) => {
     "/assets/t8.jpg",
   ];
 
-  // simple hash: sum char codes of teaId, then mod by number of fallback images
   const hash = teaId
     .split("")
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
   return fallbackImages[hash % fallbackImages.length];
 };
+
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+
   const [quantity, setQuantity] = useState(1);
   const [popularTeas, setPopularTeas] = useState([]);
-  const [loadingPopular, setLoadingPopular] = useState(true);
 
-  // Fetch product by ID
+  // ✅ Fetch product by ID (RTK Query)
+  const {
+    data: product,
+    isLoading: loadingProduct,
+    isError,
+  } = useGetTeaByIdQuery(id);
+
+  // ✅ Fetch all teas (RTK Query)
+  const { data: allTeas, isLoading: loadingPopular } = useGetTeasQuery();
+
+  // ✅ Add to cart mutation
+  const [addToCart] = useAddToCartMutation();
+
+  // Compute popular teas
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const { data } = await getTeaById(id);
-        setProduct(data);
-      } catch (err) {
-        console.error("Error fetching product:", err);
-      } finally {
-        setLoading(false);
+    if (allTeas && product) {
+      let filteredPopular = allTeas.filter(
+        (tea) =>
+          tea.collection?.some((c) => product.collection?.includes(c)) &&
+          tea._id !== product._id
+      );
+
+      // Fallback teas if less than 3
+      if (filteredPopular.length < 3) {
+        const fallbackTeas = [
+          {
+            _id: "fallback-1",
+            name: "Hibiscus Berry Blend",
+            price: 3.75,
+            image: "/hibiscus-berry-tea.png",
+          },
+          {
+            _id: "fallback-2",
+            name: "Dragon Well Green Tea",
+            price: 5.2,
+            image: "/dragon-well-tea.png",
+          },
+          {
+            _id: "fallback-3",
+            name: "Earl Grey Supreme",
+            price: 4.5,
+            image: "/earl-grey-loose-leaf.png",
+          },
+        ];
+        filteredPopular = [...filteredPopular, ...fallbackTeas].slice(0, 3);
       }
-    };
-    fetchProduct();
-  }, [id]);
 
-  // Fetch popular teas based on collection
-  useEffect(() => {
-    const fetchPopularTeas = async () => {
-      try {
-        setLoadingPopular(true);
-        const response = await getTeas();
-
-        let filteredPopular = response.data.filter(
-          (tea) =>
-            tea.collection?.some((c) => product?.collection?.includes(c)) &&
-            tea._id !== product?._id
-        );
-
-        // Fallback teas if less than 3
-        if (filteredPopular.length < 3) {
-          const fallbackTeas = [
-            {
-              _id: "fallback-1",
-              name: "Hibiscus Berry Blend",
-              price: 3.75,
-              image: "/hibiscus-berry-tea.png",
-            },
-            {
-              _id: "fallback-2",
-              name: "Dragon Well Green Tea",
-              price: 5.2,
-              image: "/dragon-well-tea.png",
-            },
-            {
-              _id: "fallback-3",
-              name: "Earl Grey Supreme",
-              price: 4.5,
-              image: "/earl-grey-loose-leaf.png",
-            },
-          ];
-          filteredPopular = [...filteredPopular, ...fallbackTeas].slice(0, 3);
-        }
-
-        setPopularTeas(filteredPopular);
-      } catch (error) {
-        console.error("Error fetching teas:", error);
-        setPopularTeas([]);
-      } finally {
-        setLoadingPopular(false);
-      }
-    };
-
-    if (product) fetchPopularTeas();
-  }, [product]);
+      setPopularTeas(filteredPopular);
+    }
+  }, [allTeas, product]);
 
   const handleAddToCart = async () => {
     try {
-      await addToCart({ teaId: product._id, quantity });
+      await addToCart({ teaId: product._id, quantity }).unwrap();
       alert("Item added to cart!");
     } catch (err) {
       console.error("Error adding to cart:", err);
+      alert("Failed to add item to cart.");
     }
   };
 
-  if (loading) {
+  if (loadingProduct) {
     return <p className="text-center mt-10">Loading product...</p>;
   }
 
-  if (!product) {
+  if (isError || !product) {
     return <p className="text-center mt-10">Product not found</p>;
   }
 
@@ -211,114 +200,6 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
-      {/* Info Section Above Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-gray-50 p-8 rounded-2xl shadow-md">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Steeping Instructions */}
-            <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-                Steeping Instructions
-              </h2>
-
-              <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center shadow">
-                    <Users className="w-5 h-5 text-orange-600" />
-                  </div>
-                  <div className="text-sm text-gray-700">
-                    <span className="font-medium">SERVING SIZE:</span> 1 tea per
-                    cup & 1 tea per pot
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center shadow">
-                    <Thermometer className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div className="text-sm text-gray-700">
-                    <span className="font-medium">WATER TEMPERATURE:</span>{" "}
-                    100°C
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center shadow">
-                    <Clock className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div className="text-sm text-gray-700">
-                    <span className="font-medium">STEEPING TIME:</span> 3-5
-                    minutes
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center shadow">
-                    <Palette className="w-5 h-5 text-amber-600" />
-                  </div>
-                  <div className="text-sm text-gray-700">
-                    <span className="font-medium">COLOR AFTER 3 MINUTES:</span>{" "}
-                    Rich amber
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* About This Tea */}
-            <div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-                About This Tea
-              </h2>
-
-              <div className="grid grid-cols-2 gap-6 mb-6">
-                <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                    FLAVOR
-                  </h3>
-                  <p className="text-sm text-gray-700">
-                    {product.flavor?.join(", ") || "N/A"}
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                    QUALITIES
-                  </h3>
-                  <p className="text-sm text-gray-700">
-                    {product.quality?.join(", ") || "N/A"}
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                    CAFFEINE
-                  </h3>
-                  <p className="text-sm text-gray-700">{product.caffeine}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                    ALLERGENS
-                  </h3>
-                  <p className="text-sm text-gray-700">
-                    {product.allergens?.join(", ") || "None"}
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold text-gray-800 mb-2">
-                  Ingredients
-                </h3>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  {product.ingredients || "N/A"}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Popular Teas */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
         <h2 className="text-2xl font-light text-gray-900 mb-8">
@@ -340,14 +221,11 @@ const ProductDetailPage = () => {
               <div
                 key={tea._id}
                 className="group cursor-pointer"
-                onClick={() => {
-                  // Navigate to product if real, else go home
-                  if (!tea._id.startsWith("fallback")) {
-                    navigate(`/product/${tea._id}`);
-                  } else {
-                    navigate(`/`);
-                  }
-                }}
+                onClick={() =>
+                  tea._id.startsWith("fallback")
+                    ? navigate("/")
+                    : navigate(`/product/${tea._id}`)
+                }
               >
                 <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4 group-hover:opacity-75 transition-opacity">
                   <img

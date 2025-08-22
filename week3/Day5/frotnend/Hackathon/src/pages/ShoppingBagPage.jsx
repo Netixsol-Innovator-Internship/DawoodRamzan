@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Minus, Plus } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
-  getTeas,
-  getCart,
-  updateCartQuantity as updateCartAPI,
-  removeFromCart,
-} from "../services/api";
+  useGetTeasQuery,
+  useGetCartQuery,
+  useUpdateCartQuantityMutation,
+  useRemoveFromCartMutation,
+} from "../features/api/apiSlice";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -21,38 +21,32 @@ const getFallbackImage = (teaId) => {
     "/assets/t7.jpg",
     "/assets/t8.jpg",
   ];
-
   const hash = teaId
     .split("")
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
-
   return fallbackImages[hash % fallbackImages.length];
 };
 
 const ShoppingBagPage = ({ onContinueShopping }) => {
-  const [cartItems, setCartItems] = useState([]);
+  // ✅ RTK Query hooks
+  const {
+    data: cartResponse,
+    isLoading: loadingCart,
+    refetch: refetchCart,
+  } = useGetCartQuery();
+  const { data: teasResponse, isLoading: loadingPopular } = useGetTeasQuery();
+
+  const [updateCartQuantity] = useUpdateCartQuantityMutation();
+  const [removeFromCart] = useRemoveFromCartMutation();
+
   const [popularTeas, setPopularTeas] = useState([]);
-  const [loadingCart, setLoadingCart] = useState(true);
-  const [loadingPopular, setLoadingPopular] = useState(true);
 
   // =====================
-  // Fetch Cart from Backend
+  // Cart items from backend
   // =====================
-  const fetchCart = async () => {
-    try {
-      setLoadingCart(true);
-      const response = await getCart();
-      const items = Array.isArray(response.data)
-        ? response.data
-        : response.data.items || [];
-      setCartItems(items);
-    } catch (error) {
-      console.error("Error fetching cart:", error);
-      setCartItems([]);
-    } finally {
-      setLoadingCart(false);
-    }
-  };
+  const cartItems = Array.isArray(cartResponse?.data)
+    ? cartResponse.data
+    : cartResponse?.items || [];
 
   // =====================
   // Update Cart Quantity
@@ -60,78 +54,57 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
   const handleUpdateQuantity = async (teaId, newQuantity) => {
     try {
       if (newQuantity <= 0) {
-        await removeFromCart({ teaId });
-        // Remove item locally
-        setCartItems((prev) => prev.filter((item) => item.tea._id !== teaId));
+        await removeFromCart({ teaId }).unwrap();
       } else {
-        await updateCartAPI({ teaId, quantity: newQuantity });
-        // Update quantity locally
-        setCartItems((prev) =>
-          prev.map((item) =>
-            item.tea._id === teaId ? { ...item, quantity: newQuantity } : item
-          )
-        );
+        await updateCartQuantity({ teaId, quantity: newQuantity }).unwrap();
       }
+      refetchCart(); // refresh cart after update
     } catch (error) {
       console.error("Error updating cart:", error);
     }
   };
 
   // =====================
-  // Fetch Popular Teas by Cart Collection
+  // Popular teas logic
   // =====================
   useEffect(() => {
-    const fetchPopularTeas = async () => {
-      try {
-        setLoadingPopular(true);
-        const response = await getTeas();
-        const teas = response.data;
+    if (!loadingCart && teasResponse) {
+      const teas = teasResponse.data || teasResponse;
 
-        const cartCollections = Array.from(
-          new Set(cartItems.map((item) => item.tea.collection))
-        );
+      const cartCollections = Array.from(
+        new Set(cartItems.map((item) => item.tea.collection))
+      );
 
-        const filteredTeas = teas.filter((tea) =>
-          cartCollections.includes(tea.collection)
-        );
+      const filteredTeas = teas.filter((tea) =>
+        cartCollections.includes(tea.collection)
+      );
 
-        if (filteredTeas.length === 0) {
-          setPopularTeas([
-            {
-              _id: "fallback-1",
-              name: "Hibiscus Berry Blend",
-              price: 3.75,
-              image: "/hibiscus-berry-tea.png",
-            },
-            {
-              _id: "fallback-2",
-              name: "Dragon Well Green Tea",
-              price: 5.2,
-              image: "/dragon-well-tea.png",
-            },
-            {
-              _id: "fallback-3",
-              name: "Earl Grey Supreme",
-              price: 4.5,
-              image: "/earl-grey-loose-leaf.png",
-            },
-          ]);
-        } else {
-          setPopularTeas(filteredTeas);
-        }
-      } catch (error) {
-        console.error("Error fetching teas:", error);
-        setPopularTeas([]);
-      } finally {
-        setLoadingPopular(false);
+      if (filteredTeas.length === 0) {
+        setPopularTeas([
+          {
+            _id: "fallback-1",
+            name: "Hibiscus Berry Blend",
+            price: 3.75,
+            image: "/hibiscus-berry-tea.png",
+          },
+          {
+            _id: "fallback-2",
+            name: "Dragon Well Green Tea",
+            price: 5.2,
+            image: "/dragon-well-tea.png",
+          },
+          {
+            _id: "fallback-3",
+            name: "Earl Grey Supreme",
+            price: 4.5,
+            image: "/earl-grey-loose-leaf.png",
+          },
+        ]);
+      } else {
+        setPopularTeas(filteredTeas);
       }
-    };
-
-    // Fetch popular teas only once, after initial cart fetch
-    if (!loadingCart) {
-      fetchPopularTeas();
     }
-  }, [loadingCart]); // <- depend only on loadingCart
+  }, [loadingCart, teasResponse, cartItems]);
 
   // =====================
   // Totals
@@ -142,10 +115,6 @@ const ShoppingBagPage = ({ onContinueShopping }) => {
   );
   const shipping = 0;
   const total = subtotal + shipping;
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
 
   return (
     <div className="min-h-screen bg-white">
