@@ -6,12 +6,15 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ShoppingBagPage from "./pages/ShoppingBagPage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-
+import AdminDashboard from "./components/Dashboard";
 export default function App() {
   return (
     <Router>
       <Routes>
         {/* Home / Landing Page */}
+
+        <Route path="/admin" element={<AdminDashboard />} />
+
         <Route path="/" element={<TeaLandingPage />} />
 
         {/* Collections */}

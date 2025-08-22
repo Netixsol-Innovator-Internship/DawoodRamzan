@@ -78,6 +78,10 @@ const Header = () => {
     (sum, item) => sum + (item.tea?.price || 0) * (item.quantity || 0),
     0
   );
+  // Get role from localStorage
+  // Get current user role safely
+  const role = localStorage.getItem("role")?.toLowerCase();
+  const isLoggedIn = !!localStorage.getItem("token");
 
   return (
     <>
@@ -104,6 +108,16 @@ const Header = () => {
               >
                 SHOP ALL COLLECTIONS
               </Link>
+
+              {/* Show Dashboard only if logged in and not "user" */}
+              {isLoggedIn && role && role !== "user" && (
+                <Link
+                  to="/admin"
+                  className="text-gray-700 hover:text-gray-900 font-medium"
+                >
+                  Dashboard
+                </Link>
+              )}
               <a
                 href="#"
                 className="text-gray-700 hover:text-gray-900 font-medium"

@@ -12,7 +12,16 @@ export default function Login() {
       const { data } = await login(form);
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role); // role now comes directly
-      navigate("/");
+      localStorage.setItem("user", JSON.stringify(data.user)); // store full user object
+
+      console.log("Login successful:", data);
+      alert("Login successful");
+      // Redirect based on role
+      if (data.role === "admin" || data.role === "super admin") {
+        navigate("/admin");
+      } else {
+        navigate("/"); // normal users -> homepage
+      }
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
     }
