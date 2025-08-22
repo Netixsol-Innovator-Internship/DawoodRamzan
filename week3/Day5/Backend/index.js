@@ -20,7 +20,7 @@ const app = express();
 // ✅ CORS setup for deployed frontend
 app.use(
   cors({
-    origin: "https://dawoodweek3day5.vercel.app", // your deployed frontend URL
+    origin: "*", // your deployed frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // if you are using cookies/auth
   })
@@ -43,6 +43,9 @@ const swaggerOptions = {
         url:
           process.env.BACKEND_URL ||
           `http://localhost:${process.env.PORT || 3010}`,
+      },
+      {
+        url: "https://dawood-week3day5backend.vercel.app/",
       },
     ],
   },

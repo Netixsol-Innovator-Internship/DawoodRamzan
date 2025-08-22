@@ -21,8 +21,12 @@ const userTeaSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "admin"],
+      enum: ["user", "admin", "super admin"],
       default: "user",
+    },
+    blocked: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
