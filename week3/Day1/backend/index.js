@@ -20,6 +20,9 @@ const options = {
       {
         url: `http://localhost:${PORT}`,
       },
+      {
+        url: `https://dawood-week3-day1-backend.vercel.app`,
+      },
     ],
   },
   apis: ["./index.js"], // files containing annotations as above
@@ -61,6 +64,7 @@ app.get("/", (req, res) => {
  */
 app.get("/api/tasks/:id", (req, res) => {
   const id = Number(req.params.id);
+
   const task = data.find((task) => task.id === id);
   if (task) {
     res.json(task);
