@@ -64,8 +64,8 @@ export default function Page() {
         () => listRef.current?.scrollTo({ top: 1e9, behavior: "smooth" }),
         50
       );
-    } catch (err: any) {
-      toast.error(err?.message || "Failed to post");
+    } catch (err) {
+      toast.error("Failed to post");
     }
   };
 

@@ -21,7 +21,7 @@ export interface Comment {
 
 export function listComments() {
   return fetchJSON<Comment[]>(`${API_BASE}/comments`, {
-    cache: "no-store" as any,
+    cache: "no-store",
   });
 }
 
