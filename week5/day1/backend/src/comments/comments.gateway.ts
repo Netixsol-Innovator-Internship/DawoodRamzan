@@ -8,7 +8,7 @@ import { Server } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: ['*'],
+    origin: ['https://dawood-week5-day1-frotnend.vercel.app/'],
     credentials: true,
   },
   namespace: '/comments',

@@ -5,7 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: '*', // your frontend URL
+    origin: 'https://dawood-week5-day1-frotnend.vercel.app/', // your frontend URL
     credentials: true, // if you need cookies/headers
   });
 
