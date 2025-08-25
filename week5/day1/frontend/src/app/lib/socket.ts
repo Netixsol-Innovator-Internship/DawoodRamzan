@@ -6,7 +6,7 @@ export function getSocket() {
   if (!socket) {
     socket = io("https://dawood-week5-day1-backend.vercel.app/comments", {
       withCredentials: true,
-      transports: ["websocket"],
+      transports: ["polling", "websocket"],
     });
   }
   return socket;
