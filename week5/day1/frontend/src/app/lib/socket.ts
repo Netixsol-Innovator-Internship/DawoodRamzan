@@ -4,7 +4,7 @@ let socket: Socket | null = null;
 
 export function getSocket() {
   if (!socket) {
-    socket = io("http://localhost:4000/comments", {
+    socket = io("https://dawood-week5-day1-backend.vercel.app/comments", {
       withCredentials: true,
       transports: ["websocket"],
     });

@@ -1,4 +1,4 @@
-export const API_BASE = "http://localhost:4000/api";
+export const API_BASE = "https://dawood-week5-day1-backend.vercel.app/api";
 
 export async function fetchJSON<T>(
   url: string,
