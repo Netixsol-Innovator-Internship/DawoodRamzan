@@ -16,9 +16,14 @@ export class AuthService {
     private jwt: JwtService,
   ) {}
 
-  async register({ username, email, password }: any) {
+  async register({ username, email, password, bio }: any) {
     const hashed = await bcrypt.hash(password, 10);
-    const created = new this.userModel({ username, email, password: hashed });
+    const created = new this.userModel({
+      username,
+      email,
+      password: hashed,
+      bio,
+    });
     await created.save();
 
     const u = created.toObject() as Record<string, any>;
