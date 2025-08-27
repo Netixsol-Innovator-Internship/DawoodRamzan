@@ -15,7 +15,7 @@ let socket: Socket<ServerToClientEvents, ClientToServerEvents> | null = null;
 
 export function getSocket(userId: string) {
   if (!socket) {
-    socket = io("http://localhost:4000", {
+    socket = io("https://dawood-week5-day3-backend.vercel.app/", {
       query: { userId },
     });
   }
