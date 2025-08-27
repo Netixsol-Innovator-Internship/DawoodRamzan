@@ -8,7 +8,9 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway({ cors: { origin: '*' } })
+@WebSocketGateway({
+  cors: { origin: 'https://dawood-week5-day2-3-frontend.vercel.app/' },
+})
 export class RealtimeGateway
   implements OnGatewayConnection, OnGatewayDisconnect
 {
