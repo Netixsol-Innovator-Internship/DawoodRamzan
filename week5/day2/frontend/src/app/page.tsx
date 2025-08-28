@@ -216,7 +216,7 @@ function AuthPanel({ onLogin }: AuthPanelProps) {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    const baseUrl = "https://dawood-week5-day3-backend.vercel.app/";
+    const baseUrl = "https://dawood-week5-day3-backend.vercel.app";
 
     if (mode === "login") {
       const res = await (

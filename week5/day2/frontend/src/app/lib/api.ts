@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/lib/api.ts
-const API_BASE = "https://dawood-week5-day3-backend.vercel.app/";
+const API_BASE = "https://dawood-week5-day3-backend.vercel.app";
 
 // ---------------- Types ----------------
 import type { Comment, PublicUser, User } from "../components/types";
