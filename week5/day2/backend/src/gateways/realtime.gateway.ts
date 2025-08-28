@@ -9,7 +9,7 @@ import {
 import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
-  cors: { origin: 'https://dawood-week5-day2-3-frontend.vercel.app' },
+  cors: { origin: '*' },
 })
 export class RealtimeGateway
   implements OnGatewayConnection, OnGatewayDisconnect
