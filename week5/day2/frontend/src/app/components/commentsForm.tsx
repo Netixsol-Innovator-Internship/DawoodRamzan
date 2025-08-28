@@ -9,9 +9,9 @@ import {
   RichUtils,
   convertToRaw,
   ContentState,
-  RawDraftContentState,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
+import draftToHtml from "draftjs-to-html";
 import { createComment } from "../lib/api";
 
 interface User {
@@ -25,78 +25,12 @@ interface CommentFormProps {
   onPosted: () => void;
 }
 
-// Helper: Convert Draft.js raw content to HTML (BOLD, ITALIC, headers, lists, code)
-function draftRawToHtml(raw: RawDraftContentState): string {
-  const blocks = raw.blocks;
-
-  let html = "";
-  let listStack: string[] = [];
-
-  for (let i = 0; i < blocks.length; i++) {
-    const block = blocks[i];
-    let blockText = block.text;
-
-    // Inline styles
-    block.inlineStyleRanges.forEach((range) => {
-      const { offset, length, style } = range;
-      const before = blockText.slice(0, offset);
-      const middle = blockText.slice(offset, offset + length);
-      const after = blockText.slice(offset + length);
-
-      if (style === "BOLD") blockText = `${before}<b>${middle}</b>${after}`;
-      else if (style === "ITALIC")
-        blockText = `${before}<i>${middle}</i>${after}`;
-    });
-
-    switch (block.type) {
-      case "header-one":
-        html += `<h1>${blockText}</h1>`;
-        break;
-      case "header-two":
-        html += `<h2>${blockText}</h2>`;
-        break;
-      case "header-three":
-        html += `<h3>${blockText}</h3>`;
-        break;
-      case "unordered-list-item":
-        if (listStack[listStack.length - 1] !== "ul") {
-          html += "<ul>";
-          listStack.push("ul");
-        }
-        html += `<li>${blockText}</li>`;
-        if (!blocks[i + 1] || blocks[i + 1].type !== "unordered-list-item") {
-          html += "</ul>";
-          listStack.pop();
-        }
-        break;
-      case "ordered-list-item":
-        if (listStack[listStack.length - 1] !== "ol") {
-          html += "<ol>";
-          listStack.push("ol");
-        }
-        html += `<li>${blockText}</li>`;
-        if (!blocks[i + 1] || blocks[i + 1].type !== "ordered-list-item") {
-          html += "</ol>";
-          listStack.pop();
-        }
-        break;
-      case "code-block":
-        html += `<pre><code>${blockText}</code></pre>`;
-        break;
-      default:
-        html += `<p>${blockText}</p>`;
-        break;
-    }
-  }
-
-  return html;
-}
-
 export default function CommentForm({ user, onPosted }: CommentFormProps) {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
 
+  // Handle built-in Cmd/Ctrl + B / I etc.
   const handleKeyCommand = (command: string) => {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -123,18 +57,15 @@ export default function CommentForm({ user, onPosted }: CommentFormProps) {
 
     try {
       const raw = convertToRaw(content);
-      const html = draftRawToHtml(raw);
 
+      // Convert Draft raw -> HTML (handles inline + block styles)
+      const html = draftToHtml(raw);
+
+      // send html to backend
       await createComment(user.token, html);
 
-      // Reset editor safely with correct changeType
-      setEditorState(
-        EditorState.push(
-          editorState,
-          ContentState.createFromText(""),
-          "remove-range" // just use the string literal
-        )
-      );
+      // Reset editor to empty
+      setEditorState(EditorState.createEmpty());
 
       toast.success("Comment posted");
       onPosted();
@@ -158,6 +89,7 @@ export default function CommentForm({ user, onPosted }: CommentFormProps) {
         >
           B
         </button>
+
         <button
           type="button"
           onClick={() => toggleInlineStyle("ITALIC")}
@@ -165,47 +97,29 @@ export default function CommentForm({ user, onPosted }: CommentFormProps) {
         >
           I
         </button>
+
         <button
           type="button"
-          onClick={() => toggleBlockType("header-one")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 font-semibold"
+          onClick={() => toggleInlineStyle("UNDERLINE")}
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 underline"
         >
-          H1
+          U
         </button>
+
         <button
           type="button"
-          onClick={() => toggleBlockType("header-two")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 font-semibold"
+          onClick={() => toggleInlineStyle("STRIKETHROUGH")}
+          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 line-through"
         >
-          H2
+          S
         </button>
+
         <button
           type="button"
-          onClick={() => toggleBlockType("header-three")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 font-semibold"
-        >
-          H3
-        </button>
-        <button
-          type="button"
-          onClick={() => toggleBlockType("unordered-list-item")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-        >
-          UL
-        </button>
-        <button
-          type="button"
-          onClick={() => toggleBlockType("ordered-list-item")}
-          className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-        >
-          OL
-        </button>
-        <button
-          type="button"
-          onClick={() => toggleBlockType("code-block")}
+          onClick={() => toggleInlineStyle("CODE")}
           className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 font-mono"
         >
-          Code
+          {"</>"}
         </button>
       </div>
 

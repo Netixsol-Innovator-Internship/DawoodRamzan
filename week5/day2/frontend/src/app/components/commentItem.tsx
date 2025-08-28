@@ -64,7 +64,8 @@ export default function CommentItem({
       }
     }
     fetchAuthorFollowers();
-  }, [authorId, authorFollowersMap, setAuthorFollowersMap]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authorId]);
 
   const authorFollowers = authorId ? authorFollowersMap[authorId] || [] : [];
   const isFollowing = user ? authorFollowers.includes(user.id) : false;
@@ -179,7 +180,9 @@ export default function CommentItem({
         )}
       </div>
 
-      {/* Render sanitized HTML */}
+      {/* Render sanitized HTML.
+          We trust content is HTML produced by our editor conversion,
+          still sanitize it before inserting into DOM. */}
       <div
         className="mt-3 text-gray-900 prose max-w-full break-words"
         dangerouslySetInnerHTML={{
