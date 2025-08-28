@@ -237,6 +237,7 @@ function AuthPanel({ onLogin }: AuthPanelProps) {
         });
       } else {
         toast.error("Login failed");
+        alert("login Failed");
       }
     } else {
       const res = await (
@@ -247,7 +248,8 @@ function AuthPanel({ onLogin }: AuthPanelProps) {
         })
       ).json();
 
-      if (res._id) toast.success("Registered — log in now");
+      if (res._id)
+        toast.success("Registered —Click on login below and log in now");
     }
   }
 
