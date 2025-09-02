@@ -32,4 +32,4 @@ const userTeaSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userTeaSchema);
+module.exports = mongoose.model("UserTea", userTeaSchema);

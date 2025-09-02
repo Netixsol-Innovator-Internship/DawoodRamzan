@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dawood-week3day5backend.vercel.app/api",
+    baseUrl: "http://localhost:4001",
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
