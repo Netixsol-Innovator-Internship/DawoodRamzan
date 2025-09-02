@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -12,20 +11,36 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export function AuctionFilters() {
-  const [priceRange, setPriceRange] = useState([30000, 30000]);
+export interface Filters {
+  type?: string;
+  color?: string;
+  make?: string;
+  model?: string;
+  style?: string;
+  priceRange: number[];
+}
 
+interface AuctionFiltersProps {
+  filters: Filters;
+  setFilters: (filters: Filters) => void;
+}
+
+export function AuctionFilters({ filters, setFilters }: AuctionFiltersProps) {
   return (
     <Card className="w-full">
       <CardHeader className="bg-[#4A5AAF] text-white">
         <CardTitle className="text-lg">Filter By</CardTitle>
       </CardHeader>
       <CardContent className="p-4 space-y-6">
+        {/* Car Type */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Any Car Type
           </label>
-          <Select>
+          <Select
+            value={filters.type}
+            onValueChange={(val) => setFilters({ ...filters, type: val })}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select car type" />
             </SelectTrigger>
@@ -39,11 +54,15 @@ export function AuctionFilters() {
           </Select>
         </div>
 
+        {/* Color */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Any Color
           </label>
-          <Select>
+          <Select
+            value={filters.color}
+            onValueChange={(val) => setFilters({ ...filters, color: val })}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select color" />
             </SelectTrigger>
@@ -57,11 +76,15 @@ export function AuctionFilters() {
           </Select>
         </div>
 
+        {/* Make */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Any Makes
           </label>
-          <Select>
+          <Select
+            value={filters.make}
+            onValueChange={(val) => setFilters({ ...filters, make: val })}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select make" />
             </SelectTrigger>
@@ -75,11 +98,15 @@ export function AuctionFilters() {
           </Select>
         </div>
 
+        {/* Model */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Any Car Model
           </label>
-          <Select>
+          <Select
+            value={filters.model}
+            onValueChange={(val) => setFilters({ ...filters, model: val })}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select model" />
             </SelectTrigger>
@@ -92,11 +119,15 @@ export function AuctionFilters() {
           </Select>
         </div>
 
+        {/* Style */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Any Style
           </label>
-          <Select>
+          <Select
+            value={filters.style}
+            onValueChange={(val) => setFilters({ ...filters, style: val })}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select style" />
             </SelectTrigger>
@@ -109,33 +140,32 @@ export function AuctionFilters() {
           </Select>
         </div>
 
+        {/* Price */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-4">
             Price Range
           </label>
           <div className="px-2">
             <Slider
-              value={priceRange}
-              onValueChange={setPriceRange}
+              value={filters.priceRange}
+              onValueChange={(val) =>
+                setFilters({ ...filters, priceRange: val })
+              }
               max={100000}
               min={0}
               step={1000}
               className="w-full"
             />
             <div className="flex justify-between text-sm text-gray-600 mt-2">
-              <span>${priceRange[0].toLocaleString()}</span>
-              <span>${priceRange[1].toLocaleString()}</span>
+              <span>${filters.priceRange[0].toLocaleString()}</span>
+              <span>${filters.priceRange[1].toLocaleString()}</span>
             </div>
           </div>
         </div>
 
         <Button className="w-full bg-[#FFB800] hover:bg-[#E5A600] text-white font-semibold py-3">
-          Filter
+          Apply Filters
         </Button>
-
-        <div className="text-center text-sm text-gray-600">
-          <p>Price: $30,000 - $30,000</p>
-        </div>
       </CardContent>
     </Card>
   );

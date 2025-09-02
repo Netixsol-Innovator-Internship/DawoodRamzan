@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { PageHeader } from "@/components/page-header";
 import { CarCard } from "@/components/car-card";
-import { AuctionFilters } from "@/components/auction-filters";
+import { AuctionFilters, Filters } from "@/components/auction-filters";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -19,14 +20,57 @@ import type { Auction } from "@/types/auction";
 
 export default function CarAuctionPage() {
   const { data: auctions, isLoading, isError } = useGetAllAuctionsQuery();
-  console.log("Auctions page", auctions);
+
+  const [filters, setFilters] = useState<Filters>({
+    priceRange: [0, 100000],
+  });
+
+  // 🔎 Apply filtering
+  const filteredAuctions = useMemo(() => {
+    if (!auctions) return [];
+
+    return auctions.filter((auction: Auction) => {
+      const car = typeof auction.car === "object" ? auction.car : null;
+
+      // Price filter (assuming auction.currentBid.amount is a number)
+      const price = auction?.currentBid?.amount
+        ? Number(auction.currentBid.amount)
+        : 0;
+
+      if (price < filters.priceRange[0] || price > filters.priceRange[1]) {
+        return false;
+      }
+
+      if (filters.make && car?.make?.toLowerCase() !== filters.make) {
+        return false;
+      }
+
+      if (filters.model && car?.model?.toLowerCase() !== filters.model) {
+        return false;
+      }
+
+      if (filters.type && car?.type?.toLowerCase() !== filters.type) {
+        return false;
+      }
+
+      if (filters.color && car?.color?.toLowerCase() !== filters.color) {
+        return false;
+      }
+
+      if (filters.style && car?.style?.toLowerCase() !== filters.style) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [auctions, filters]);
 
   return (
     <div className="min-h-screen">
       <Navbar />
       <PageHeader
         title="Auction"
-        description="Lorem ipsum dolor sit amet consectetur. At in pretium semper vitae eu eu mus."
+        description="Browse and filter live car auctions."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Auction" }]}
       />
 
@@ -42,7 +86,7 @@ export default function CarAuctionPage() {
                     ? "Loading results..."
                     : isError
                     ? "Failed to load auctions"
-                    : `Showing ${auctions?.length || 0} Results`}
+                    : `Showing ${filteredAuctions?.length || 0} Results`}
                 </span>
                 <Select defaultValue="sort-by-relevance">
                   <SelectTrigger className="w-48 bg-white text-gray-900">
@@ -70,38 +114,34 @@ export default function CarAuctionPage() {
                 {isError && (
                   <p className="text-red-500">Error fetching auctions.</p>
                 )}
-                {auctions?.map((auction: Auction) => (
+                {filteredAuctions?.map((auction: Auction) => (
                   <CarCard
                     key={auction._id}
-                    id={auction._id} // auction id
+                    id={auction._id}
                     carId={
                       typeof auction.car === "string"
-                        ? auction.car // if just ObjectId
-                        : auction.car?._id // if populated object
+                        ? auction.car
+                        : auction.car?._id
                     }
                     name={
                       typeof auction.car === "object"
-                        ? auction.car?.make // populated car details
+                        ? auction.car?.make
                         : "Unknown Car"
                     }
-                    image="/placeholder.svg" // replace with car image if available in backend
+                    image="/hero.jpg"
                     price={auction?.currentBid?.amount || "$0"}
                     currentBid="Current Bid"
                     timeLeft="--"
                     endTime={new Date(auction.endTime).toLocaleString()}
-                    description="Car description not provided"
+                    description={auction.car?.description || "No description"}
                     rating={4}
                   />
                 ))}
               </div>
 
-              {/* Pagination (static for now) */}
+              {/* Pagination */}
               <div className="flex justify-center items-center space-x-2 mt-8">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="text-gray-600 bg-transparent"
-                >
+                <Button variant="outline" size="icon" className="text-gray-600">
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <Button variant="default" className="bg-[#4A5AAF] text-white">
@@ -113,11 +153,7 @@ export default function CarAuctionPage() {
                 <Button variant="outline">5</Button>
                 <span className="text-gray-500">...</span>
                 <Button variant="outline">10</Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="text-gray-600 bg-transparent"
-                >
+                <Button variant="outline" size="icon" className="text-gray-600">
                   <ChevronRight className="h-4 w-4" />
                 </Button>
               </div>
@@ -125,7 +161,7 @@ export default function CarAuctionPage() {
 
             {/* Sidebar Filters */}
             <div className="w-80 flex-shrink-0">
-              <AuctionFilters />
+              <AuctionFilters filters={filters} setFilters={setFilters} />
             </div>
           </div>
         </div>
