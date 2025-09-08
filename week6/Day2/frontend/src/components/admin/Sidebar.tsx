@@ -1,31 +1,33 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   FileTextIcon,
   GalleryVerticalEndIcon,
   LayoutDashboardIcon,
-  UsersIcon, // ✅ Added for users
+  UsersIcon,
 } from "lucide-react";
-import { useGetProductsQuery } from "@/lib/services/productsApi"; // ✅ import RTK query
-
-// Mock: replace with your actual user auth hook / context
-const useAuth = () => {
-  return {
-    role: "super-admin", // change this dynamically from your auth system
-  };
-};
+import { useGetProductsQuery } from "@/lib/services/productsApi";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [role, setRole] = useState<string | null>(null); // ✅ keep role in state
   const pathname = usePathname();
-  const role = localStorage.getItem("role");
 
-  // ✅ Fetch all products (no filters, large limit for full list)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole); // ✅ store role in state
+
+    console.log("Token:", token, "Role:", storedRole);
+  }, []);
+
+  // ✅ Fetch all products
   const { data, isLoading, error } = useGetProductsQuery({
     page: 1,
     limit: 1000,
@@ -50,11 +52,6 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col bg-white border-r border-[#232321]/20 min-h-full pt-6 md:px-6 px-4">
-      {/* Logo */}
-      <div className="flex items-center justify-center mb-8">
-        {/* <Image src="/logo.png" alt="logo" width={120} height={40} /> */}
-      </div>
-
       {/* Dashboard */}
       <Link
         href="/account/dashboard"

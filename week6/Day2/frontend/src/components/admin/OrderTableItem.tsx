@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 interface OrderTableItemProps {
   orderId: number;
   productName: string;

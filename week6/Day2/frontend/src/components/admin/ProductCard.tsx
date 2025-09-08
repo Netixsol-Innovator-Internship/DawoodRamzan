@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { ArrowUpIcon, Ellipsis, PencilIcon, TrashIcon } from "lucide-react";
 import {
   useUpdateProductMutation,

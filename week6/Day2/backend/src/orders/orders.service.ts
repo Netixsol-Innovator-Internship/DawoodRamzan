@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -11,6 +12,7 @@ import { CartsService } from '../carts/carts.service';
 import { ProductsService } from '../products/products.service';
 import { UsersService } from '../users/users.service';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
 
 @Injectable()
 export class OrdersService {
@@ -19,6 +21,7 @@ export class OrdersService {
     private cartsService: CartsService,
     private productsService: ProductsService,
     private usersService: UsersService,
+    private notificationsGateway: NotificationsGateway,
   ) {}
 
   async create(createOrderDto: CreateOrderDto, userId: string): Promise<Order> {
@@ -94,6 +97,20 @@ export class OrdersService {
       await this.usersService.addPoints(userId, pointsToAdd);
     }
     console.log(pointsToAdd + '-------' + pointsToSubtract);
+
+    // Emit purchase notification
+    try {
+      const firstItem = cart.items[0];
+      this.notificationsGateway.broadcastPurchase(
+        user.username,
+        firstItem?.name,
+      );
+      console.log('Emitted');
+    } catch (e) {
+      console.error('Failed to emit purchase event', e);
+
+      // non-blocking
+    }
 
     return savedOrder;
   }

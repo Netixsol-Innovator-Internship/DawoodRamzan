@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Bell, Check, X } from "lucide-react";
-import Image from "next/image";
 
 interface Notification {
   id: string;

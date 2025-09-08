@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { Star, Minus, Plus } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
+import { toast } from "react-toastify";
+
 import {
   useGetProductsQuery,
   useGetProductByIdQuery,

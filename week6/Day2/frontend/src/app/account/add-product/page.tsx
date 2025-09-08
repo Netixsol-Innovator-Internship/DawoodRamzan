@@ -33,7 +33,6 @@ export default function AddProductPage() {
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState<string[]>([]);
-  const [images, setImages] = useState<string[]>([]);
   const [category, setCategory] = useState("");
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [dressStyle, setDressStyle] = useState("");

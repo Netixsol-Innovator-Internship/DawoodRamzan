@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { Star } from "lucide-react";
 
@@ -20,7 +21,6 @@ export default function ProductCard({
   price,
   originalPrice,
   rating,
-  reviewCount,
   discount,
   point,
 }: ProductCardProps) {

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -12,7 +12,7 @@ import {
 } from "@/lib/services/cartApi";
 import { useCreateOrderMutation } from "@/lib/services/ordersApi";
 import { useUpdateProductMutation } from "@/lib/services/productsApi";
-import { useGetUserByIdQuery } from "@/lib/services/usersApi"; // ✅ import user API
+import { useGetUserByIdQuery } from "@/lib/services/usersApi";
 
 // Extend CartItem to include salePrice + points
 interface CartItem extends OriginalCartItem {
@@ -21,10 +21,15 @@ interface CartItem extends OriginalCartItem {
 }
 
 export default function CartPage() {
-  // Example: You should replace with actual logged-in userId (from auth/session)
+  // ✅ Store userId in state (instead of direct localStorage)
+  const [userId, setUserId] = useState<string | null>(null);
 
-  const userId = localStorage.getItem("id");
-  console.log(userId);
+  useEffect(() => {
+    const storedId = localStorage.getItem("id");
+    setUserId(storedId);
+    console.log("User ID:", storedId);
+  }, []);
+
   // Cart API
   const { data: cartData, isLoading, isError } = useGetCartQuery();
   const [updateCartItem] = useUpdateCartItemMutation();
@@ -42,7 +47,7 @@ export default function CartPage() {
     refetch: refetchUser,
     isFetching: isUserLoading,
   } = useGetUserByIdQuery(userId as string, {
-    skip: !userId,
+    skip: !userId, // ✅ don’t fetch until userId is ready
   });
 
   // Promo state
@@ -115,7 +120,7 @@ export default function CartPage() {
             id: item.productId,
             body: {
               salePrice: discountedPrice,
-              $inc: { stockQuantity: -item.quantity }, // subtract stock
+              $inc: { stockQuantity: -item.quantity },
             },
           }).unwrap();
 
@@ -149,7 +154,6 @@ export default function CartPage() {
       const totalPointsNeeded =
         (checkoutItem.point || 0) * checkoutItem.quantity;
 
-      // ✅ If paying with points
       if (selectedMethod === "points") {
         if ((user?.points || 0) < totalPointsNeeded) {
           alert("Not enough points ❌");
@@ -157,21 +161,17 @@ export default function CartPage() {
         }
       }
 
-      // ✅ Place order
       await createOrder({
         shippingAddress,
       }).unwrap();
 
-      // ✅ Remove only this item from the cart
       await removeCartItem(checkoutItem._id).unwrap();
       setCart((prev) => prev.filter((item) => item._id !== checkoutItem._id));
 
-      // ✅ Refetch user points after order
       await refetchUser();
 
       alert("Order placed successfully! 🎉");
 
-      // Reset modal state
       setCheckoutItem(null);
       setCustomerName("");
       setShippingAddress("");

@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -5,15 +7,25 @@ import { Model } from 'mongoose';
 import { Product, ProductDocument } from './schemas/product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectModel(Product.name) private productModel: Model<ProductDocument>,
+    private notificationsGateway: NotificationsGateway,
   ) {}
 
   async create(createProductDto: CreateProductDto): Promise<ProductDocument> {
     const createdProduct = new this.productModel(createProductDto);
+    try {
+      this.notificationsGateway.broadcastAdd(createdProduct?.name);
+      console.log('Emitted');
+    } catch (e) {
+      console.error('Failed to emit purchase event', e);
+
+      // non-blocking
+    }
     return createdProduct.save();
   }
 

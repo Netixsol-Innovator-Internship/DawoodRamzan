@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 
 interface RecentPurchaseTableItemProps {
   orderId: string;
@@ -16,7 +15,7 @@ const RecentPurchaseTableItem = ({
   orderId,
   productName,
   date,
-  customerName,
+  
   status,
   amount,
   isMobile = false,
