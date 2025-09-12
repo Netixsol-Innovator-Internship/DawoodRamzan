@@ -16,9 +16,9 @@ export interface RegisterDto {
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dawoodweek6hackathon.vercel.app/auth", // NestJS backend URL
+    // baseUrl: "https://backend-production-ff05.up.railway.app/auth", // NestJS backend URL
 
-    // baseUrl: "http://localhost:4000/auth",
+    baseUrl: "https://shop-production-fb38.up.railway.app/auth",
   }),
   endpoints: (builder) => ({
     login: builder.mutation<any, LoginDto>({

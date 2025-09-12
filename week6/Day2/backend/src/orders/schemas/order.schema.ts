@@ -17,6 +17,7 @@ export enum OrderStatus {
 
 @Schema({ timestamps: true })
 export class Order {
+  [x: string]: any;
   @Prop({ required: true, unique: true })
   orderNumber: number;
 
@@ -34,6 +35,9 @@ export class Order {
 
   @Prop({ required: true })
   shippingAddress: string;
+
+  @Prop({})
+  paidUsing: string;
 
   @Prop({
     required: true,

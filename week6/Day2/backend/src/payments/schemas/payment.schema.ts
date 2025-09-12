@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
@@ -24,10 +25,10 @@ export class Payment {
   @Prop({ required: true })
   method: string;
 
-  @Prop({ 
-    required: true, 
+  @Prop({
+    required: true,
     enum: PaymentStatus,
-    default: PaymentStatus.PENDING 
+    default: PaymentStatus.PENDING,
   })
   status: PaymentStatus;
 

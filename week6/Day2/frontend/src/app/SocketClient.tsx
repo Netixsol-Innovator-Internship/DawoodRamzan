@@ -11,7 +11,7 @@ export default function SocketClient() {
     if (!socket) {
       const url =
         process.env.NEXT_PUBLIC_API_BASE_URL ||
-        "https://dawoodweek6hackathon.vercel.app";
+        "https://backend-production-ff05.up.railway.app";
       socket = io(url, { transports: ["websocket"], withCredentials: false });
       socket.on("connect", () => {
         // Connected

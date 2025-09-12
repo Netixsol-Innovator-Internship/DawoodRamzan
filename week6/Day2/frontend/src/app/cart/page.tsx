@@ -4,6 +4,8 @@
 import { useState, useEffect } from "react";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import {
   useGetCartQuery,
   useUpdateCartItemMutation,
@@ -21,7 +23,8 @@ interface CartItem extends OriginalCartItem {
 }
 
 export default function CartPage() {
-  // ✅ Store userId in state (instead of direct localStorage)
+  const router = useRouter();
+
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,34 +33,27 @@ export default function CartPage() {
     console.log("User ID:", storedId);
   }, []);
 
-  // Cart API
+  // APIs
   const { data: cartData, isLoading, isError } = useGetCartQuery();
   const [updateCartItem] = useUpdateCartItemMutation();
   const [removeCartItem] = useRemoveFromCartMutation();
-
-  // Order API
   const [createOrder] = useCreateOrderMutation();
-
-  // Product API
   const [updateProduct] = useUpdateProductMutation();
 
-  // User API (✅ fetch points from backend)
   const {
     data: user,
     refetch: refetchUser,
     isFetching: isUserLoading,
   } = useGetUserByIdQuery(userId as string, {
-    skip: !userId, // ✅ don’t fetch until userId is ready
+    skip: !userId,
   });
 
-  // Promo state
+  // Local state
   const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
-
-  // Local cart state
   const [cart, setCart] = useState<CartItem[]>(cartData?.items || []);
 
-  // Checkout modal state
+  // Checkout modal
   const [checkoutItem, setCheckoutItem] = useState<CartItem | null>(null);
   const [customerName, setCustomerName] = useState("");
   const [shippingAddress, setShippingAddress] = useState("");
@@ -65,7 +61,6 @@ export default function CartPage() {
     "money"
   );
 
-  // Sync local cart with backend
   useEffect(() => {
     if (cartData) {
       setCart(cartData.items);
@@ -137,7 +132,7 @@ export default function CartPage() {
     }
   };
 
-  // --- Checkout Single Item ---
+  // --- Checkout ---
   const handleOpenCheckout = (item: CartItem) => {
     setCheckoutItem(item);
     setSelectedMethod(item.price ? "money" : "points");
@@ -161,10 +156,15 @@ export default function CartPage() {
         }
       }
 
-      await createOrder({
+      // ✅ Send paidUsing field
+      const orderPayload = {
         shippingAddress,
-      }).unwrap();
+        paidUsing: selectedMethod === "points" ? "points" : "money",
+      };
 
+      const newOrder = await createOrder(orderPayload).unwrap();
+
+      // remove cart item
       await removeCartItem(checkoutItem._id).unwrap();
       setCart((prev) => prev.filter((item) => item._id !== checkoutItem._id));
 
@@ -175,6 +175,14 @@ export default function CartPage() {
       setCheckoutItem(null);
       setCustomerName("");
       setShippingAddress("");
+
+      if (selectedMethod === "points") {
+        router.push("/orders"); // ✅ direct if points
+      } else {
+        // ✅ store orderId for payment page
+        localStorage.setItem("orderId", newOrder._id);
+        router.push("/payment");
+      }
     } catch (err) {
       console.error("Failed to place order:", err);
       alert("Failed to place order. Please try again.");

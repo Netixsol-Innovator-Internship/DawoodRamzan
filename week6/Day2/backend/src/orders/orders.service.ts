@@ -69,6 +69,7 @@ export class OrdersService {
       total: cart.total,
       shippingAddress: createOrderDto.shippingAddress,
       status: OrderStatus.PENDING,
+      paidUsing: createOrderDto.paidUsing,
     });
 
     const savedOrder = await order.save();

@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import {
   Controller,
   Get,
@@ -13,7 +13,6 @@ import { PaymentsService } from './payments.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { JwtAuthGuard } from '../auth/jwt.gaurd';
 import { RolesGuard } from '../auth/roles.guard';
-import { Roles } from '../auth/roles.decorator';
 
 @Controller('payments')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -21,7 +20,6 @@ export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService) {}
 
   @Post()
-  @Roles('customer')
   create(@Body() createPaymentDto: CreatePaymentDto, @Request() req) {
     return this.paymentsService.create(createPaymentDto, req.user.userId);
   }
@@ -30,6 +28,11 @@ export class PaymentsController {
   findAll(@Request() req) {
     const isAdmin = req.user.role === 'admin';
     return this.paymentsService.findAll(req.user.userId, isAdmin);
+  }
+
+  @Post(':id/confirm')
+  async confirmPayment(@Param('id') id: string, @Request() req) {
+    return this.paymentsService.confirm(id, req.user.userId);
   }
 
   @Get(':id')

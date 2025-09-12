@@ -30,6 +30,7 @@ export interface Order {
   status: OrderStatus;
   createdAt?: string;
   updatedAt?: string;
+  paidUsing?: string;
 }
 
 export interface CreateOrderDto {

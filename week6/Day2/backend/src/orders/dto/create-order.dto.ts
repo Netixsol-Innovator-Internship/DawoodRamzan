@@ -5,4 +5,7 @@ export class CreateOrderDto {
   @IsString()
   @IsNotEmpty()
   shippingAddress: string;
+
+  @IsString()
+  paidUsing: string;
 }

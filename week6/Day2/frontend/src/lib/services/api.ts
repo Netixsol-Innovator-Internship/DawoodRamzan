@@ -4,8 +4,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://dawoodweek6hackathon.vercel.app", // ✅ NestJS backend
-    // baseUrl: "http://localhost:4000",
+    // baseUrl: "https://backend-production-ff05.up.railway.app", // ✅ NestJS backend
+    baseUrl: "https://shop-production-fb38.up.railway.app",
     prepareHeaders: (headers) => {
       const token =
         typeof window !== "undefined" ? localStorage.getItem("token") : null;
@@ -16,6 +16,6 @@ export const api = createApi({
     },
   }),
   // ✅ Added "Users"
-  tagTypes: ["Product", "Review", "Cart", "Orders", "Users"],
+  tagTypes: ["Product", "Review", "Cart", "Orders", "Users", "Payments"],
   endpoints: () => ({}), // endpoints are injected later
 });
