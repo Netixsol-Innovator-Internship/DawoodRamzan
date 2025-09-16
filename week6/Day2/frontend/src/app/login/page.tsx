@@ -3,7 +3,11 @@
 import { useState, useEffect } from "react";
 import { useLoginMutation } from "../../lib/services/authApi";
 import { useRouter } from "next/navigation";
+import { FcGoogle } from "react-icons/fc"; // Google logo
+import { FaGithub, FaDiscord } from "react-icons/fa";
 import Link from "next/link";
+
+const BACKEND_URL = "https://shop-production-fb38.up.railway.app/auth"; // NestJS backend URL
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,12 +30,15 @@ export default function LoginPage() {
       localStorage.setItem("id", res.user.id);
 
       alert("Login successful!");
-      console.log(res.user);
       router.push("/"); // redirect after login
     } catch (err) {
       console.error(err);
       alert("Login failed");
     }
+  };
+
+  const handleSocialLogin = (provider: "google" | "github" | "discord") => {
+    window.location.href = `${BACKEND_URL}/${provider}`;
   };
 
   return (
@@ -41,6 +48,7 @@ export default function LoginPage() {
           Welcome Back
         </h2>
 
+        {/* Email/Password login form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
           <div>
@@ -82,6 +90,37 @@ export default function LoginPage() {
             Invalid credentials. Please try again.
           </p>
         )}
+
+        {/* Divider */}
+        <div className="flex items-center my-6">
+          <hr className="flex-grow border-gray-300" />
+          <span className="px-3 text-sm text-gray-500">or continue with</span>
+          <hr className="flex-grow border-gray-300" />
+        </div>
+
+        {/* Social login buttons */}
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={() => handleSocialLogin("google")}
+            className="w-full py-2 px-4  bg-green-800 text-white rounded-xl font-medium hover:bg-green-600 transition"
+          >
+            <FcGoogle size={22} /> Continue with Google
+          </button>
+          <button
+            onClick={() => handleSocialLogin("github")}
+            className="w-full py-2 px-4 bg-gray-800 text-white rounded-xl font-medium hover:bg-gray-900 transition"
+          >
+            <FaGithub size={22} /> {/* GitHub logo */}
+            Continue with GitHub{" "}
+          </button>
+          <button
+            onClick={() => handleSocialLogin("discord")}
+            className="w-full py-2 px-4 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition"
+          >
+            <FaDiscord size={22} /> {/* Discord substitute */}
+            Continue with Discord{" "}
+          </button>
+        </div>
 
         {/* Footer */}
         <p className="text-sm text-gray-600 text-center mt-6">

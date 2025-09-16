@@ -14,7 +14,7 @@ export default function HomePage() {
     isLoading: isNewArrivalsLoading,
     error: newArrivalsError,
   } = useGetProductsQuery({ page: 1, limit: 4 });
-  console.log(newArrivals?.products);
+  // console.log(newArrivals?.products);
 
   // Fetch 4 products for Top Selling
   const {

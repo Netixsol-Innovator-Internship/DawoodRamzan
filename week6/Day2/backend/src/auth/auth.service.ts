@@ -63,4 +63,30 @@ export class AuthService {
       user: result,
     };
   }
+
+  async validateOAuthLogin(profile: any) {
+    // Try to find user in DB
+    let user = await this.usersService.findByEmail(profile.email);
+
+    console.log('---------------------');
+    console.log(user);
+    if (!user) {
+      // If not found, create new user
+      user = await this.usersService.create({
+        email: profile.email,
+        username: profile.username,
+        provider: profile.provider,
+        providerId: profile.providerId,
+        password: '', // no password for social accounts
+        points: 0,
+        role: 'customer',
+      });
+    }
+
+    const payload = { email: user.email, sub: user._id, role: user.role };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user,
+    };
+  }
 }

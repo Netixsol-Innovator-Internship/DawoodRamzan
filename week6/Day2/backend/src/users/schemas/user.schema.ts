@@ -12,7 +12,7 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   password: string;
 
   @Prop({ default: 'customer' })
@@ -23,6 +23,12 @@ export class User {
 
   @Prop({ default: true })
   isActive: boolean;
+
+  @Prop({ default: 'local' })
+  provider: string;
+
+  @Prop({})
+  providerId: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

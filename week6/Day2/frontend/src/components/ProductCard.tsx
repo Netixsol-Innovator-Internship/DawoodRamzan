@@ -40,7 +40,7 @@ export default function ProductCard({
   // Pick the first image, fallback to placeholder if array is empty
   const mainImage = image && image.length > 0 ? image[0] : "/placeholder.svg";
 
-  console.log(_id + name);
+  // console.log(_id + name);
 
   return (
     <Link href={`/product/${_id}`} className="group">

@@ -26,4 +26,10 @@ export class CreateUserDto {
   @IsOptional()
   @IsNumber()
   points?: number;
+
+  @IsOptional()
+  provider?: string;
+
+  @IsOptional()
+  providerId?: string;
 }

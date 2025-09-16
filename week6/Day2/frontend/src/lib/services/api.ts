@@ -6,6 +6,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: "https://backend-production-ff05.up.railway.app", // ✅ NestJS backend
     baseUrl: "https://shop-production-fb38.up.railway.app",
+    // baseUrl:"http://localhost:4000",
     prepareHeaders: (headers) => {
       const token =
         typeof window !== "undefined" ? localStorage.getItem("token") : null;

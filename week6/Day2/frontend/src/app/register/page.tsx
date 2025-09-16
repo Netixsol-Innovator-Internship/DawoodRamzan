@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { useRegisterMutation } from "../../lib/services/authApi";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc"; // Google logo
+import { FaGithub, FaDiscord } from "react-icons/fa";
+const BACKEND_URL = "https://shop-production-fb38.up.railway.app/auth"; // NestJS backend URL
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -30,6 +33,10 @@ export default function RegisterPage() {
       console.error(err);
       alert("Registration failed");
     }
+  };
+
+  const handleSocialLogin = (provider: "google" | "github" | "discord") => {
+    window.location.href = `${BACKEND_URL}/${provider}`;
   };
 
   return (
@@ -92,6 +99,39 @@ export default function RegisterPage() {
             Registration failed. Please try again.
           </p>
         )}
+
+        {/* Divider */}
+        <div className="flex items-center my-6">
+          <hr className="flex-grow border-gray-300" />
+          <span className="px-3 text-sm text-gray-500">or continue with</span>
+          <hr className="flex-grow border-gray-300" />
+        </div>
+
+        {/* Social login buttons with icons */}
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={() => handleSocialLogin("google")}
+            className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-green-800 text-white rounded-xl font-medium hover:bg-green-600 transition"
+          >
+            <FcGoogle size={22} /> Continue with Google
+          </button>
+
+          <button
+            onClick={() => handleSocialLogin("github")}
+            className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-gray-800 text-white rounded-xl font-medium hover:bg-gray-900 transition"
+          >
+            <FaGithub size={22} /> {/* GitHub logo */}
+            Continue with GitHub
+          </button>
+
+          <button
+            onClick={() => handleSocialLogin("discord")}
+            className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition"
+          >
+            <FaDiscord size={22} /> {/* Discord substitute */}
+            Continue with Discord
+          </button>
+        </div>
 
         {/* Footer */}
         <p className="text-sm text-gray-600 text-center mt-6">

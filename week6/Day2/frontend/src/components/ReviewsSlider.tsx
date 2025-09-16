@@ -9,7 +9,7 @@ export default function ReviewsSlider() {
   // ✅ Fetch reviews from API
   const { data: reviews = [], isLoading, error } = useGetAllReviewsQuery();
 
-  console.log("Reviews API response 👉", reviews);
+  // console.log("Reviews API response 👉", reviews);
 
   // index refers to first visible slide
   const [index, setIndex] = useState(0);

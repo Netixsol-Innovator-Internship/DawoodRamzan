@@ -19,6 +19,7 @@ export const authApi = createApi({
     // baseUrl: "https://backend-production-ff05.up.railway.app/auth", // NestJS backend URL
 
     baseUrl: "https://shop-production-fb38.up.railway.app/auth",
+    // baseUrl: "http://localhost:4000/auth",
   }),
   endpoints: (builder) => ({
     login: builder.mutation<any, LoginDto>({
