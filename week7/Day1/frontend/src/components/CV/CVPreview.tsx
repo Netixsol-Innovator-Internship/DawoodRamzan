@@ -42,7 +42,7 @@ export default function CVPreview({ data }: { data: any }) {
         </>
       )}
 
-      {data?.experience && data.experience.length > 0 && (
+      {/* {data?.experience && data.experience.length > 0 && (
         <>
           <h3 className="text-xl font-semibold mb-2">Experience</h3>
           {data.experience.map((exp: any, i: number) => (
@@ -65,7 +65,46 @@ export default function CVPreview({ data }: { data: any }) {
           ))}
           <hr className="my-4" />
         </>
-      )}
+      )} */}
+
+      {data?.experience && data.experience.length > 0 && (
+  <>
+    <h3 className="text-xl font-semibold mb-2">Experience</h3>
+    {data.experience.map((exp: any, i: number) => {
+      // Ensure achievements is always an array
+      let achievements: string[] = [];
+      if (Array.isArray(exp.achievements)) {
+        achievements = exp.achievements;
+      } else if (typeof exp.achievements === "string") {
+        achievements = exp.achievements
+          .split("\n")
+          .map((s: string) => s.trim())
+          .filter(Boolean);
+      }
+
+      return (
+        <div key={i} className="mb-3">
+          <p className="font-semibold">
+            {exp.position} - {exp.company}
+          </p>
+          <p className="text-sm text-gray-600">
+            {exp.startDate} - {exp.endDate || "Present"}
+          </p>
+          {exp.description && <p>{exp.description}</p>}
+          {achievements.length > 0 && (
+            <ul className="list-disc pl-5 mt-2">
+              {achievements.map((ach, j) => (
+                <li key={j}>{ach}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    })}
+    <hr className="my-4" />
+  </>
+)}
+
 
       {data?.skills && data.skills.length > 0 && (
         <>

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useLoginMutation } from "@/lib/services/authApi";
 import { setCredentials } from "@/lib/slices/authSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import toast, { Toaster } from "react-hot-toast";
 
 interface LoginFormProps {
   onToggleMode: () => void;
@@ -15,7 +16,7 @@ interface LoginFormData {
 }
 
 export default function LoginForm({ onToggleMode }: LoginFormProps) {
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useAppDispatch();
 
   const {
@@ -31,14 +32,19 @@ export default function LoginForm({ onToggleMode }: LoginFormProps) {
         setCredentials({ user: result.user, token: result.access_token })
       );
       localStorage.setItem("token", result.access_token);
-      //   localStorage.setItem("user", result.user);
-    } catch (err) {
+      console.log(result.access_token);
+      toast.success("Login successful!");
+    } catch (err: any) {
       console.error("Login failed:", err);
+      toast.error("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md relative">
+      {/* Toast container */}
+      <Toaster position="top-right" reverseOrder={false} />
+
       <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -74,13 +80,6 @@ export default function LoginForm({ onToggleMode }: LoginFormProps) {
           )}
         </div>
 
-        {/* Error */}
-        {error && (
-          <p className="text-red-500 text-sm">
-            Login failed. Please check your credentials.
-          </p>
-        )}
-
         {/* Submit */}
         <button
           type="submit"
@@ -103,9 +102,15 @@ export default function LoginForm({ onToggleMode }: LoginFormProps) {
           Don&apos;t have an account? Register
         </button>
       </div>
+    </div>
+  );
+}
 
-      {/* Google login */}
-      {/* <div className="mt-4">
+{
+  /* Google login */
+}
+{
+  /* <div className="mt-4">
         <a
           href={`/auth/google/callback`}
           className="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm 
@@ -144,7 +149,5 @@ export default function LoginForm({ onToggleMode }: LoginFormProps) {
           </svg>
           Sign in with Google
         </a>
-      </div> */}
-    </div>
-  );
+      </div> */
 }

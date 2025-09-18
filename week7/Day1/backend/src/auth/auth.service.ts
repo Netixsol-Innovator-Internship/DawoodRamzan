@@ -2,7 +2,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  ConflictException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -16,23 +20,51 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  /**
+   * Validate email + password
+   */
   async validateUser(email: string, password: string): Promise<any> {
     const user = await this.userModel.findOne({ email });
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const { password, ...result } = user.toObject();
-      return result;
+    if (!user) {
+      throw new UnauthorizedException('Invalid email or password');
     }
-    return null;
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
+    // remove password field
+    const { password: _, ...result } = user.toObject();
+    return result;
   }
 
-  async login(user: any) {
+  /**
+   * Login existing user
+   */
+  async login(email: string, password: string) {
+    const user = await this.userModel.findOne({ email });
+    if (!user) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
     const payload = { email: user.email, sub: user._id };
+    const { password: _, ...safeUser } = user.toObject();
+
     return {
       access_token: this.jwtService.sign(payload),
-      user,
+      user: safeUser,
     };
   }
 
+  /**
+   * Google OAuth login
+   */
   async googleLogin(req) {
     if (!req.user) {
       throw new UnauthorizedException('No user from Google');
@@ -66,7 +98,16 @@ export class AuthService {
     };
   }
 
+  /**
+   * Register new user
+   */
   async register(name: string, email: string, password: string) {
+    // check if email already exists
+    const existingUser = await this.userModel.findOne({ email });
+    if (existingUser) {
+      throw new ConflictException('Email already registered');
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await this.userModel.create({
       name,

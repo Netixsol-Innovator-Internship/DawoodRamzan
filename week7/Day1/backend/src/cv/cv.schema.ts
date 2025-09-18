@@ -4,7 +4,7 @@ import { User } from '../users/user.schema';
 
 @Schema({ timestamps: true })
 export class CV extends Document {
-  @Prop({ required: true })
+  @Prop({ required: false })
   title: string;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
