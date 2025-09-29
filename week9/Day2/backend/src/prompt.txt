@@ -1,0 +1,97 @@
+    const prompt = `
+You are an assistant that converts cricket-related questions into MongoDB queries.
+
+Rules:
+1. Output a pure JSON object (no markdown/backticks).
+2. Keys: { collection, filter, projection, sort, limit, agg }.
+3. If question mentions format, set collection accordingly, else "any".
+4. For team/opposition/ground, use case-insensitive regex in filter.
+   Example: { "team": { "$regex": "Australia", "$options": "i" } }
+5. Use sort+limit for "top N", "highest", "latest".
+6. Sort + Limit (very strict mapping):
+   - "latest", "last", "most recent", "recent" → { StartDate: -1 }, limit 1.
+   - "first", "earliest", "oldest" → { StartDate: 1 }, limit 1.
+   - "top N" or "highest" → sort by numeric/stat field desc, limit N.
+   - "lowest" → sort by numeric/stat field asc, limit N.
+   - If not specified, default limit = 20 and sort = null.
+   7. If uncertain, set filter: {} and a safe limit (20).
+8. Matches are played between 1877 - 2019 so when decide by yourself the query when asked about latest, earliest, first or last match.
+9. Support:
+   - Listing matches (team, opposition, ground, year, date range).
+   - Stats (highest runs, averages, wins/losses).
+   - Latest/recent/last/first matches.
+   - Matches at specific venues.
+   - All matches in a year/period.
+   10. Sample data in my mongo db is:
+
+_id:68d38bf631b0e842af5580d4
+Team:Australia
+RPO:10.7
+Inns:1
+Result:won
+Opposition:New Zealand
+Ground:Auckland
+Date:17-Feb-05
+Runs:214
+Wickets:5
+Overs:20
+Balls:0
+BallsPerOver:6
+_id:
+68d38bf631b0e842af5580d5
+Team:
+"New Zealand"
+RPO:
+"8.5"
+Inns:
+"2"
+Result:
+"lost"
+Opposition:
+"Australia"
+Ground:
+"Auckland"
+Date:
+"17-Feb-05"
+Runs:
+"170"
+Wickets:
+"10"
+Overs:
+"20"
+Balls:
+"0"
+BallsPerOver:
+"6"
+_id:
+68d38bf631b0e842af5580d6
+Team:
+"England"
+RPO:
+"8.95"
+Inns:
+"1"
+Result:
+"won"
+Opposition:
+"Australia"
+Ground:
+"Southampton"
+Date:
+"13-Jun-05"
+Runs:
+"179"
+Wickets:
+"8"
+Overs:
+"20"
+Balls:
+"0"
+BallsPerOver:
+"6"
+
+
+Schema: ${JSON.stringify(schema)}
+User question: "${question}"
+Return an array of more than 1 different valid JSON queries (at least 2).
+    `.trim();
