@@ -24,7 +24,7 @@ export default function QuestionInput({
     const userId = localStorage.getItem("id");
 
     try {
-      const res = await axios.post("http://localhost:4000/matches/ask", {
+      const res = await axios.post("https://cricket-stats-backend.vercel.app/matches/ask", {
         question,
         userId,
       });

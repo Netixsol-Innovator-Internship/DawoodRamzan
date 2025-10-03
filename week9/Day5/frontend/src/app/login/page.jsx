@@ -24,7 +24,7 @@ export default function Login() {
 
     try {
       const data = await authService.login(email, password);
-      authService.saveAuthData(data.token, data.user);
+      authService.saveAuthData(data.token, data.user, data.user._id);
       router.push("/");
     } catch (err) {
       setError(err.message);

@@ -1,0 +1,50 @@
+<testsuites id="" name="" tests="7" failures="1" skipped="0" errors="0" time="12.748923000000001">
+<testsuite name="login.spec.js" timestamp="2025-10-02T13:35:49.116Z" hostname="" tests="2" failures="0" skipped="0" time="5.312" errors="0">
+<testcase name="Login Page › should fail with wrong credentials" classname="login.spec.js" time="3.294">
+</testcase>
+<testcase name="Login Page › should login successfully with valid credentials" classname="login.spec.js" time="2.018">
+</testcase>
+</testsuite>
+<testsuite name="logout.spec.js" timestamp="2025-10-02T13:35:49.116Z" hostname="" tests="1" failures="0" skipped="0" time="4.393" errors="0">
+<testcase name="should logout and block dashboard" classname="logout.spec.js" time="4.393">
+</testcase>
+</testsuite>
+<testsuite name="task.spec.js" timestamp="2025-10-02T13:35:49.116Z" hostname="" tests="4" failures="1" skipped="0" time="9.849" errors="0">
+<testcase name="Task Management › should add a new task" classname="task.spec.js" time="4.253">
+</testcase>
+<testcase name="Task Management › should toggle task status" classname="task.spec.js" time="1.885">
+</testcase>
+<testcase name="Task Management › should delete a task" classname="task.spec.js" time="2.397">
+</testcase>
+<testcase name="Task Management › should edit an existing task" classname="task.spec.js" time="1.314">
+<failure message="task.spec.js:58:3 should edit an existing task" type="FAILURE">
+<![CDATA[  task.spec.js:58:3 › Task Management › should edit an existing task ───────────────────────────────
+
+    Error: locator.click: Error: strict mode violation: locator('h3:has-text(\'Task To Edit\')').locator('..').getByRole('button', { name: 'Edit' }) resolved to 2 elements:
+        1) <button title="Edit task" class="text-blue-500 hover:text-blue-700 disabled:opacity-50">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionCompleted10\/2\/2025$/ }).getByRole('button').first()
+        2) <button title="Edit task" class="text-blue-500 hover:text-blue-700 disabled:opacity-50">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionPending10\/2\/2025$/ }).getByRole('button').first()
+
+    Call log:
+      - waiting for locator('h3:has-text(\'Task To Edit\')').locator('..').getByRole('button', { name: 'Edit' })
+
+
+      66 |
+      67 |     // Click Edit
+    > 68 |     await taskCard.getByRole("button", { name: "Edit" }).click();
+         |                                                          ^
+      69 |   });
+      70 | });
+      71 |
+        at /home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests/task.spec.js:68:58
+
+    Error Context: ../test-results/task-Task-Management-should-edit-an-existing-task/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../test-results/task-Task-Management-should-edit-an-existing-task/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

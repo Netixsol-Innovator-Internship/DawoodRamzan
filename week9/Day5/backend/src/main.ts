@@ -1,15 +1,12 @@
-/* eslint-disable*/
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { json } from 'express';
-import { AppService } from './app.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors('*');
   app.use(json());
-
   await app.listen(process.env.PORT ?? 4000);
-  console.log('app is running on http://localhost:4000');
+  console.log('Running on http://localhost:4000');
 }
 bootstrap();

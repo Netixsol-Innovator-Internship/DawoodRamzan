@@ -14,6 +14,8 @@ export class AskService implements OnModuleInit {
   private graph: any;
   private model: ChatGoogleGenerativeAI;
 
+  private quest = '';
+
   MessagesAnnotation = z.object({
     userId: z.string(),
     messages: z.array(
@@ -31,8 +33,8 @@ export class AskService implements OnModuleInit {
 
   constructor(private readonly mongoService: MongoService) {
     this.model = new ChatGoogleGenerativeAI({
-      apiKey: process.env.GEMINI_API_KEY!,
-      model: 'gemini-2.5-flash',
+      apiKey: process.env.GEMINI_API_KEY,
+      model: 'gemini-2.0-flash',
     });
   }
 
@@ -40,14 +42,12 @@ export class AskService implements OnModuleInit {
     await this.initializeGraph();
     console.log('✅ AskService initialized with memory system');
   }
-
   private async initializeGraph() {
     // 1. Relevancy Checker: Verify if question is about products
     const relevancyChecker = async (state: any) => {
       const input = state.messages.at(-1)?.content || '';
-
-      
-
+      this.quest = input;
+      console.log('Quest is:' + this.quest);
       const prompt = `
 You are an intelligent assistant for a healthcare product recommendation system.
 
@@ -55,7 +55,7 @@ QUESTION: "${input}"
 
 Determine whether the user's question is related to the healthcare products listed in the product catalog.
 The catalog includes details like product name, category, brand, description, price, ingredients (e.g., Vitamin C), and dosage (e.g., "2 capsules per day", "once daily").
-
+Determine if it is related to some health symptoms.
 Examples of relevant questions:
 - Suggest a product under 1000 rupees
 - Which product contains Vitamin C?
@@ -65,9 +65,16 @@ Examples of relevant questions:
 - Products between 100 to 1000 rupees
 - Anything that can be taken 1 time per day
 - Supplements with dosage of 2 times daily
-
+-I’m losing hair
+- i am feeling weak or tired
+- my bones are fragile
+"tired": ["Vitamin B Complex", "Iron Supplements"],
+  "hair fall": ["Biotin", "Zinc", "Multivitamin"],
+  "weak bones": ["Calcium", "Vitamin D"],
+  "stress": ["Magnesium", "Ashwagandha"]
 If the question is related to the product catalog (including dosage, price ranges, frequency), answer ONLY with "Yes".
-If not related (e.g., personal health issues without asking for a product, general medical advice, unrelated topics), answer ONLY with "No".
+if the question is related to  symptoms than answer only with "YES".
+If not related  answer ONLY with "No".
 `;
 
       try {
@@ -144,9 +151,10 @@ If not related (e.g., personal health issues without asking for a product, gener
       const userQuestion = state.messages.at(-1).content;
       const memoryContext = state.memory || '';
 
-
       const prompt = `
 You are a healthcare assistant and MongoDB query generator for a product recommendation system.
+You are a healthcare product recommendation system.  
+The user may describe a health concern, symptom, or need in any way. 
 
 You are a smart and helpful assistant for a health supplement store. Users ask about products by name, brand, ingredients, category, price range, or dosage frequency.
 
@@ -158,6 +166,11 @@ Your job is to understand user queries even if they have spelling mistakes, typo
 - Always return relevant products with clear details: name, price, description, brand, and ingredients.
 - If no matching product is found, politely say "Sorry, no products match your query."
 - Be friendly, clear, and helpful.
+- "tired": ["Vitamin B Complex", "Iron Supplements"],
+  "hair fall": ["Biotin", "Zinc", "Multivitamin"],
+  "weak bones": ["Calcium", "Vitamin D"],
+  "stress": ["Magnesium", "Ashwagandha"]
+  - cheapest product means the product with the lowest
 
 Examples of queries you should handle:
 - "show me nutraa coreee supplements"
@@ -199,7 +212,25 @@ For price: recognize price-related conditions and generate appropriate MongoDB n
 For dosage: recognize frequency patterns like "2 times", "once", "daily", "per day" and search in dosage field.
 
 3. If user asks for specific number of products, limit results accordingly.
+4. if the user ask for any syptoms like this  "tired": ["Vitamin B Complex", "Iron Supplements"],
+  "hair fall": ["Biotin", "Zinc", "Multivitamin"],
+  "weak bones": ["Calcium", "Vitamin D"],
+  "stress": ["Magnesium", "Ashwagandha"] then search the category
+
+
+5. Map the symptoms to categories or ingredients according to your own - "categories" must only include values from this fixed list:  
+  [Calcium Supplement, Detox, Energy Support, Herbal Supplement, Immune Support, Joint Health, Multivitamin, Omega-3 Supplement, Probiotics, Sleep Support]  
+- "ingredients" should be common nutrients, compounds, or natural remedies directly related to the user’s concern (e.g., Calcium, Vitamin D, Magnesium,Calcium Carbonate, Vitamin D3,Glucosamine, Chondroitin, MSM,Ashwagandha, Ginseng, Turmeric,Vitamin A, Vitamin C, Vitamin D3, Zinc).  
+- If nothing matches confidently, return empty arrays.  
+- Do not include extra text or explanations — output JSON only. 
 4. Return a valid MongoDB filter JSON object, and a separate limit number if applicable.
+ 
+
+Example:
+{
+  "categories": ["Vitamins", "Minerals"],
+  "ingredients": ["Calcium", "Vitamin D", "Magnesium"]
+}
 
 Examples:
 
@@ -226,6 +257,11 @@ OUTPUT:
   },
   "limit": 10
 }
+
+ 
+
+Rules:
+
 
 USER: "product which can be taken 1 times a day"
 OUTPUT:
@@ -381,13 +417,33 @@ ONLY return a JSON object with "filter" and optionally "limit". No explanations 
         )
         .join('\n\n');
 
+      const summaryPrompt = `
+You are a helpful assistant. You are answering this question.
+Question: ${this.quest}.
+ Summarize the following product list into a clear, short, user-friendly response. 
+Mention the key benefits in 2-3 lines
+Products:
+${productList}
+`;
+
+      let summary = '';
+      try {
+        const response = await this.model.invoke([
+          { role: 'user', content: summaryPrompt },
+        ]);
+        summary = this.extractContent(response).trim();
+      } catch (error) {
+        console.error('❌ Error generating summary:', error);
+        summary = `I found ${state.result.length} product(s) that may match your request.`;
+      }
+
       return {
         ...state,
         messages: [
           ...state.messages,
           {
             role: 'assistant',
-            content: `I found ${state.result.length} product(s) matching your criteria:\n\n${productList}`,
+            content: summary,
           },
         ],
         route: 'memorySaver',
@@ -514,7 +570,6 @@ ONLY return a JSON object with "filter" and optionally "limit". No explanations 
 
     console.log('💾 Conversation saved to memory');
   }
-
 
   // src/ask/ask.service.ts
 

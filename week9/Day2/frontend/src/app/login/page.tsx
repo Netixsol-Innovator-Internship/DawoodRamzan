@@ -22,7 +22,7 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:4000/auth/login", {
+      const res = await axios.post("https://cricket-stats-backend.vercel.app/auth/login", {
         email,
         password,
       });

@@ -124,7 +124,7 @@ function TaskList({ tasks, setTasks }) {
                 <div className="space-y-3">
                   <input
                     type="text"
-                    name="title"
+                    name="titl"
                     value={editForm.title}
                     onChange={handleEditChange}
                     className="w-full p-2 border rounded"
@@ -180,7 +180,7 @@ function TaskList({ tasks, setTasks }) {
                         className="text-blue-500 hover:text-blue-700 disabled:opacity-50"
                         title="Edit task"
                       >
-                        ✏️
+                        Edit
                       </button>
                       <button
                         onClick={() => handleDelete(task.id)}
@@ -188,7 +188,7 @@ function TaskList({ tasks, setTasks }) {
                         className="text-red-500 hover:text-red-700 disabled:opacity-50"
                         title="Delete task"
                       >
-                        ×
+                      Delete
                       </button>
                     </div>
                   </div>

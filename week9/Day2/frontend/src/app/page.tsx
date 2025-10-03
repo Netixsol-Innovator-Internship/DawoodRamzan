@@ -38,7 +38,7 @@ export default function Home() {
   const fetchHistory = async (userId: string) => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/matches/history/${userId}`
+        `https://cricket-stats-backend.vercel.app/matches/history/${userId}`
       );
 
       const historyMsgs: ChatMsg[] = [];
@@ -121,7 +121,7 @@ export default function Home() {
 
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:4000/matches/memory/${userId}`);
+      await axios.delete(`https://cricket-stats-backend.vercel.app/matches/memory/${userId}`);
       window.location.reload();
     } catch (err) {
       setMessages((prev) => [
@@ -141,7 +141,7 @@ export default function Home() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:4000/matches/summary/${userId}`
+        `https://cricket-stats-backend.vercel.app/matches/summary/${userId}`
       );
       setMessages((prev) => [
         ...prev,

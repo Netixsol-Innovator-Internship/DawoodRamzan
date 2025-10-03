@@ -9,7 +9,7 @@ import { UserModule } from '../user/user.module';
 @Module({
   imports: [
     JwtModule.register({
-      secret: process.env.JWT_SECRET_KEY!, // Move this to env file
+      secret: process.env.JWT_SECRET_KEY || "Daud", // Move this to env file
       signOptions: { expiresIn: '3d' },
     }),
     UserModule,

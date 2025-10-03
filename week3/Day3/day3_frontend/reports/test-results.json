@@ -1,0 +1,395 @@
+{
+  "config": {
+    "configFile": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/playwright.config.js",
+    "rootDir": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "reports/test-results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "reports/junit-results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.1",
+    "workers": 4,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 5173
+    }
+  },
+  "suites": [
+    {
+      "title": "login.spec.js",
+      "file": "login.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Login Page",
+          "file": "login.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should fail with wrong credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3294,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-02T13:35:50.255Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "badc1754af1944f68b2b-d416e78bfef59e963475",
+              "file": "login.spec.js",
+              "line": 4,
+              "column": 3
+            },
+            {
+              "title": "should login successfully with valid credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2018,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-02T13:35:54.248Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "badc1754af1944f68b2b-fbc70b11c4eb1c96c6e7",
+              "file": "login.spec.js",
+              "line": 16,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "logout.spec.js",
+      "file": "logout.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "should logout and block dashboard",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-10-02T13:35:50.014Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b7773ae6a53e211c23cf-4deb2f6ba7d9a65d425f",
+          "file": "logout.spec.js",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "task.spec.js",
+      "file": "task.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Task Management",
+          "file": "task.spec.js",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should add a new task",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4253,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-02T13:35:50.082Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0ded11d84c40050f834e-00175aaf6f387dbb914a",
+              "file": "task.spec.js",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "should toggle task status",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1885,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-02T13:35:54.932Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0ded11d84c40050f834e-13da9908073716e198a1",
+              "file": "task.spec.js",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "should delete a task",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2397,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-02T13:35:56.868Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0ded11d84c40050f834e-e720318b4fb459df9dab",
+              "file": "task.spec.js",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should edit an existing task",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 1314,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: locator('h3:has-text(\\'Task To Edit\\')').locator('..').getByRole('button', { name: 'Edit' }) resolved to 2 elements:\n    1) <button title=\"Edit task\" class=\"text-blue-500 hover:text-blue-700 disabled:opacity-50\">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionCompleted10\\/2\\/2025$/ }).getByRole('button').first()\n    2) <button title=\"Edit task\" class=\"text-blue-500 hover:text-blue-700 disabled:opacity-50\">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionPending10\\/2\\/2025$/ }).getByRole('button').first()\n\nCall log:\n\u001b[2m  - waiting for locator('h3:has-text(\\'Task To Edit\\')').locator('..').getByRole('button', { name: 'Edit' })\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: locator('h3:has-text(\\'Task To Edit\\')').locator('..').getByRole('button', { name: 'Edit' }) resolved to 2 elements:\n    1) <button title=\"Edit task\" class=\"text-blue-500 hover:text-blue-700 disabled:opacity-50\">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionCompleted10\\/2\\/2025$/ }).getByRole('button').first()\n    2) <button title=\"Edit task\" class=\"text-blue-500 hover:text-blue-700 disabled:opacity-50\">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionPending10\\/2\\/2025$/ }).getByRole('button').first()\n\nCall log:\n\u001b[2m  - waiting for locator('h3:has-text(\\'Task To Edit\\')').locator('..').getByRole('button', { name: 'Edit' })\u001b[22m\n\n    at /home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests/task.spec.js:68:58",
+                        "location": {
+                          "file": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests/task.spec.js",
+                          "column": 58,
+                          "line": 68
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 66 |\u001b[39m\n \u001b[90m 67 |\u001b[39m     \u001b[90m// Click Edit\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m taskCard\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Edit\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 69 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 70 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 71 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests/task.spec.js",
+                            "column": 58,
+                            "line": 68
+                          },
+                          "message": "Error: locator.click: Error: strict mode violation: locator('h3:has-text(\\'Task To Edit\\')').locator('..').getByRole('button', { name: 'Edit' }) resolved to 2 elements:\n    1) <button title=\"Edit task\" class=\"text-blue-500 hover:text-blue-700 disabled:opacity-50\">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionCompleted10\\/2\\/2025$/ }).getByRole('button').first()\n    2) <button title=\"Edit task\" class=\"text-blue-500 hover:text-blue-700 disabled:opacity-50\">Edit</button> aka locator('div').filter({ hasText: /^Task To EditEditDeleteOld descriptionPending10\\/2\\/2025$/ }).getByRole('button').first()\n\nCall log:\n\u001b[2m  - waiting for locator('h3:has-text(\\'Task To Edit\\')').locator('..').getByRole('button', { name: 'Edit' })\u001b[22m\n\n\n\u001b[0m \u001b[90m 66 |\u001b[39m\n \u001b[90m 67 |\u001b[39m     \u001b[90m// Click Edit\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m taskCard\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"button\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Edit\"\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 69 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 70 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 71 |\u001b[39m\u001b[0m\n\u001b[2m    at /home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests/task.spec.js:68:58\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-02T13:35:59.291Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/test-results/task-Task-Management-should-edit-an-existing-task/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/daud/Videos/DawoodRamzan/week3/Day3/day3_frontend/tests/task.spec.js",
+                        "column": 58,
+                        "line": 68
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "0ded11d84c40050f834e-697d2890c64f6756352f",
+              "file": "task.spec.js",
+              "line": 58,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-02T13:35:48.188Z",
+    "duration": 12748.923,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
